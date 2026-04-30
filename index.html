@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aliginianos FC</title>
+<style>
+  :root {
+    --black: #0a0a0f;
+    --black2: #111118;
+    --purple: #7c3aed;
+    --purple-light: #a855f7;
+    --purple-glow: #9333ea33;
+    --purple-dim: #4c1d95;
+    --text: #e2d9f3;
+    --text-muted: #8b7ca8;
+    --border: #2d1b4e;
+    --card: #13101e;
+    --win: #22c55e;
+    --loss: #ef4444;
+    --draw: #f59e0b;
+    --wo: #a855f7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--black); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--purple-dim); border-radius: 3px; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: #0a0a0fcc; backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; }
+  .nav-logo { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.1rem; letter-spacing: 0.05em; color: var(--text); text-decoration: none; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--purple-light); }
+  .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 20px 40px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 40%, #4c1d9540 0%, transparent 70%); pointer-events: none; }
+  .hero-year { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--purple-light); margin-bottom: 16px; opacity: 0.8; }
+  .hero-crest { width: 120px; height: 120px; margin-bottom: 28px; filter: drop-shadow(0 0 32px #7c3aed80); animation: float 4s ease-in-out infinite; }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .hero h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; letter-spacing: -0.02em; line-height: 1; background: linear-gradient(135deg, #fff 30%, var(--purple-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; }
+  .hero-sub { font-size: 0.95rem; color: var(--text-muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 48px; }
+  .hero-stats { display: flex; gap: 48px; justify-content: center; flex-wrap: wrap; }
+  .hero-stat { text-align: center; }
+  .hero-stat .val { font-size: 2.2rem; font-weight: 900; color: var(--purple-light); line-height: 1; }
+  .hero-stat .lbl { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); margin-top: 4px; }
+  .news-bar { background: var(--purple-dim); border-bottom: 1px solid var(--border); height: 36px; display: flex; align-items: center; overflow: hidden; margin-top: 64px; }
+  .news-tag { background: var(--purple); color: #fff; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 0 16px; height: 100%; display: flex; align-items: center; white-space: nowrap; flex-shrink: 0; }
+  .ticker-wrap { overflow: hidden; flex: 1; mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%); }
+  .ticker-inner { display: flex; animation: ticker 40s linear infinite; white-space: nowrap; }
+  .ticker-item { font-size: 0.78rem; color: #d8c8f0; padding: 0 40px; letter-spacing: 0.03em; }
+  .ticker-item::before { content: '●'; color: var(--purple-light); margin-right: 12px; font-size: 0.5rem; vertical-align: middle; }
+  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  .section-wrap { max-width: 1100px; margin: 0 auto; padding: 80px 20px; }
+  .section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--purple-light); margin-bottom: 8px; }
+  .section-title { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 900; margin-bottom: 40px; letter-spacing: -0.01em; }
+  .divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+  .squad-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .player-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+  .player-card:hover { border-color: var(--purple); transform: translateY(-3px); }
+  .player-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--purple-dim), var(--purple-light)); border-radius: 12px 12px 0 0; }
+  .player-number { font-size: 2.5rem; font-weight: 900; color: var(--border); position: absolute; top: 10px; right: 14px; line-height: 1; user-select: none; }
+  .player-pos { display: inline-block; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 3px 8px; border-radius: 4px; margin-bottom: 10px; }
+  .pos-gk { background: #854d0e40; color: #fde68a; border: 1px solid #92400e; }
+  .pos-def { background: #1e3a8a40; color: #93c5fd; border: 1px solid #1d4ed8; }
+  .pos-mid { background: #14532d40; color: #86efac; border: 1px solid #16a34a; }
+  .pos-att { background: #7f1d1d40; color: #fca5a5; border: 1px solid #dc2626; }
+  .player-name { font-size: 1.05rem; font-weight: 800; line-height: 1.2; margin-bottom: 4px; }
+  .player-meta { font-size: 0.75rem; color: var(--text-muted); }
+  .player-badge { margin-top: 10px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .badge { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; border: 1px solid var(--border); color: var(--text-muted); }
+  .badge.captain { border-color: var(--purple-light); color: var(--purple-light); }
+  .badge.injured { border-color: #ef4444; color: #ef4444; }
+  .badge.loan { border-color: #f59e0b; color: #f59e0b; }
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--purple), var(--border)); }
+  .tl-year { margin-bottom: 32px; }
+  .tl-year-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--purple-light); margin-bottom: 12px; position: relative; }
+  .tl-year-label::before { content: ''; position: absolute; left: -38px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; border-radius: 50%; background: var(--purple); border: 2px solid var(--purple-light); box-shadow: 0 0 12px var(--purple); }
+  .tl-events { display: flex; flex-direction: column; gap: 10px; }
+  .tl-event { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; font-size: 0.88rem; display: flex; align-items: center; gap: 10px; transition: border-color 0.2s; }
+  .tl-event:hover { border-color: var(--purple-dim); }
+  .tl-event .ev-icon { font-size: 1rem; flex-shrink: 0; width: 28px; text-align: center; }
+  .matches-list { display: flex; flex-direction: column; gap: 10px; }
+  .match-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; transition: border-color 0.2s; }
+  .match-card:hover { border-color: var(--purple-dim); }
+  .match-result { width: 42px; height: 42px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.72rem; letter-spacing: 0.05em; flex-shrink: 0; }
+  .result-w { background: #14532d40; border: 1px solid #16a34a; color: var(--win); }
+  .result-l { background: #7f1d1d40; border: 1px solid #dc2626; color: var(--loss); }
+  .result-d { background: #78350f40; border: 1px solid #d97706; color: var(--draw); }
+  .result-wo { background: #4c1d9540; border: 1px solid var(--purple); color: var(--wo); }
+  .result-upcoming { background: #1a0a2e; border: 1px solid var(--border); color: var(--text-muted); }
+  .match-info { flex: 1; }
+  .match-opponent { font-weight: 700; font-size: 0.95rem; margin-bottom: 3px; }
+  .match-detail { font-size: 0.75rem; color: var(--text-muted); }
+  .match-score { font-size: 1.4rem; font-weight: 900; text-align: right; letter-spacing: -0.02em; }
+  .match-score.upcoming { font-size: 0.78rem; font-weight: 600; color: var(--purple-light); letter-spacing: 0.05em; text-transform: uppercase; }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 40px; }
+  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-align: center; }
+  .stat-card .big { font-size: 2.8rem; font-weight: 900; line-height: 1; color: var(--purple-light); margin-bottom: 6px; }
+  .stat-card .name { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); }
+  .aproveitamento-bar { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 16px; }
+  .bar-header { display: flex; justify-content: space-between; margin-bottom: 12px; }
+  .bar-label { font-size: 0.85rem; font-weight: 600; }
+  .bar-pct { font-size: 0.85rem; font-weight: 700; color: var(--purple-light); }
+  .bar-track { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; }
+  .bar-fill.win { background: linear-gradient(90deg, #16a34a, #22c55e); }
+  .bar-fill.loss { background: linear-gradient(90deg, #b91c1c, #ef4444); }
+  .bar-fill.draw { background: linear-gradient(90deg, #d97706, #f59e0b); }
+  footer { border-top: 1px solid var(--border); text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.78rem; letter-spacing: 0.05em; }
+  @media (max-width: 640px) { nav { padding: 0 16px; } .nav-links { gap: 16px; } .nav-links a { font-size: 0.75rem; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <svg width="38" height="38" viewBox="0 0 60 60" fill="none">
+      <path d="M30 4L54 16V38C54 48 42 56 30 58C18 56 6 48 6 38V16L30 4Z" fill="#1a0a2e" stroke="#7c3aed" stroke-width="2"/>
+      <path d="M30 10L48 20V37C48 44.5 39 51 30 53C21 51 12 44.5 12 37V20L30 10Z" fill="#0f0720" stroke="#6d28d9" stroke-width="1"/>
+      <text x="30" y="38" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="18" fill="#a855f7">A</text>
+    </svg>
+    Aliginianos FC
+  </a>
+  <ul class="nav-links">
+    <li><a href="#elenco">Elenco</a></li>
+    <li><a href="#jogos">Jogos</a></li>
+    <li><a href="#historico">Histórico</a></li>
+    <li><a href="#stats">Stats</a></li>
+  </ul>
+</nav>
+
+<div class="news-bar">
+  <div class="news-tag">⚡ Notícias</div>
+  <div class="ticker-wrap">
+    <div class="ticker-inner" id="ticker"></div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-year">Fundado em 2022</div>
+  <svg class="hero-crest" viewBox="0 0 80 80" fill="none">
+    <path d="M40 5L70 20V46C70 58 55 68 40 71C25 68 10 58 10 46V20L40 5Z" fill="#1a0a2e" stroke="#7c3aed" stroke-width="2.5"/>
+    <path d="M40 13L62 26V45C62 54 50 62 40 64C30 62 18 54 18 45V26L40 13Z" fill="#0f0720" stroke="#6d28d9" stroke-width="1.5"/>
+    <text x="40" y="50" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="28" fill="#a855f7">A</text>
+  </svg>
+  <h1>ALIGINIANOS</h1>
+  <p class="hero-sub">Futebol de Várzea · Desde 2022</p>
+  <div class="hero-stats" id="hero-stats"></div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section-wrap" id="elenco">
+  <div class="section-label">Temporada 2026</div>
+  <div class="section-title">Elenco</div>
+  <div class="squad-grid" id="squad-grid"></div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section-wrap" id="jogos">
+  <div class="section-label">Partidas</div>
+  <div class="section-title">Jogos</div>
+  <div class="matches-list" id="matches-list"></div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section-wrap" id="historico">
+  <div class="section-label">Desde 2022</div>
+  <div class="section-title">Histórico do Clube</div>
+  <div class="timeline" id="timeline"></div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section-wrap" id="stats">
+  <div class="section-label">Números</div>
+  <div class="section-title">Aproveitamento</div>
+  <div class="stats-grid" id="stats-grid"></div>
+  <div id="bars"></div>
+</div>
+
+<footer>
+  <p>⚽ Aliginianos FC · Fundado em 2022 · Futebol de Várzea</p>
+</footer>
+
+<script>
+/* ═══════════════════════════════════
+   ✏️  EDITE AQUI — DADOS DO TIME
+   ═══════════════════════════════════ */
+
+const NEWS_ITEMS = [
+  "Aliginianos se preparam para o próximo clássico contra o Pandora",
+  "Novos reforços: Thigas, Gabeg e Yuri chegam para fortalecer o elenco em 2026",
+  "Saída dos goleiros Gabriel e Raphael marca renovação no time",
+  "Lucas Almeida, contratado direto do Botafogo, segue em recuperação",
+  "Raul emprestado ao Pandora — retorno previsto para a próxima temporada",
+  "Time completa 4 anos de história com identidade cada vez mais forte",
+  "Próximo jogo: Aliginianos x Pandora — aguardem!",
+];
+
+/* pos: 'GK' | 'DEF' | 'MID' | 'ATT'
+   badges: 'captain' | 'injured' | 'loan' */
+const PLAYERS = [
+  { number: 1,  name: "Gabriel",       pos: "GK",  note: "Saiu em 2026",   badges: [] },
+  { number: 6, name: "Raphael",       pos: "GK",  note: "Saiu em 2026",   badges: [] },
+  { number: 2,  name: "Willian",       pos: "DEF", note: "Desde 2023",     badges: [] },
+  { number: 69,  name: "João",       pos: "ATT", note: "Desde 2022",     badges: [] },
+  { number: 12,  name: "Luigi",       pos: "DEF", note: "Desde 2022",     badges: ["captain"] },
+  { number: 3,  name: "Filipe",        pos: "MID", note: "Saiu em 2025", badges: [] },
+  { number: 4,  name: "Raul",          pos: "MID", note: "Emprestado",     badges: ["loan"] },
+  { number: 9,  name: "Lucas Almeida", pos: "ATT", note: "Ex-Botafogo",    badges: ["injured"] },
+  { number: 7,  name: "Thigas",         pos: "GK", note: "Ex-Cotil",       badges: [] },
+  { number: 10, name: "Gabeg",         pos: "DEF", note: "Ex-Mirassol",     badges: [] },
+  { number: 11, name: "Yuri",          pos: "DEF", note: "Ex-Mirassol",     badges: [] },
+];
+
+/* result: 'W' | 'L' | 'D' | 'WO' | null (próximo jogo)
+   score: 'NossosxDeles' ou null */
+const MATCHES = [
+  { opponent: "Caze",    date: "2022",       result: "L",  score: "1x12",  home: false, note: "Amistoso de estreia" },
+  { opponent: "Caze",    date: "2023",       result: "L",  score: "3x13",  home: true,  note: "2º jogo em casa" },
+  { opponent: "Adultos", date: "2024",       result: "L",  score: "3x6",   home: false, note: "Jogo contra adultos" },
+  { opponent: "Caze",    date: "Abril 2024", result: "WO", score: null,    home: true,  note: "Vitória por WO" },
+  { opponent: "Caze",    date: "2024",       result: "W",  score: "12x1",  home: true,  note: "Grande vitória" },
+  { opponent: "Pandora", date: "Mid-2025",   result: "L",  score: "2x8",   home: false, note: "" },
+  { opponent: "Pandora", date: "Em breve",   result: null, score: null,    home: true,  note: "Próximo jogo" },
+];
+
+const HISTORY = [
+  { year: "2022", events: [
+    { icon: "🏁", text: "Criação do Aliginianos FC" },
+    { icon: "⚽", text: "Derrota no amistoso de estreia contra o Caze (12x1)" },
+  ]},
+  { year: "2023", events: [
+    { icon: "✍️", text: "Contratação do Willian" },
+    { icon: "✍️", text: "Contratação do Filipe (meio do ano)" },
+    { icon: "⚽", text: "Segundo jogo em casa contra o Caze — derrota por 13x3" },
+  ]},
+  { year: "2024", events: [
+    { icon: "🏆", text: "Consolidação do time oficial" },
+    { icon: "⚽", text: "Derrota contra os adultos (6x3)" },
+    { icon: "💪", text: "Reforço moral (abril)" },
+    { icon: "🏳️", text: "Vitória contra Caze por WO" },
+    { icon: "🔥", text: "Vitória histórica contra Caze (12x1)" },
+  ]},
+  { year: "2025", events: [
+    { icon: "🔄", text: "Empréstimo do Raul para o Pandora" },
+    { icon: "🩺", text: "Contratação do Lucas Almeida (machucado) — direto do Botafogo" },
+    { icon: "⚽", text: "Derrota contra Pandora (8x2)" },
+  ]},
+  { year: "2026", events: [
+    { icon: "✍️", text: "Contratação de Tigas (ex-Cotil)" },
+    { icon: "✍️", text: "Contratação de Gabeg e Yuri (ex-Mirasol)" },
+    { icon: "🚪", text: "Saída dos goleiros Gabriel e Raphael" },
+    { icon: "⏳", text: "Jogo vs Pandora — em breve (sexta-feira)" },
+  ]},
+];
+
+/* ═══════════════════════════════════
+   RENDER — não precisa editar abaixo
+   ═══════════════════════════════════ */
+
+// TICKER
+const ticker = document.getElementById('ticker');
+const allNews = [...NEWS_ITEMS, ...NEWS_ITEMS];
+ticker.innerHTML = allNews.map(n => `<span class="ticker-item">${n}</span>`).join('');
+
+// SQUAD
+const posClass = { GK:'pos-gk', DEF:'pos-def', MID:'pos-mid', ATT:'pos-att' };
+document.getElementById('squad-grid').innerHTML = PLAYERS.map(p => `
+  <div class="player-card">
+    <div class="player-number">${p.number}</div>
+    <span class="player-pos ${posClass[p.pos]||''}">${p.pos}</span>
+    <div class="player-name">${p.name}</div>
+    <div class="player-meta">${p.note||''}</div>
+    ${p.badges.length?`<div class="player-badge">${p.badges.map(b=>`<span class="badge ${b}">${b==='captain'?'© Capitão':b==='injured'?'🩹 Lesionado':'🔄 Emprestado'}</span>`).join('')}</div>`:''}
+  </div>`).join('');
+
+// MATCHES
+const rlabel = { W:'V', L:'D', D:'E', WO:'WO' };
+const rclass  = { W:'result-w', L:'result-l', D:'result-d', WO:'result-wo' };
+document.getElementById('matches-list').innerHTML = MATCHES.map(m => `
+  <div class="match-card">
+    <div class="match-result ${m.result?rclass[m.result]:'result-upcoming'}">${m.result?rlabel[m.result]:'⏳'}</div>
+    <div class="match-info">
+      <div class="match-opponent">Aliginianos vs ${m.opponent}</div>
+      <div class="match-detail">${m.date}${m.home?' · Casa':' · Fora'}${m.note?' · '+m.note:''}</div>
+    </div>
+    <div class="match-score${!m.score?' upcoming':''}">${m.score||(m.result==='WO'?'WO':'Em breve')}</div>
+  </div>`).join('');
+
+// HISTORY
+document.getElementById('timeline').innerHTML = HISTORY.map(y=>`
+  <div class="tl-year">
+    <div class="tl-year-label">${y.year}</div>
+    <div class="tl-events">${y.events.map(e=>`<div class="tl-event"><span class="ev-icon">${e.icon}</span>${e.text}</div>`).join('')}</div>
+  </div>`).join('');
+
+// STATS
+const played = MATCHES.filter(m=>m.result!==null).length;
+const wins   = MATCHES.filter(m=>m.result==='W'||m.result==='WO').length;
+const losses = MATCHES.filter(m=>m.result==='L').length;
+const draws  = MATCHES.filter(m=>m.result==='D').length;
+let gf=0,ga=0;
+MATCHES.forEach(m=>{
+  if(m.score&&m.result!=='WO'){const[a,b]=m.score.split('x').map(Number);gf+=a;ga+=b;}
+});
+const aprov = played?Math.round((wins/played)*100):0;
+
+document.getElementById('hero-stats').innerHTML=`
+  <div class="hero-stat"><div class="val">${played}</div><div class="lbl">Jogos</div></div>
+  <div class="hero-stat"><div class="val">${wins}</div><div class="lbl">Vitórias</div></div>
+  <div class="hero-stat"><div class="val">${losses}</div><div class="lbl">Derrotas</div></div>
+  <div class="hero-stat"><div class="val">${aprov}%</div><div class="lbl">Aproveitamento</div></div>`;
+
+document.getElementById('stats-grid').innerHTML=[
+  {big:played,name:'Jogos'},{big:wins,name:'Vitórias'},{big:losses,name:'Derrotas'},
+  {big:draws,name:'Empates'},{big:gf,name:'Gols Marcados'},{big:ga,name:'Gols Sofridos'},
+  {big:`${aprov}%`,name:'Aproveitamento'},{big:PLAYERS.length,name:'Jogadores'},
+].map(s=>`<div class="stat-card"><div class="big">${s.big}</div><div class="name">${s.name}</div></div>`).join('');
+
+const winP=played?Math.round((wins/played)*100):0;
+const losP=played?Math.round((losses/played)*100):0;
+const draP=played?Math.round((draws/played)*100):0;
+document.getElementById('bars').innerHTML=[
+  {label:'Vitórias',pct:winP,cls:'win'},{label:'Derrotas',pct:losP,cls:'loss'},{label:'Empates',pct:draP,cls:'draw'}
+].map(b=>`<div class="aproveitamento-bar"><div class="bar-header"><span class="bar-label">${b.label}</span><span class="bar-pct">${b.pct}%</span></div><div class="bar-track"><div class="bar-fill ${b.cls}" style="width:${b.pct}%"></div></div></div>`).join('');
+</script>
+</body>
+</html>
