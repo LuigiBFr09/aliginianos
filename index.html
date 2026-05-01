@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -26,14 +27,12 @@
   ::-webkit-scrollbar-track { background: var(--black); }
   ::-webkit-scrollbar-thumb { background: var(--purple-dim); border-radius: 3px; }
 
-  /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: #0a0a0fcc; backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; }
   .nav-logo { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.1rem; letter-spacing: 0.05em; color: var(--text); text-decoration: none; }
   .nav-links { display: flex; gap: 28px; list-style: none; }
   .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
   .nav-links a:hover { color: var(--purple-light); }
 
-  /* NEWS */
   .news-bar { background: var(--purple-dim); border-bottom: 1px solid var(--border); height: 36px; display: flex; align-items: center; overflow: hidden; margin-top: 64px; }
   .news-tag { background: var(--purple); color: #fff; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 0 16px; height: 100%; display: flex; align-items: center; white-space: nowrap; flex-shrink: 0; }
   .ticker-wrap { overflow: hidden; flex: 1; mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%); }
@@ -42,7 +41,6 @@
   .ticker-item::before { content: '●'; color: var(--purple-light); margin-right: 12px; font-size: 0.5rem; vertical-align: middle; }
   @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-  /* HERO */
   .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 20px 40px; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 40%, #4c1d9540 0%, transparent 70%); pointer-events: none; }
   .hero-year { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--purple-light); margin-bottom: 16px; opacity: 0.8; }
@@ -55,13 +53,11 @@
   .hero-stat .val { font-size: 2.2rem; font-weight: 900; color: var(--purple-light); line-height: 1; }
   .hero-stat .lbl { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); margin-top: 4px; }
 
-  /* SECTION */
   .section-wrap { max-width: 1100px; margin: 0 auto; padding: 80px 20px; }
   .section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--purple-light); margin-bottom: 8px; }
   .section-title { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 900; margin-bottom: 40px; letter-spacing: -0.01em; }
   .divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
 
-  /* SQUAD */
   .squad-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
   .player-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
   .player-card:hover { border-color: var(--purple); transform: translateY(-3px); }
@@ -80,7 +76,6 @@
   .badge.injured { border-color: #ef4444; color: #ef4444; }
   .badge.loan { border-color: #f59e0b; color: #f59e0b; }
 
-  /* MATCHES */
   .matches-list { display: flex; flex-direction: column; gap: 10px; }
   .match-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; transition: border-color 0.2s; }
   .match-card:hover { border-color: var(--purple-dim); }
@@ -96,7 +91,6 @@
   .match-score { font-size: 1.4rem; font-weight: 900; text-align: right; letter-spacing: -0.02em; }
   .match-score.upcoming { font-size: 0.78rem; font-weight: 600; color: var(--purple-light); letter-spacing: 0.05em; text-transform: uppercase; }
 
-  /* TIMELINE */
   .timeline { position: relative; padding-left: 32px; }
   .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--purple), var(--border)); }
   .tl-year { margin-bottom: 32px; }
@@ -107,7 +101,6 @@
   .tl-event:hover { border-color: var(--purple-dim); }
   .tl-event .ev-icon { font-size: 1rem; flex-shrink: 0; width: 28px; text-align: center; }
 
-  /* STATS */
   .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 40px; }
   .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-align: center; }
   .stat-card .big { font-size: 2.8rem; font-weight: 900; line-height: 1; color: var(--purple-light); margin-bottom: 6px; }
@@ -122,63 +115,92 @@
   .bar-fill.loss { background: linear-gradient(90deg, #b91c1c, #ef4444); }
   .bar-fill.draw { background: linear-gradient(90deg, #d97706, #f59e0b); }
 
-  /* ══════════════════════════════════════
-     ESCALAÇÃO TÁTICA
-  ══════════════════════════════════════ */
-  .tactics-layout {
-    display: grid;
-    grid-template-columns: 1fr 320px;
-    gap: 24px;
-    align-items: start;
-  }
+  /* ══════════════ TÁTICAS ══════════════ */
+  .tactics-layout { display: grid; grid-template-columns: 1fr 300px; gap: 20px; align-items: start; }
 
-  /* Campo */
-  .field-wrap {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 20px;
-    position: relative;
-  }
+  .field-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; }
 
-  .field-header {
+  .field-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+
+  /* ── TOOLBAR DE DESENHO ── */
+  .draw-toolbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 16px;
+    gap: 6px;
     flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .formation-select {
     background: var(--black);
     border: 1px solid var(--border);
-    color: var(--text);
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    cursor: pointer;
-    outline: none;
-    transition: border-color 0.2s;
+    border-radius: 10px;
+    padding: 8px 10px;
+    margin-bottom: 10px;
   }
+
+  .tool-sep { width: 1px; height: 22px; background: var(--border); margin: 0 2px; flex-shrink: 0; }
+
+  .tool-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-muted);
+    border-radius: 6px;
+    padding: 5px 9px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .tool-btn:hover { border-color: var(--border); color: var(--text); background: #1a0a2e; }
+  .tool-btn.active { border-color: var(--purple); color: var(--purple-light); background: #1a0a2e; box-shadow: 0 0 8px #7c3aed40; }
+  .tool-btn.danger:hover { border-color: #ef4444; color: #ef4444; }
+
+  .color-btn {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+  }
+  .color-btn:hover { transform: scale(1.15); }
+  .color-btn.active { border-color: #fff; transform: scale(1.15); }
+
+  .size-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-muted);
+    border-radius: 5px;
+    padding: 4px 7px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .size-btn:hover, .size-btn.active { border-color: var(--purple); color: var(--purple-light); background: #1a0a2e; }
+
+  .formation-select { background: var(--black); border: 1px solid var(--border); color: var(--text); padding: 7px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; cursor: pointer; outline: none; transition: border-color 0.2s; }
   .formation-select:hover, .formation-select:focus { border-color: var(--purple); }
 
-  .btn-clear {
+  .btn-action {
     background: transparent;
     border: 1px solid var(--border);
     color: var(--text-muted);
-    padding: 8px 14px;
+    padding: 7px 12px;
     border-radius: 8px;
-    font-size: 0.78rem;
+    font-size: 0.74rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
   }
-  .btn-clear:hover { border-color: #ef4444; color: #ef4444; }
+  .btn-action:hover { border-color: #ef4444; color: #ef4444; }
+  .btn-action.undo:hover { border-color: var(--purple-dim); color: var(--purple-light); }
 
+  /* Campo */
   .field-svg-wrap {
     position: relative;
     width: 100%;
@@ -187,13 +209,22 @@
     overflow: hidden;
   }
 
-  #field-svg {
+  #field-svg { width: 100%; height: 100%; display: block; }
+
+  /* Canvas de desenho */
+  #draw-canvas {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
-    display: block;
+    z-index: 20;
+    pointer-events: none;
+    border-radius: 10px;
   }
+  #draw-canvas.draw-mode { pointer-events: all; cursor: crosshair; }
+  #draw-canvas.erase-mode { pointer-events: all; cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Crect x='1' y='1' width='18' height='18' rx='3' fill='%23ef4444' fill-opacity='0.5' stroke='%23ef4444' stroke-width='1.5'/%3E%3C/svg%3E") 10 10, crosshair; }
 
-  /* Fichas dos jogadores no campo */
+  /* Fichas jogadores */
   .field-player {
     position: absolute;
     transform: translate(-50%, -50%);
@@ -201,201 +232,60 @@
     flex-direction: column;
     align-items: center;
     gap: 4px;
-    cursor: grab;
-    user-select: none;
     z-index: 10;
-    transition: filter 0.15s;
+    user-select: none;
   }
-
-  .field-player:active { cursor: grabbing; filter: brightness(1.3); z-index: 50; }
-
+  .field-player.interactive { cursor: grab; }
+  .field-player.interactive:active { cursor: grabbing; filter: brightness(1.3); z-index: 50; }
   .field-player.drag-over-target { filter: brightness(1.5); }
 
-  .fp-circle {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 2px solid var(--purple-light);
-    background: #1a0a2e;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.65rem;
-    font-weight: 800;
-    text-align: center;
-    line-height: 1.1;
-    color: #fff;
-    box-shadow: 0 0 12px #7c3aed60;
-    transition: background 0.2s, border-color 0.2s;
-    position: relative;
-  }
+  #field-players { position: absolute; inset: 0; z-index: 10; }
 
-  .fp-circle.gk { border-color: #fde68a; background: #1f1100; box-shadow: 0 0 12px #fde68a40; }
-  .fp-circle.def { border-color: #93c5fd; background: #0a1a3a; box-shadow: 0 0 12px #93c5fd40; }
-  .fp-circle.mid { border-color: #86efac; background: #0a1f12; box-shadow: 0 0 12px #86efac40; }
-  .fp-circle.att { border-color: #fca5a5; background: #1f0a0a; box-shadow: 0 0 12px #fca5a540; }
-  .fp-circle.empty { border-color: var(--border); background: var(--card); border-style: dashed; box-shadow: none; cursor: default; }
-
-  .fp-num {
-    position: absolute;
-    top: -6px; right: -6px;
-    background: var(--purple);
-    color: #fff;
-    font-size: 0.55rem;
-    font-weight: 900;
-    width: 16px; height: 16px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    border: 1.5px solid var(--black);
-  }
-
-  .fp-label {
-    font-size: 0.68rem;
-    font-weight: 700;
-    color: #fff;
-    text-shadow: 0 1px 4px #000a;
-    white-space: nowrap;
-    max-width: 70px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: center;
-    background: #0008;
-    padding: 1px 5px;
-    border-radius: 3px;
-  }
-
-  /* Slot de posição vazio */
-  .fp-slot-label {
-    font-size: 0.6rem;
-    font-weight: 700;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
+  .fp-circle { width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--purple-light); background: #1a0a2e; display: flex; align-items: center; justify-content: center; font-size: 0.62rem; font-weight: 800; text-align: center; line-height: 1.1; color: #fff; box-shadow: 0 0 10px #7c3aed60; position: relative; transition: background 0.2s; }
+  .fp-circle.gk { border-color: #fde68a; background: #1f1100; box-shadow: 0 0 10px #fde68a40; }
+  .fp-circle.def { border-color: #93c5fd; background: #0a1a3a; box-shadow: 0 0 10px #93c5fd40; }
+  .fp-circle.mid { border-color: #86efac; background: #0a1f12; box-shadow: 0 0 10px #86efac40; }
+  .fp-circle.att { border-color: #fca5a5; background: #1f0a0a; box-shadow: 0 0 10px #fca5a540; }
+  .fp-circle.empty { border-color: var(--border); background: var(--card); border-style: dashed; box-shadow: none; }
+  .fp-num { position: absolute; top: -6px; right: -6px; background: var(--purple); color: #fff; font-size: 0.52rem; font-weight: 900; width: 15px; height: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1.5px solid var(--black); }
+  .fp-label { font-size: 0.65rem; font-weight: 700; color: #fff; text-shadow: 0 1px 4px #000c; white-space: nowrap; max-width: 68px; overflow: hidden; text-overflow: ellipsis; text-align: center; background: #000a; padding: 1px 5px; border-radius: 3px; }
 
   /* Painel lateral */
-  .tactics-panel {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .panel-box {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px;
-  }
-
-  .panel-title {
-    font-size: 0.7rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--purple-light);
-    margin-bottom: 12px;
-  }
-
-  .bench-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    max-height: 400px;
-    overflow-y: auto;
-  }
-
-  .bench-player {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 10px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    background: var(--black);
-    cursor: grab;
-    transition: border-color 0.2s, background 0.2s;
-    font-size: 0.82rem;
-  }
-
+  .tactics-panel { display: flex; flex-direction: column; gap: 14px; }
+  .panel-box { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+  .panel-title { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: var(--purple-light); margin-bottom: 10px; }
+  .bench-list { display: flex; flex-direction: column; gap: 7px; max-height: 360px; overflow-y: auto; }
+  .bench-player { display: flex; align-items: center; gap: 9px; padding: 7px 9px; border-radius: 8px; border: 1px solid var(--border); background: var(--black); cursor: grab; transition: border-color 0.2s, background 0.2s; font-size: 0.8rem; }
   .bench-player:active { cursor: grabbing; }
   .bench-player:hover { border-color: var(--purple-dim); background: #1a0a2e; }
   .bench-player.on-field { opacity: 0.35; pointer-events: none; }
-
-  .bp-dot {
-    width: 28px; height: 28px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.6rem; font-weight: 900;
-    flex-shrink: 0;
-  }
+  .bp-dot { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.55rem; font-weight: 900; flex-shrink: 0; }
   .bp-dot.gk { background: #1f110040; border: 1px solid #92400e; color: #fde68a; }
   .bp-dot.def { background: #1e3a8a40; border: 1px solid #1d4ed8; color: #93c5fd; }
   .bp-dot.mid { background: #14532d40; border: 1px solid #16a34a; color: #86efac; }
   .bp-dot.att { background: #7f1d1d40; border: 1px solid #dc2626; color: #fca5a5; }
-
   .bp-info { flex: 1; min-width: 0; }
   .bp-name { font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .bp-pos { font-size: 0.65rem; color: var(--text-muted); }
-  .bp-num { font-size: 0.65rem; color: var(--text-muted); margin-left: auto; flex-shrink: 0; }
+  .bp-pos { font-size: 0.62rem; color: var(--text-muted); }
 
-  /* Drop highlight no campo */
-  .field-drop-active { outline: 2px dashed var(--purple-light); outline-offset: 4px; border-radius: 10px; }
+  .tactics-tip { font-size: 0.72rem; color: var(--text-muted); line-height: 1.5; padding: 8px 10px; background: var(--black); border: 1px dashed var(--border); border-radius: 7px; margin-bottom: 8px; }
 
-  /* Instrução */
-  .tactics-tip {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-    padding: 10px 12px;
-    background: var(--black);
-    border: 1px dashed var(--border);
-    border-radius: 8px;
-  }
-
-  /* Slots escalados */
-  .lineup-slots {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    max-height: 360px;
-    overflow-y: auto;
-  }
-
-  .lineup-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.78rem;
-    padding: 6px 8px;
-    border-radius: 6px;
-    background: var(--black);
-    border: 1px solid var(--border);
-  }
-
-  .lineup-pos-tag {
-    font-size: 0.6rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    width: 30px;
-    flex-shrink: 0;
-  }
-
+  .lineup-slots { display: flex; flex-direction: column; gap: 5px; max-height: 300px; overflow-y: auto; }
+  .lineup-row { display: flex; align-items: center; gap: 7px; font-size: 0.76rem; padding: 5px 7px; border-radius: 6px; background: var(--black); border: 1px solid var(--border); }
+  .lineup-pos-tag { font-size: 0.58rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); width: 28px; flex-shrink: 0; }
   .lineup-name { flex: 1; font-weight: 600; }
-  .lineup-remove {
-    background: none; border: none; color: var(--text-muted); cursor: pointer;
-    font-size: 0.8rem; padding: 2px 4px; border-radius: 3px; transition: color 0.2s;
-  }
+  .lineup-remove { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.78rem; padding: 2px 4px; border-radius: 3px; transition: color 0.2s; }
   .lineup-remove:hover { color: #ef4444; }
+
+  .field-drop-active { outline: 2px dashed var(--purple-light); outline-offset: 3px; border-radius: 10px; }
 
   footer { border-top: 1px solid var(--border); text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.78rem; letter-spacing: 0.05em; }
 
   @media (max-width: 900px) {
     .tactics-layout { grid-template-columns: 1fr; }
     nav { padding: 0 16px; }
-    .nav-links { gap: 14px; }
-    .nav-links a { font-size: 0.72rem; }
+    .nav-links { gap: 12px; }
+    .nav-links a { font-size: 0.7rem; }
   }
 </style>
 </head>
@@ -440,7 +330,6 @@
 
 <div class="divider"></div>
 
-<!-- ELENCO -->
 <div class="section-wrap" id="elenco">
   <div class="section-label">Temporada 2026</div>
   <div class="section-title">Elenco</div>
@@ -449,17 +338,17 @@
 
 <div class="divider"></div>
 
-<!-- ESCALAÇÃO TÁTICA -->
+<!-- ESCALAÇÃO -->
 <div class="section-wrap" id="escalacao">
   <div class="section-label">Montagem Tática</div>
   <div class="section-title">Escalação</div>
   <div class="tactics-layout">
 
-    <!-- CAMPO -->
     <div class="field-wrap">
+      <!-- Linha de formação + ações -->
       <div class="field-header">
         <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-          <span style="font-size:0.78rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;">Formação</span>
+          <span style="font-size:0.75rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;">Formação</span>
           <select class="formation-select" id="formation-select" onchange="applyFormation(this.value)">
             <option value="free">Livre</option>
             <option value="4-3-3">4-3-3</option>
@@ -470,10 +359,56 @@
             <option value="5-3-2">5-3-2</option>
           </select>
         </div>
-        <button class="btn-clear" onclick="clearField()">Limpar campo</button>
+        <div style="display:flex;gap:6px;">
+          <button class="btn-action undo" onclick="undoDraw()" title="Desfazer último traço">↩ Desfazer</button>
+          <button class="btn-action" onclick="clearField()">🗑 Limpar</button>
+        </div>
       </div>
+
+      <!-- TOOLBAR DE DESENHO -->
+      <div class="draw-toolbar">
+        <!-- Modo -->
+        <button class="tool-btn" id="btn-move" onclick="setMode('move')" title="Mover jogadores">
+          <span>✋</span> Mover
+        </button>
+        <button class="tool-btn" id="btn-pen" onclick="setMode('pen')" title="Desenhar livremente">
+          <span>✏️</span> Caneta
+        </button>
+        <button class="tool-btn" id="btn-arrow" onclick="setMode('arrow')" title="Seta de movimento">
+          <span>➡️</span> Seta
+        </button>
+        <button class="tool-btn" id="btn-line" onclick="setMode('line')" title="Linha reta">
+          <span>╱</span> Linha
+        </button>
+        <button class="tool-btn" id="btn-circle" onclick="setMode('circle')" title="Círculo / zona">
+          <span>⭕</span> Zona
+        </button>
+        <button class="tool-btn" id="btn-erase" onclick="setMode('erase')" title="Borracha">
+          <span>🧹</span> Borrar
+        </button>
+
+        <div class="tool-sep"></div>
+
+        <!-- Cores -->
+        <div style="display:flex;gap:5px;align-items:center;">
+          <div class="color-btn active" id="col-white"  style="background:#ffffff" onclick="setColor('#ffffff')" title="Branco"></div>
+          <div class="color-btn" id="col-purple" style="background:#a855f7" onclick="setColor('#a855f7')" title="Roxo"></div>
+          <div class="color-btn" id="col-yellow" style="background:#fde047" onclick="setColor('#fde047')" title="Amarelo"></div>
+          <div class="color-btn" id="col-red"    style="background:#ef4444" onclick="setColor('#ef4444')" title="Vermelho"></div>
+          <div class="color-btn" id="col-green"  style="background:#22c55e" onclick="setColor('#22c55e')" title="Verde"></div>
+          <div class="color-btn" id="col-cyan"   style="background:#22d3ee" onclick="setColor('#22d3ee')" title="Ciano"></div>
+        </div>
+
+        <div class="tool-sep"></div>
+
+        <!-- Espessura -->
+        <button class="size-btn active" id="sz-thin"   onclick="setSize(2)"  title="Fino">—</button>
+        <button class="size-btn"        id="sz-mid"    onclick="setSize(4)"  title="Médio">━</button>
+        <button class="size-btn"        id="sz-thick"  onclick="setSize(7)"  title="Grosso">█</button>
+      </div>
+
+      <!-- Campo -->
       <div class="field-svg-wrap" id="field-drop-zone">
-        <!-- Campo SVG -->
         <svg id="field-svg" viewBox="0 0 340 520" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="grassGrad" x1="0" y1="0" x2="0" y2="1">
@@ -482,62 +417,47 @@
               <stop offset="100%" stop-color="#0d2018"/>
             </linearGradient>
           </defs>
-          <!-- Fundo -->
           <rect width="340" height="520" fill="url(#grassGrad)" rx="6"/>
-          <!-- Faixas de gramado -->
           <rect x="0" y="0" width="340" height="52" fill="#0f2a1c" opacity="0.5"/>
           <rect x="0" y="104" width="340" height="52" fill="#0f2a1c" opacity="0.5"/>
           <rect x="0" y="208" width="340" height="52" fill="#0f2a1c" opacity="0.5"/>
           <rect x="0" y="312" width="340" height="52" fill="#0f2a1c" opacity="0.5"/>
           <rect x="0" y="416" width="340" height="52" fill="#0f2a1c" opacity="0.5"/>
-          <!-- Borda do campo -->
           <rect x="12" y="12" width="316" height="496" fill="none" stroke="#ffffff18" stroke-width="2" rx="2"/>
-          <!-- Linha do meio -->
           <line x1="12" y1="260" x2="328" y2="260" stroke="#ffffff18" stroke-width="1.5"/>
-          <!-- Círculo central -->
           <circle cx="170" cy="260" r="46" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
           <circle cx="170" cy="260" r="3" fill="#ffffff20"/>
-          <!-- Área grande superior -->
           <rect x="72" y="12" width="196" height="72" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
-          <!-- Área pequena superior -->
           <rect x="118" y="12" width="104" height="34" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
-          <!-- Gol superior -->
           <rect x="140" y="8" width="60" height="12" fill="none" stroke="#ffffff30" stroke-width="1.5"/>
-          <!-- Área grande inferior -->
           <rect x="72" y="436" width="196" height="72" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
-          <!-- Área pequena inferior -->
           <rect x="118" y="474" width="104" height="34" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
-          <!-- Gol inferior -->
           <rect x="140" y="500" width="60" height="12" fill="none" stroke="#ffffff30" stroke-width="1.5"/>
-          <!-- Pênalti sup -->
           <circle cx="170" cy="66" r="3" fill="#ffffff20"/>
           <path d="M 124 84 A 46 46 0 0 1 216 84" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
-          <!-- Pênalti inf -->
           <circle cx="170" cy="454" r="3" fill="#ffffff20"/>
           <path d="M 124 436 A 46 46 0 0 0 216 436" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
-          <!-- Cantos -->
           <path d="M 12 12 A 10 10 0 0 1 22 22" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
           <path d="M 328 12 A 10 10 0 0 0 318 22" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
           <path d="M 12 508 A 10 10 0 0 0 22 498" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
           <path d="M 328 508 A 10 10 0 0 1 318 498" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
         </svg>
-        <!-- Fichas dos jogadores (posicionadas em % via JS) -->
         <div id="field-players"></div>
+        <canvas id="draw-canvas"></canvas>
       </div>
     </div>
 
-    <!-- PAINEL LATERAL -->
+    <!-- PAINEL -->
     <div class="tactics-panel">
       <div class="panel-box">
         <div class="panel-title">🟣 Jogadores</div>
-        <div class="tactics-tip">Arraste um jogador para o campo, ou clique no campo para posicionar livremente.</div>
-        <br>
+        <div class="tactics-tip" id="mode-tip">Modo: Mover jogadores. Arraste ou clique no jogador e depois no campo.</div>
         <div class="bench-list" id="bench-list"></div>
       </div>
       <div class="panel-box">
-        <div class="panel-title">📋 Titulares no Campo</div>
+        <div class="panel-title">📋 Titulares</div>
         <div class="lineup-slots" id="lineup-slots">
-          <div style="font-size:0.78rem;color:var(--text-muted);text-align:center;padding:16px 0;">Nenhum jogador no campo</div>
+          <div style="font-size:0.76rem;color:var(--text-muted);text-align:center;padding:14px 0;">Nenhum jogador no campo</div>
         </div>
       </div>
     </div>
@@ -546,7 +466,6 @@
 
 <div class="divider"></div>
 
-<!-- JOGOS -->
 <div class="section-wrap" id="jogos">
   <div class="section-label">Partidas</div>
   <div class="section-title">Jogos</div>
@@ -555,7 +474,6 @@
 
 <div class="divider"></div>
 
-<!-- HISTÓRICO -->
 <div class="section-wrap" id="historico">
   <div class="section-label">Desde 2022</div>
   <div class="section-title">Histórico do Clube</div>
@@ -564,7 +482,6 @@
 
 <div class="divider"></div>
 
-<!-- STATS -->
 <div class="section-wrap" id="stats">
   <div class="section-label">Números</div>
   <div class="section-title">Aproveitamento</div>
@@ -572,15 +489,12 @@
   <div id="bars"></div>
 </div>
 
-<footer>
-  <p>⚽ Aliginianos FC · Fundado em 2022 · Futebol de Várzea</p>
-</footer>
+<footer><p>⚽ Aliginianos FC · Fundado em 2022 · Futebol de Várzea</p></footer>
 
 <script>
 /* ════════════════════════════════════════
-   ✏️  DADOS DO TIME — EDITE AQUI
-   ════════════════════════════════════════ */
-
+   DADOS DO TIME — EDITE AQUI
+════════════════════════════════════════ */
 const NEWS_ITEMS = [
   "Aliginianos se preparam para o próximo clássico contra o Pandora",
   "Novos reforços: Thigas, Gabeg e Yuri chegam para fortalecer o elenco em 2026",
@@ -591,171 +505,76 @@ const NEWS_ITEMS = [
   "Próximo jogo: Aliginianos x Pandora — aguardem!",
 ];
 
-/* pos: 'GK' | 'DEF' | 'MID' | 'ATT'
-   badges: 'captain' | 'injured' | 'loan' */
 const PLAYERS = [
-  { number: 1,  name: "Gabriel",       pos: "GK",  note: "Assinado para 2026",   badges: [] },
-  { number: 6, name: "Raphael",       pos: "GK",  note: "Desde 2022",   badges: ["injured"] },
-  { number: 7,  name: "Thigas",         pos: "GK", note: "Ex-Cotil",       badges: [] },
-  { number: 4,  name: "Isaac",       pos: "DEF", note: "Desde 2022",     badges: [] },
-  { number: 12,  name: "Luigi",       pos: "DEF", note: "Desde 2022",     badges: ["captain"] },
-  { number: 5, name: "Gabeg",         pos: "DEF", note: "Ex-Mirassol",     badges: [] },
-  { number: 2, name: "Yuri",          pos: "DEF", note: "Ex-Mirassol",     badges: [] },
-  { number: 3,  name: "Filipe",        pos: "MID", note: "Saiu em 2025", badges: [] },
-  { number: 14,  name: "Nogueira",       pos: "MID", note: "Nova contratação",     badges: [] },
-  { number: 11,  name: "Raul",          pos: "MID", note: "Emprestado",     badges: ["loan"] },
-  { number: 9,  name: "Lucas Almeida", pos: "ATT", note: "Ex-Botafogo",    badges: ["injured"] },
-  { number: 10,  name: "William",       pos: "ATT", note: "Desde 2023",     badges: [] },
-  { number: 8,  name: "João",       pos: "ATT", note: "Desde 2022",     badges: [] },
+  { number: 1,  name: "Gabriel",       pos: "GK",  note: "Assinado para 2026", badges: [] },
+  { number: 6,  name: "Raphael",       pos: "GK",  note: "Desde 2022",         badges: ["injured"] },
+  { number: 7,  name: "Thigas",        pos: "GK",  note: "Ex-Cotil",           badges: [] },
+  { number: 4,  name: "Isaac",         pos: "DEF", note: "Desde 2022",         badges: [] },
+  { number: 12, name: "Luigi",         pos: "DEF", note: "Desde 2022",         badges: ["captain"] },
+  { number: 5,  name: "Gabeg",         pos: "DEF", note: "Ex-Mirassol",        badges: [] },
+  { number: 2,  name: "Yuri",          pos: "DEF", note: "Ex-Mirassol",        badges: [] },
+  { number: 3,  name: "Filipe",        pos: "MID", note: "Saiu em 2025",       badges: [] },
+  { number: 14, name: "Nogueira",      pos: "MID", note: "Nova contratação",   badges: [] },
+  { number: 11, name: "Raul",          pos: "MID", note: "Emprestado",         badges: ["loan"] },
+  { number: 9,  name: "Lucas Almeida", pos: "ATT", note: "Ex-Botafogo",        badges: ["injured"] },
+  { number: 10, name: "William",       pos: "ATT", note: "Desde 2023",         badges: [] },
+  { number: 8,  name: "João",          pos: "ATT", note: "Desde 2022",         badges: [] },
 ];
 
 const MATCHES = [
-  { opponent: "Caze",    date: "2022",       result: "L",  score: "1x12",  home: false, note: "Amistoso de estreia" },
-  { opponent: "Caze",    date: "2023",       result: "L",  score: "3x13",  home: true,  note: "2º jogo em casa" },
-  { opponent: "Caze",    date: "2023",       result: "W",  score: "6x2",  home: true,  note: "Primeiro triunfo" },
-  { opponent: "Adultos", date: "2024",       result: "L",  score: "3x6",   home: false, note: "Jogo contra adultos" },
-  { opponent: "Caze",    date: "Abril 2024", result: "WO", score: null,    home: true,  note: "Vitória por WO" },
-  { opponent: "Caze",    date: "2024",       result: "W",  score: "12x1",  home: true,  note: "Grande vitória" },
-  { opponent: "Pandora", date: "Mid-2025",   result: "L",  score: "2x8",   home: false, note: "" },
-  { opponent: "Pandora", date: "Em breve",   result: null, score: null,    home: true,  note: "Próximo jogo" },
+  { opponent:"Caze",    date:"2022",       result:"L",  score:"1x12",  home:false, note:"Amistoso de estreia" },
+  { opponent:"Caze",    date:"2023",       result:"L",  score:"3x13",  home:true,  note:"2º jogo em casa" },
+  { opponent:"Caze",    date:"2023",       result:"W",  score:"6x2",   home:true,  note:"Primeiro triunfo" },
+  { opponent:"Adultos", date:"2024",       result:"L",  score:"3x6",   home:false, note:"Jogo contra adultos" },
+  { opponent:"Caze",    date:"Abril 2024", result:"WO", score:null,    home:true,  note:"Vitória por WO" },
+  { opponent:"Caze",    date:"2024",       result:"W",  score:"12x1",  home:true,  note:"Grande vitória" },
+  { opponent:"Pandora", date:"Mid-2025",   result:"L",  score:"2x8",   home:false, note:"" },
+  { opponent:"Pandora", date:"Em breve",   result:null, score:null,    home:true,  note:"Próximo jogo" },
 ];
 
 const HISTORY = [
-  { year: "2022", events: [
-    { icon: "🏁", text: "Criação do Aliginianos FC" },
-    { icon: "⚽", text: "Derrota no amistoso de estreia contra o Caze (12x1)" },
-  ]},
-  { year: "2023", events: [
-    { icon: "✍️", text: "Contratação do William" },
-    { icon: "✍️", text: "Contratação do Filipe (meio do ano)" },
-    { icon: "⚽", text: "Segundo jogo em casa contra o Caze — derrota por 13x3" },
-    { icon: "⚽", text: "Primeira vitória contra o Caze — vitória por 6x2" },
-  ]},
-  { year: "2024", events: [
-    { icon: "🏆", text: "Consolidação do time oficial" },
-    { icon: "⚽", text: "Derrota contra os adultos (6x3)" },
-    { icon: "💪", text: "Reforço moral (abril)" },
-    { icon: "🏳️", text: "Vitória contra Caze por WO" },
-    { icon: "🔥", text: "Vitória histórica contra Caze (12x1)" },
-  ]},
-  { year: "2025", events: [
-    { icon: "🔄", text: "Empréstimo do Raul para o Pandora" },
-    { icon: "🩺", text: "Contratação do Lucas Almeida (machucado) — direto do Botafogo" },
-    { icon: "⚽", text: "Derrota contra Pandora (8x2)" },
-  ]},
-  { year: "2026", events: [
-    { icon: "✍️", text: "Contratação de Thigas (ex-Cotil)" },
-    { icon: "✍️", text: "Contratação de Gabeg e Yuri (ex-Mirassol)" },
-    { icon: "🚪", text: "Saída dos goleiros Gabriel e Raphael" },
-    { icon: "⏳", text: "Jogo vs Pandora — em breve (sexta-feira)" },
-  ]},
+  { year:"2022", events:[{icon:"🏁",text:"Criação do Aliginianos FC"},{icon:"⚽",text:"Derrota no amistoso de estreia contra o Caze (12x1)"}]},
+  { year:"2023", events:[{icon:"✍️",text:"Contratação do William"},{icon:"✍️",text:"Contratação do Filipe (meio do ano)"},{icon:"⚽",text:"Segundo jogo em casa contra o Caze — derrota por 13x3"},{icon:"⚽",text:"Primeira vitória contra o Caze — vitória por 6x2"}]},
+  { year:"2024", events:[{icon:"🏆",text:"Consolidação do time oficial"},{icon:"⚽",text:"Derrota contra os adultos (6x3)"},{icon:"💪",text:"Reforço moral (abril)"},{icon:"🏳️",text:"Vitória contra Caze por WO"},{icon:"🔥",text:"Vitória histórica contra Caze (12x1)"}]},
+  { year:"2025", events:[{icon:"🔄",text:"Empréstimo do Raul para o Pandora"},{icon:"🩺",text:"Contratação do Lucas Almeida (machucado) — direto do Botafogo"},{icon:"⚽",text:"Derrota contra Pandora (8x2)"}]},
+  { year:"2026", events:[{icon:"✍️",text:"Contratação de Thigas (ex-Cotil)"},{icon:"✍️",text:"Contratação de Gabeg e Yuri (ex-Mirassol)"},{icon:"🚪",text:"Saída dos goleiros Gabriel e Raphael"},{icon:"⏳",text:"Jogo vs Pandora — em breve (sexta-feira)"}]},
 ];
 
 /* ════════════════════════════════════════
-   FORMAÇÕES PRÉ-DEFINIDAS
-   Posições em % (left, top) — 0% = canto sup esq, 100% = canto inf dir
-   O goleiro fica sempre próximo da base inferior (time ataca pra cima)
+   FORMAÇÕES
 ════════════════════════════════════════ */
 const FORMATIONS = {
-  "4-3-3": {
-    slots: [
-      { pos:"GK",  x:50, y:90, label:"GK" },
-      { pos:"DEF", x:18, y:74, label:"LD" },
-      { pos:"DEF", x:38, y:74, label:"ZE" },
-      { pos:"DEF", x:62, y:74, label:"ZD" },
-      { pos:"DEF", x:82, y:74, label:"LE" },
-      { pos:"MID", x:25, y:56, label:"MC" },
-      { pos:"MID", x:50, y:52, label:"MC" },
-      { pos:"MID", x:75, y:56, label:"MC" },
-      { pos:"ATT", x:18, y:34, label:"AE" },
-      { pos:"ATT", x:50, y:28, label:"CA" },
-      { pos:"ATT", x:82, y:34, label:"AD" },
-    ]
-  },
-  "4-4-2": {
-    slots: [
-      { pos:"GK",  x:50, y:90, label:"GK" },
-      { pos:"DEF", x:18, y:74, label:"LD" },
-      { pos:"DEF", x:38, y:74, label:"ZE" },
-      { pos:"DEF", x:62, y:74, label:"ZD" },
-      { pos:"DEF", x:82, y:74, label:"LE" },
-      { pos:"MID", x:18, y:54, label:"ME" },
-      { pos:"MID", x:38, y:54, label:"MC" },
-      { pos:"MID", x:62, y:54, label:"MC" },
-      { pos:"MID", x:82, y:54, label:"MD" },
-      { pos:"ATT", x:36, y:30, label:"SA" },
-      { pos:"ATT", x:64, y:30, label:"SA" },
-    ]
-  },
-  "3-5-2": {
-    slots: [
-      { pos:"GK",  x:50, y:90, label:"GK" },
-      { pos:"DEF", x:25, y:74, label:"ZE" },
-      { pos:"DEF", x:50, y:74, label:"ZC" },
-      { pos:"DEF", x:75, y:74, label:"ZD" },
-      { pos:"MID", x:12, y:54, label:"AE" },
-      { pos:"MID", x:32, y:54, label:"MC" },
-      { pos:"MID", x:50, y:50, label:"MC" },
-      { pos:"MID", x:68, y:54, label:"MC" },
-      { pos:"MID", x:88, y:54, label:"AD" },
-      { pos:"ATT", x:36, y:30, label:"SA" },
-      { pos:"ATT", x:64, y:30, label:"SA" },
-    ]
-  },
-  "4-2-3-1": {
-    slots: [
-      { pos:"GK",  x:50, y:90, label:"GK" },
-      { pos:"DEF", x:18, y:74, label:"LD" },
-      { pos:"DEF", x:38, y:74, label:"ZE" },
-      { pos:"DEF", x:62, y:74, label:"ZD" },
-      { pos:"DEF", x:82, y:74, label:"LE" },
-      { pos:"MID", x:36, y:58, label:"VOL" },
-      { pos:"MID", x:64, y:58, label:"VOL" },
-      { pos:"MID", x:18, y:40, label:"AE" },
-      { pos:"MID", x:50, y:38, label:"MEA" },
-      { pos:"MID", x:82, y:40, label:"AD" },
-      { pos:"ATT", x:50, y:22, label:"CA" },
-    ]
-  },
-  "3-4-3": {
-    slots: [
-      { pos:"GK",  x:50, y:90, label:"GK" },
-      { pos:"DEF", x:25, y:74, label:"ZE" },
-      { pos:"DEF", x:50, y:74, label:"ZC" },
-      { pos:"DEF", x:75, y:74, label:"ZD" },
-      { pos:"MID", x:18, y:54, label:"AE" },
-      { pos:"MID", x:38, y:54, label:"MC" },
-      { pos:"MID", x:62, y:54, label:"MC" },
-      { pos:"MID", x:82, y:54, label:"AD" },
-      { pos:"ATT", x:20, y:30, label:"AE" },
-      { pos:"ATT", x:50, y:24, label:"CA" },
-      { pos:"ATT", x:80, y:30, label:"AD" },
-    ]
-  },
-  "5-3-2": {
-    slots: [
-      { pos:"GK",  x:50, y:90, label:"GK" },
-      { pos:"DEF", x:10, y:74, label:"AE" },
-      { pos:"DEF", x:28, y:74, label:"ZE" },
-      { pos:"DEF", x:50, y:74, label:"ZC" },
-      { pos:"DEF", x:72, y:74, label:"ZD" },
-      { pos:"DEF", x:90, y:74, label:"AD" },
-      { pos:"MID", x:25, y:52, label:"MC" },
-      { pos:"MID", x:50, y:48, label:"MC" },
-      { pos:"MID", x:75, y:52, label:"MC" },
-      { pos:"ATT", x:36, y:28, label:"SA" },
-      { pos:"ATT", x:64, y:28, label:"SA" },
-    ]
-  },
+  "4-3-3":{ slots:[
+    {pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:18,y:74,label:"LD"},{pos:"DEF",x:38,y:74,label:"ZE"},
+    {pos:"DEF",x:62,y:74,label:"ZD"},{pos:"DEF",x:82,y:74,label:"LE"},{pos:"MID",x:25,y:56,label:"MC"},
+    {pos:"MID",x:50,y:52,label:"MC"},{pos:"MID",x:75,y:56,label:"MC"},{pos:"ATT",x:18,y:34,label:"AE"},
+    {pos:"ATT",x:50,y:28,label:"CA"},{pos:"ATT",x:82,y:34,label:"AD"}]},
+  "4-4-2":{ slots:[
+    {pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:18,y:74,label:"LD"},{pos:"DEF",x:38,y:74,label:"ZE"},
+    {pos:"DEF",x:62,y:74,label:"ZD"},{pos:"DEF",x:82,y:74,label:"LE"},{pos:"MID",x:18,y:54,label:"ME"},
+    {pos:"MID",x:38,y:54,label:"MC"},{pos:"MID",x:62,y:54,label:"MC"},{pos:"MID",x:82,y:54,label:"MD"},
+    {pos:"ATT",x:36,y:30,label:"SA"},{pos:"ATT",x:64,y:30,label:"SA"}]},
+  "3-5-2":{ slots:[
+    {pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:25,y:74,label:"ZE"},{pos:"DEF",x:50,y:74,label:"ZC"},
+    {pos:"DEF",x:75,y:74,label:"ZD"},{pos:"MID",x:12,y:54,label:"AE"},{pos:"MID",x:32,y:54,label:"MC"},
+    {pos:"MID",x:50,y:50,label:"MC"},{pos:"MID",x:68,y:54,label:"MC"},{pos:"MID",x:88,y:54,label:"AD"},
+    {pos:"ATT",x:36,y:30,label:"SA"},{pos:"ATT",x:64,y:30,label:"SA"}]},
+  "4-2-3-1":{ slots:[
+    {pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:18,y:74,label:"LD"},{pos:"DEF",x:38,y:74,label:"ZE"},
+    {pos:"DEF",x:62,y:74,label:"ZD"},{pos:"DEF",x:82,y:74,label:"LE"},{pos:"MID",x:36,y:58,label:"VOL"},
+    {pos:"MID",x:64,y:58,label:"VOL"},{pos:"MID",x:18,y:40,label:"AE"},{pos:"MID",x:50,y:38,label:"MEA"},
+    {pos:"MID",x:82,y:40,label:"AD"},{pos:"ATT",x:50,y:22,label:"CA"}]},
+  "3-4-3":{ slots:[
+    {pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:25,y:74,label:"ZE"},{pos:"DEF",x:50,y:74,label:"ZC"},
+    {pos:"DEF",x:75,y:74,label:"ZD"},{pos:"MID",x:18,y:54,label:"AE"},{pos:"MID",x:38,y:54,label:"MC"},
+    {pos:"MID",x:62,y:54,label:"MC"},{pos:"MID",x:82,y:54,label:"AD"},{pos:"ATT",x:20,y:30,label:"AE"},
+    {pos:"ATT",x:50,y:24,label:"CA"},{pos:"ATT",x:80,y:30,label:"AD"}]},
+  "5-3-2":{ slots:[
+    {pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:10,y:74,label:"AE"},{pos:"DEF",x:28,y:74,label:"ZE"},
+    {pos:"DEF",x:50,y:74,label:"ZC"},{pos:"DEF",x:72,y:74,label:"ZD"},{pos:"DEF",x:90,y:74,label:"AD"},
+    {pos:"MID",x:25,y:52,label:"MC"},{pos:"MID",x:50,y:48,label:"MC"},{pos:"MID",x:75,y:52,label:"MC"},
+    {pos:"ATT",x:36,y:28,label:"SA"},{pos:"ATT",x:64,y:28,label:"SA"}]},
 };
-
-/* ════════════════════════════════════════
-   ESTADO DA ESCALAÇÃO
-════════════════════════════════════════ */
-// fieldSlots: array de { slotId, x, y, label, pos, playerId|null }
-let fieldSlots = [];
-let dragPlayer = null; // { id, name, pos, number } sendo arrastado
-let dragSlot = null;   // slotId sendo arrastado de posição existente
 
 /* ════════════════════════════════════════
    RENDER GERAL
@@ -763,13 +582,8 @@ let dragSlot = null;   // slotId sendo arrastado de posição existente
 const posClass = { GK:'pos-gk', DEF:'pos-def', MID:'pos-mid', ATT:'pos-att' };
 const posClassDot = { GK:'gk', DEF:'def', MID:'mid', ATT:'att' };
 
-// TICKER
-const ticker = document.getElementById('ticker');
-const allNews = [...NEWS_ITEMS, ...NEWS_ITEMS];
-ticker.innerHTML = allNews.map(n=>`<span class="ticker-item">${n}</span>`).join('');
-
-// SQUAD
-document.getElementById('squad-grid').innerHTML = PLAYERS.map(p=>`
+document.getElementById('ticker').innerHTML=[...NEWS_ITEMS,...NEWS_ITEMS].map(n=>`<span class="ticker-item">${n}</span>`).join('');
+document.getElementById('squad-grid').innerHTML=PLAYERS.map(p=>`
   <div class="player-card">
     <div class="player-number">${p.number}</div>
     <span class="player-pos ${posClass[p.pos]||''}">${p.pos}</span>
@@ -778,10 +592,9 @@ document.getElementById('squad-grid').innerHTML = PLAYERS.map(p=>`
     ${p.badges.length?`<div class="player-badge">${p.badges.map(b=>`<span class="badge ${b}">${b==='captain'?'© Capitão':b==='injured'?'🩹 Lesionado':'🔄 Emprestado'}</span>`).join('')}</div>`:''}
   </div>`).join('');
 
-// MATCHES
 const rlabel={W:'V',L:'D',D:'E',WO:'WO'};
 const rclass={W:'result-w',L:'result-l',D:'result-d',WO:'result-wo'};
-document.getElementById('matches-list').innerHTML = MATCHES.map(m=>`
+document.getElementById('matches-list').innerHTML=MATCHES.map(m=>`
   <div class="match-card">
     <div class="match-result ${m.result?rclass[m.result]:'result-upcoming'}">${m.result?rlabel[m.result]:'⏳'}</div>
     <div class="match-info">
@@ -791,14 +604,12 @@ document.getElementById('matches-list').innerHTML = MATCHES.map(m=>`
     <div class="match-score${!m.score?' upcoming':''}">${m.score||(m.result==='WO'?'WO':'Em breve')}</div>
   </div>`).join('');
 
-// HISTORY
-document.getElementById('timeline').innerHTML = HISTORY.map(y=>`
+document.getElementById('timeline').innerHTML=HISTORY.map(y=>`
   <div class="tl-year">
     <div class="tl-year-label">${y.year}</div>
     <div class="tl-events">${y.events.map(e=>`<div class="tl-event"><span class="ev-icon">${e.icon}</span>${e.text}</div>`).join('')}</div>
   </div>`).join('');
 
-// STATS
 const played=MATCHES.filter(m=>m.result!==null).length;
 const wins=MATCHES.filter(m=>m.result==='W'||m.result==='WO').length;
 const losses=MATCHES.filter(m=>m.result==='L').length;
@@ -806,39 +617,230 @@ const draws=MATCHES.filter(m=>m.result==='D').length;
 let gf=0,ga=0;
 MATCHES.forEach(m=>{if(m.score&&m.result!=='WO'){const[a,b]=m.score.split('x').map(Number);gf+=a;ga+=b;}});
 const aprov=played?Math.round((wins/played)*100):0;
-
 document.getElementById('hero-stats').innerHTML=`
   <div class="hero-stat"><div class="val">${played}</div><div class="lbl">Jogos</div></div>
   <div class="hero-stat"><div class="val">${wins}</div><div class="lbl">Vitórias</div></div>
   <div class="hero-stat"><div class="val">${losses}</div><div class="lbl">Derrotas</div></div>
   <div class="hero-stat"><div class="val">${aprov}%</div><div class="lbl">Aproveitamento</div></div>`;
-
 document.getElementById('stats-grid').innerHTML=[
   {big:played,name:'Jogos'},{big:wins,name:'Vitórias'},{big:losses,name:'Derrotas'},
   {big:draws,name:'Empates'},{big:gf,name:'Gols Marcados'},{big:ga,name:'Gols Sofridos'},
   {big:`${aprov}%`,name:'Aproveitamento'},{big:PLAYERS.length,name:'Jogadores'},
 ].map(s=>`<div class="stat-card"><div class="big">${s.big}</div><div class="name">${s.name}</div></div>`).join('');
-
-const winP=played?Math.round((wins/played)*100):0;
-const losP=played?Math.round((losses/played)*100):0;
-const draP=played?Math.round((draws/played)*100):0;
-document.getElementById('bars').innerHTML=[
-  {label:'Vitórias',pct:winP,cls:'win'},{label:'Derrotas',pct:losP,cls:'loss'},{label:'Empates',pct:draP,cls:'draw'}
-].map(b=>`<div class="aproveitamento-bar"><div class="bar-header"><span class="bar-label">${b.label}</span><span class="bar-pct">${b.pct}%</span></div><div class="bar-track"><div class="bar-fill ${b.cls}" style="width:${b.pct}%"></div></div></div>`).join('');
+const winP=played?Math.round((wins/played)*100):0,losP=played?Math.round((losses/played)*100):0,draP=played?Math.round((draws/played)*100):0;
+document.getElementById('bars').innerHTML=[{label:'Vitórias',pct:winP,cls:'win'},{label:'Derrotas',pct:losP,cls:'loss'},{label:'Empates',pct:draP,cls:'draw'}]
+.map(b=>`<div class="aproveitamento-bar"><div class="bar-header"><span class="bar-label">${b.label}</span><span class="bar-pct">${b.pct}%</span></div><div class="bar-track"><div class="bar-fill ${b.cls}" style="width:${b.pct}%"></div></div></div>`).join('');
 
 /* ════════════════════════════════════════
-   SISTEMA DE ESCALAÇÃO
+   CANVAS DE DESENHO
 ════════════════════════════════════════ */
+const canvas = document.getElementById('draw-canvas');
+const ctx = canvas.getContext('2d');
 
-function getPlayerById(id) { return PLAYERS.find(p=>p.number===id); }
+let drawMode = 'move'; // move | pen | arrow | line | circle | erase
+let drawColor = '#ffffff';
+let drawSize = 2;
+let isDrawing = false;
+let drawStart = { x:0, y:0 };
+let drawHistory = []; // snapshots para undo
+let currentPath = [];
+let eraserRadius = 20;
 
-function getOnFieldIds() {
-  return fieldSlots.filter(s=>s.playerId!==null).map(s=>s.playerId);
+const TIPS = {
+  move:   'Modo: Mover jogadores. Arraste ou clique no jogador.',
+  pen:    'Modo: Caneta livre. Clique e arraste para desenhar no campo.',
+  arrow:  'Modo: Seta. Clique e arraste para traçar uma seta de movimento.',
+  line:   'Modo: Linha reta. Clique e arraste para criar uma linha.',
+  circle: 'Modo: Zona. Clique e arraste para marcar uma área no campo.',
+  erase:  'Modo: Borracha. Clique e arraste para apagar traços.',
+};
+
+function resizeCanvas() {
+  const wrap = document.getElementById('field-drop-zone');
+  const r = wrap.getBoundingClientRect();
+  // só redimensiona se mudou
+  if(canvas.width===Math.round(r.width) && canvas.height===Math.round(r.height)) return;
+  const snapshot = canvas.width>0 ? ctx.getImageData(0,0,canvas.width,canvas.height) : null;
+  canvas.width  = Math.round(r.width);
+  canvas.height = Math.round(r.height);
+  if(snapshot) ctx.putImageData(snapshot,0,0);
 }
 
+function setMode(mode) {
+  drawMode = mode;
+  document.querySelectorAll('.tool-btn').forEach(b=>b.classList.remove('active'));
+  const btn = document.getElementById('btn-'+mode);
+  if(btn) btn.classList.add('active');
+
+  const dc = canvas;
+  dc.className='';
+  if(mode==='move') {
+    dc.classList.add(''); // no pointer events
+    document.getElementById('field-players').style.pointerEvents='all';
+  } else if(mode==='erase') {
+    dc.classList.add('erase-mode');
+    document.getElementById('field-players').style.pointerEvents='none';
+  } else {
+    dc.classList.add('draw-mode');
+    document.getElementById('field-players').style.pointerEvents='none';
+  }
+  document.getElementById('mode-tip').textContent = TIPS[mode]||'';
+}
+
+function setColor(c) {
+  drawColor = c;
+  document.querySelectorAll('.color-btn').forEach(b=>b.classList.remove('active'));
+  const map={'#ffffff':'col-white','#a855f7':'col-purple','#fde047':'col-yellow','#ef4444':'col-red','#22c55e':'col-green','#22d3ee':'col-cyan'};
+  const id=map[c];
+  if(id) document.getElementById(id).classList.add('active');
+}
+
+function setSize(s) {
+  drawSize = s;
+  document.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));
+  const map={2:'sz-thin',4:'sz-mid',7:'sz-thick'};
+  if(map[s]) document.getElementById(map[s]).classList.add('active');
+}
+
+function saveSnapshot() {
+  if(canvas.width===0||canvas.height===0) return;
+  drawHistory.push(ctx.getImageData(0,0,canvas.width,canvas.height));
+  if(drawHistory.length>40) drawHistory.shift();
+}
+
+function undoDraw() {
+  if(!drawHistory.length) return;
+  const snap=drawHistory.pop();
+  ctx.putImageData(snap,0,0);
+}
+
+function getCanvasPos(e) {
+  const r=canvas.getBoundingClientRect();
+  const touch=e.touches?e.touches[0]:e;
+  return { x:touch.clientX-r.left, y:touch.clientY-r.top };
+}
+
+function drawArrowhead(x1,y1,x2,y2) {
+  const angle=Math.atan2(y2-y1,x2-x1);
+  const len=Math.max(12, drawSize*3);
+  const spread=0.42;
+  ctx.beginPath();
+  ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-len*Math.cos(angle-spread), y2-len*Math.sin(angle-spread));
+  ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-len*Math.cos(angle+spread), y2-len*Math.sin(angle+spread));
+  ctx.stroke();
+}
+
+// ── Canvas events ──
+canvas.addEventListener('mousedown', e=>{
+  if(drawMode==='move') return;
+  resizeCanvas();
+  const pos=getCanvasPos(e);
+  isDrawing=true;
+  drawStart={...pos};
+  currentPath=[pos];
+  if(drawMode!=='erase') saveSnapshot();
+
+  if(drawMode==='pen'){
+    ctx.beginPath();
+    ctx.moveTo(pos.x,pos.y);
+  }
+});
+
+canvas.addEventListener('mousemove', e=>{
+  if(!isDrawing) return;
+  const pos=getCanvasPos(e);
+
+  ctx.strokeStyle=drawColor;
+  ctx.lineWidth=drawSize;
+  ctx.lineCap='round';
+  ctx.lineJoin='round';
+
+  if(drawMode==='pen'){
+    ctx.lineTo(pos.x,pos.y);
+    ctx.stroke();
+    currentPath.push(pos);
+  } else if(drawMode==='erase'){
+    ctx.save();
+    ctx.globalCompositeOperation='destination-out';
+    ctx.beginPath();
+    ctx.arc(pos.x,pos.y,eraserRadius+drawSize*2,0,Math.PI*2);
+    ctx.fill();
+    ctx.restore();
+  } else {
+    // preview: redraw from last snapshot
+    if(drawHistory.length) ctx.putImageData(drawHistory[drawHistory.length-1],0,0);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    if(drawMode==='line'||drawMode==='arrow'){
+      ctx.beginPath();
+      ctx.moveTo(drawStart.x,drawStart.y);
+      ctx.lineTo(pos.x,pos.y);
+      ctx.stroke();
+      if(drawMode==='arrow') drawArrowhead(drawStart.x,drawStart.y,pos.x,pos.y);
+    } else if(drawMode==='circle'){
+      const rx=Math.abs(pos.x-drawStart.x)/2;
+      const ry=Math.abs(pos.y-drawStart.y)/2;
+      const cx=drawStart.x+(pos.x-drawStart.x)/2;
+      const cy=drawStart.y+(pos.y-drawStart.y)/2;
+      ctx.beginPath();
+      ctx.ellipse(cx,cy,rx||1,ry||1,0,0,Math.PI*2);
+      ctx.strokeStyle=drawColor+'cc';
+      ctx.stroke();
+      ctx.fillStyle=drawColor+'18';
+      ctx.fill();
+    }
+  }
+});
+
+canvas.addEventListener('mouseup', e=>{
+  if(!isDrawing) return;
+  isDrawing=false;
+  const pos=getCanvasPos(e);
+  ctx.strokeStyle=drawColor;
+  ctx.lineWidth=drawSize;
+  ctx.lineCap='round';
+  ctx.lineJoin='round';
+
+  if(drawMode==='line'){
+    ctx.beginPath();ctx.moveTo(drawStart.x,drawStart.y);ctx.lineTo(pos.x,pos.y);ctx.stroke();
+  } else if(drawMode==='arrow'){
+    ctx.beginPath();ctx.moveTo(drawStart.x,drawStart.y);ctx.lineTo(pos.x,pos.y);ctx.stroke();
+    drawArrowhead(drawStart.x,drawStart.y,pos.x,pos.y);
+  } else if(drawMode==='circle'){
+    if(drawHistory.length) ctx.putImageData(drawHistory[drawHistory.length-1],0,0);
+    const rx=Math.abs(pos.x-drawStart.x)/2;
+    const ry=Math.abs(pos.y-drawStart.y)/2;
+    const cx=drawStart.x+(pos.x-drawStart.x)/2;
+    const cy=drawStart.y+(pos.y-drawStart.y)/2;
+    ctx.beginPath();ctx.ellipse(cx,cy,rx||1,ry||1,0,0,Math.PI*2);
+    ctx.strokeStyle=drawColor+'cc';ctx.stroke();
+    ctx.fillStyle=drawColor+'18';ctx.fill();
+  }
+  if(drawMode!=='erase') saveSnapshot();
+});
+
+canvas.addEventListener('mouseleave', ()=>{ isDrawing=false; });
+
+// Touch support
+canvas.addEventListener('touchstart', e=>{e.preventDefault();canvas.dispatchEvent(new MouseEvent('mousedown',{clientX:e.touches[0].clientX,clientY:e.touches[0].clientY}));},{passive:false});
+canvas.addEventListener('touchmove',  e=>{e.preventDefault();canvas.dispatchEvent(new MouseEvent('mousemove',{clientX:e.touches[0].clientX,clientY:e.touches[0].clientY}));},{passive:false});
+canvas.addEventListener('touchend',   e=>{e.preventDefault();canvas.dispatchEvent(new MouseEvent('mouseup',{}));},{passive:false});
+
+/* ════════════════════════════════════════
+   ESCALAÇÃO
+════════════════════════════════════════ */
+let fieldSlots=[];
+let dragPlayer=null;
+let dragSlot=null;
+
+function getPlayerById(id){ return PLAYERS.find(p=>p.number===id); }
+function getOnFieldIds(){ return fieldSlots.filter(s=>s.playerId!==null).map(s=>s.playerId); }
+
 function renderBench() {
-  const onField = getOnFieldIds();
-  document.getElementById('bench-list').innerHTML = PLAYERS.map(p=>`
+  const onField=getOnFieldIds();
+  document.getElementById('bench-list').innerHTML=PLAYERS.map(p=>`
     <div class="bench-player ${onField.includes(p.number)?'on-field':''}"
          draggable="${!onField.includes(p.number)}"
          data-pid="${p.number}"
@@ -853,35 +855,27 @@ function renderBench() {
 }
 
 function renderLineupSlots() {
-  const onField = fieldSlots.filter(s=>s.playerId!==null);
-  if (!onField.length) {
-    document.getElementById('lineup-slots').innerHTML='<div style="font-size:0.78rem;color:var(--text-muted);text-align:center;padding:16px 0;">Nenhum jogador no campo</div>';
-    return;
-  }
-  document.getElementById('lineup-slots').innerHTML = onField.map(s=>{
+  const onField=fieldSlots.filter(s=>s.playerId!==null);
+  if(!onField.length){ document.getElementById('lineup-slots').innerHTML='<div style="font-size:0.76rem;color:var(--text-muted);text-align:center;padding:14px 0;">Nenhum jogador no campo</div>';return; }
+  document.getElementById('lineup-slots').innerHTML=onField.map(s=>{
     const p=getPlayerById(s.playerId);
     return `<div class="lineup-row">
       <span class="lineup-pos-tag">${s.label||s.pos}</span>
       <span class="lineup-name">${p?p.name:'?'}</span>
-      <button class="lineup-remove" title="Remover" onclick="removeFromSlot('${s.slotId}')">✕</button>
+      <button class="lineup-remove" onclick="removeFromSlot('${s.slotId}')">✕</button>
     </div>`;
   }).join('');
 }
 
-function removeFromSlot(slotId) {
-  const s=fieldSlots.find(s=>s.slotId===slotId);
-  if(s) s.playerId=null;
-  renderField();
-  renderBench();
-  renderLineupSlots();
-}
+function removeFromSlot(slotId){ const s=fieldSlots.find(s=>s.slotId===slotId);if(s)s.playerId=null;renderField();renderBench();renderLineupSlots(); }
 
 function renderField() {
-  const fp = document.getElementById('field-players');
-  fp.innerHTML = '';
+  const fp=document.getElementById('field-players');
+  fp.innerHTML='';
+  const interactive=(drawMode==='move');
   fieldSlots.forEach(slot=>{
-    const el = document.createElement('div');
-    el.className='field-player';
+    const el=document.createElement('div');
+    el.className='field-player'+(interactive?' interactive':'');
     el.style.left=slot.x+'%';
     el.style.top=slot.y+'%';
     el.dataset.slotId=slot.slotId;
@@ -889,209 +883,123 @@ function renderField() {
     if(slot.playerId!==null){
       const p=getPlayerById(slot.playerId);
       const pc=posClassDot[p?p.pos:'GK']||'gk';
-      el.draggable=true;
-      el.innerHTML=`
-        <div class="fp-circle ${pc}">
-          <span class="fp-num">${p?p.number:'?'}</span>
-          ${p?p.name.split(' ')[0].substring(0,7):'?'}
-        </div>
-        <div class="fp-label">${p?p.name:'?'}</div>`;
-      el.addEventListener('dragstart',e=>onSlotDragStart(e,slot.slotId));
-      el.addEventListener('dragend',onDragEnd);
-      el.addEventListener('dblclick',()=>{ removeFromSlot(slot.slotId); });
+      if(interactive){ el.draggable=true; el.addEventListener('dragstart',e=>onSlotDragStart(e,slot.slotId)); el.addEventListener('dragend',onDragEnd); el.addEventListener('dblclick',()=>removeFromSlot(slot.slotId)); }
+      el.innerHTML=`<div class="fp-circle ${pc}"><span class="fp-num">${p?p.number:'?'}</span>${p?p.name.split(' ')[0].substring(0,7):'?'}</div><div class="fp-label">${p?p.name:'?'}</div>`;
     } else {
-      el.innerHTML=`
-        <div class="fp-circle empty">
-          <span style="color:var(--text-muted);font-size:0.55rem;font-weight:700;">${slot.label||slot.pos}</span>
-        </div>`;
+      el.innerHTML=`<div class="fp-circle empty"><span style="color:var(--text-muted);font-size:0.52rem;font-weight:700;">${slot.label||slot.pos}</span></div>`;
       el.style.opacity='0.5';
     }
 
-    // permite drop em slot existente
-    el.addEventListener('dragover',e=>{e.preventDefault();el.classList.add('drag-over-target');});
-    el.addEventListener('dragleave',e=>{el.classList.remove('drag-over-target');});
-    el.addEventListener('drop',e=>{
-      e.preventDefault();e.stopPropagation();
-      el.classList.remove('drag-over-target');
-      handleDropOnSlot(slot.slotId,e);
-    });
-
-    // drag livre: arrastar posição no campo
-    el.addEventListener('mousedown',e=>{
-      if(e.button!==0) return;
-      // apenas se não há jogador (não usa drag API)
-    });
-
+    if(interactive){
+      el.addEventListener('dragover',e=>{e.preventDefault();el.classList.add('drag-over-target');});
+      el.addEventListener('dragleave',e=>el.classList.remove('drag-over-target'));
+      el.addEventListener('drop',e=>{e.preventDefault();e.stopPropagation();el.classList.remove('drag-over-target');handleDropOnSlot(slot.slotId,e);});
+    }
     fp.appendChild(el);
   });
 }
 
-function handleDropOnSlot(targetSlotId, e) {
-  const targetSlot = fieldSlots.find(s=>s.slotId===targetSlotId);
-  if(!targetSlot) return;
-
-  if(dragPlayer!==null) {
-    // vindo do bench
-    const existing = fieldSlots.find(s=>s.playerId===dragPlayer);
-    if(existing) existing.playerId=null;
-    // swap se o slot alvo já tem alguém
-    if(targetSlot.playerId!==null && existing) {
-      existing.playerId=targetSlot.playerId;
-    }
-    targetSlot.playerId=dragPlayer;
-    dragPlayer=null;
-  } else if(dragSlot!==null && dragSlot!==targetSlotId) {
-    // mover entre slots
+function handleDropOnSlot(targetSlotId,e){
+  const targetSlot=fieldSlots.find(s=>s.slotId===targetSlotId);
+  if(!targetSlot)return;
+  if(dragPlayer!==null){
+    const existing=fieldSlots.find(s=>s.playerId===dragPlayer);
+    if(existing)existing.playerId=null;
+    if(targetSlot.playerId!==null&&existing)existing.playerId=targetSlot.playerId;
+    targetSlot.playerId=dragPlayer;dragPlayer=null;
+  } else if(dragSlot!==null&&dragSlot!==targetSlotId){
     const srcSlot=fieldSlots.find(s=>s.slotId===dragSlot);
-    if(srcSlot){
-      const tmp=targetSlot.playerId;
-      targetSlot.playerId=srcSlot.playerId;
-      srcSlot.playerId=tmp;
-    }
+    if(srcSlot){const tmp=targetSlot.playerId;targetSlot.playerId=srcSlot.playerId;srcSlot.playerId=tmp;}
     dragSlot=null;
   }
-  renderField();
-  renderBench();
-  renderLineupSlots();
+  renderField();renderBench();renderLineupSlots();
 }
 
-function onBenchDragStart(e,playerId){
-  dragPlayer=playerId;
-  dragSlot=null;
-  e.dataTransfer.effectAllowed='move';
-}
+function onBenchDragStart(e,playerId){ dragPlayer=playerId;dragSlot=null;e.dataTransfer.effectAllowed='move'; }
+function onSlotDragStart(e,slotId){ dragSlot=slotId;dragPlayer=null;e.dataTransfer.effectAllowed='move';e.stopPropagation(); }
+function onDragEnd(){ dragPlayer=null;dragSlot=null;document.getElementById('field-drop-zone').classList.remove('field-drop-active'); }
 
-function onSlotDragStart(e,slotId){
-  dragSlot=slotId;
-  dragPlayer=null;
-  e.dataTransfer.effectAllowed='move';
-  e.stopPropagation();
-}
-
-function onDragEnd(e){
-  dragPlayer=null;
-  dragSlot=null;
-  document.getElementById('field-drop-zone').classList.remove('field-drop-active');
-}
-
-// Drop diretamente no campo (cria slot livre)
 const fieldZone=document.getElementById('field-drop-zone');
+
 fieldZone.addEventListener('dragover',e=>{
-  e.preventDefault();
-  fieldZone.classList.add('field-drop-active');
+  if(drawMode!=='move')return;
+  e.preventDefault();fieldZone.classList.add('field-drop-active');
 });
-fieldZone.addEventListener('dragleave',e=>{
-  fieldZone.classList.remove('field-drop-active');
-});
+fieldZone.addEventListener('dragleave',()=>fieldZone.classList.remove('field-drop-active'));
 fieldZone.addEventListener('drop',e=>{
-  e.preventDefault();
-  fieldZone.classList.remove('field-drop-active');
-
-  // check se caiu em cima de um slot filho (já tratado)
-  if(e.target.closest('.field-player')) return;
-
+  if(drawMode!=='move')return;
+  e.preventDefault();fieldZone.classList.remove('field-drop-active');
+  if(e.target.closest('.field-player'))return;
   const rect=fieldZone.getBoundingClientRect();
   const xPct=((e.clientX-rect.left)/rect.width)*100;
   const yPct=((e.clientY-rect.top)/rect.height)*100;
-
   if(dragPlayer!==null){
-    // remove de slot anterior se existia
     const existing=fieldSlots.find(s=>s.playerId===dragPlayer);
-    if(existing) existing.playerId=null;
-    // cria novo slot livre
-    const newSlot={
-      slotId:'free_'+Date.now(),
-      x:Math.min(Math.max(xPct,5),95),
-      y:Math.min(Math.max(yPct,5),95),
-      label:'',
-      pos:'',
-      playerId:dragPlayer,
-      free:true
-    };
-    fieldSlots.push(newSlot);
+    if(existing)existing.playerId=null;
+    fieldSlots.push({slotId:'free_'+Date.now(),x:Math.min(Math.max(xPct,5),95),y:Math.min(Math.max(yPct,5),95),label:'',pos:'',playerId:dragPlayer,free:true});
     dragPlayer=null;
   } else if(dragSlot!==null){
-    // mover slot existente para nova posição
     const s=fieldSlots.find(sl=>sl.slotId===dragSlot);
-    if(s){
-      s.x=Math.min(Math.max(xPct,5),95);
-      s.y=Math.min(Math.max(yPct,5),95);
-    }
+    if(s){s.x=Math.min(Math.max(xPct,5),95);s.y=Math.min(Math.max(yPct,5),95);}
     dragSlot=null;
   }
-  renderField();
-  renderBench();
-  renderLineupSlots();
+  renderField();renderBench();renderLineupSlots();
 });
 
-// CLICK no campo vazio = modo livre, seleciona jogador
 let pendingFreePlace=null;
 fieldZone.addEventListener('click',e=>{
-  if(e.target.closest('.field-player')) return;
+  if(drawMode!=='move')return;
+  if(e.target.closest('.field-player'))return;
   if(pendingFreePlace!==null){
     const rect=fieldZone.getBoundingClientRect();
     const xPct=((e.clientX-rect.left)/rect.width)*100;
     const yPct=((e.clientY-rect.top)/rect.height)*100;
     const existing=fieldSlots.find(s=>s.playerId===pendingFreePlace);
-    if(existing) existing.playerId=null;
-    fieldSlots.push({
-      slotId:'free_'+Date.now(),
-      x:Math.min(Math.max(xPct,5),95),
-      y:Math.min(Math.max(yPct,5),95),
-      label:'',pos:'',
-      playerId:pendingFreePlace,free:true
-    });
+    if(existing)existing.playerId=null;
+    fieldSlots.push({slotId:'free_'+Date.now(),x:Math.min(Math.max(xPct,5),95),y:Math.min(Math.max(yPct,5),95),label:'',pos:'',playerId:pendingFreePlace,free:true});
     pendingFreePlace=null;
     document.querySelectorAll('.bench-player').forEach(el=>el.style.outline='');
     renderField();renderBench();renderLineupSlots();
   }
 });
 
-// Click no jogador do banco = prepara para posicionar no campo
 document.getElementById('bench-list').addEventListener('click',e=>{
   const bp=e.target.closest('.bench-player');
-  if(!bp||bp.classList.contains('on-field')) return;
+  if(!bp||bp.classList.contains('on-field'))return;
   const pid=parseInt(bp.dataset.pid);
-  if(pendingFreePlace===pid){
-    pendingFreePlace=null;
-    document.querySelectorAll('.bench-player').forEach(el=>el.style.outline='');
-  } else {
+  if(pendingFreePlace===pid){pendingFreePlace=null;document.querySelectorAll('.bench-player').forEach(el=>el.style.outline='');}
+  else{
     pendingFreePlace=pid;
     document.querySelectorAll('.bench-player').forEach(el=>el.style.outline='');
     bp.style.outline='2px solid var(--purple-light)';
-    // show tip
-    fieldZone.style.cursor='crosshair';
-    setTimeout(()=>{fieldZone.style.cursor='';},5000);
   }
 });
 
 function clearField(){
   fieldSlots=[];
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  drawHistory=[];
   renderField();renderBench();renderLineupSlots();
   document.getElementById('formation-select').value='free';
   pendingFreePlace=null;
 }
 
 function applyFormation(key){
-  if(key==='free'){ clearField(); return; }
-  const f=FORMATIONS[key];
-  if(!f) return;
-  // preserva jogadores já escalados onde possível
-  const prevAssignments={};
-  fieldSlots.forEach(s=>{ if(s.playerId) prevAssignments[s.label||s.pos+'_'+s.slotId]=s.playerId; });
-
-  fieldSlots=f.slots.map((sl,i)=>({
-    slotId:'slot_'+key+'_'+i,
-    x:sl.x,y:sl.y,
-    label:sl.label,pos:sl.pos,
-    playerId:null
-  }));
+  if(key==='free'){clearField();return;}
+  const f=FORMATIONS[key];if(!f)return;
+  fieldSlots=f.slots.map((sl,i)=>({slotId:'slot_'+key+'_'+i,x:sl.x,y:sl.y,label:sl.label,pos:sl.pos,playerId:null}));
   renderField();renderBench();renderLineupSlots();
 }
 
 // Init
-applyFormation('4-3-3');
-document.getElementById('formation-select').value='4-3-3';
+window.addEventListener('resize',()=>{resizeCanvas();});
+setTimeout(()=>{
+  resizeCanvas();
+  applyFormation('4-3-3');
+  document.getElementById('formation-select').value='4-3-3';
+  setMode('move');
+},100);
 </script>
 </body>
 </html>
+
