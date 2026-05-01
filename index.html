@@ -7,10 +7,8 @@
 <style>
   :root {
     --black: #0a0a0f;
-    --black2: #111118;
     --purple: #7c3aed;
     --purple-light: #a855f7;
-    --purple-glow: #9333ea33;
     --purple-dim: #4c1d95;
     --text: #e2d9f3;
     --text-muted: #8b7ca8;
@@ -27,11 +25,24 @@
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--black); }
   ::-webkit-scrollbar-thumb { background: var(--purple-dim); border-radius: 3px; }
+
+  /* NAV */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: #0a0a0fcc; backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; }
   .nav-logo { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.1rem; letter-spacing: 0.05em; color: var(--text); text-decoration: none; }
-  .nav-links { display: flex; gap: 32px; list-style: none; }
-  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
   .nav-links a:hover { color: var(--purple-light); }
+
+  /* NEWS */
+  .news-bar { background: var(--purple-dim); border-bottom: 1px solid var(--border); height: 36px; display: flex; align-items: center; overflow: hidden; margin-top: 64px; }
+  .news-tag { background: var(--purple); color: #fff; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 0 16px; height: 100%; display: flex; align-items: center; white-space: nowrap; flex-shrink: 0; }
+  .ticker-wrap { overflow: hidden; flex: 1; mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%); }
+  .ticker-inner { display: flex; animation: ticker 40s linear infinite; white-space: nowrap; }
+  .ticker-item { font-size: 0.78rem; color: #d8c8f0; padding: 0 40px; letter-spacing: 0.03em; }
+  .ticker-item::before { content: '●'; color: var(--purple-light); margin-right: 12px; font-size: 0.5rem; vertical-align: middle; }
+  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* HERO */
   .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 20px 40px; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 40%, #4c1d9540 0%, transparent 70%); pointer-events: none; }
   .hero-year { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--purple-light); margin-bottom: 16px; opacity: 0.8; }
@@ -43,18 +54,15 @@
   .hero-stat { text-align: center; }
   .hero-stat .val { font-size: 2.2rem; font-weight: 900; color: var(--purple-light); line-height: 1; }
   .hero-stat .lbl { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); margin-top: 4px; }
-  .news-bar { background: var(--purple-dim); border-bottom: 1px solid var(--border); height: 36px; display: flex; align-items: center; overflow: hidden; margin-top: 64px; }
-  .news-tag { background: var(--purple); color: #fff; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 0 16px; height: 100%; display: flex; align-items: center; white-space: nowrap; flex-shrink: 0; }
-  .ticker-wrap { overflow: hidden; flex: 1; mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%); }
-  .ticker-inner { display: flex; animation: ticker 40s linear infinite; white-space: nowrap; }
-  .ticker-item { font-size: 0.78rem; color: #d8c8f0; padding: 0 40px; letter-spacing: 0.03em; }
-  .ticker-item::before { content: '●'; color: var(--purple-light); margin-right: 12px; font-size: 0.5rem; vertical-align: middle; }
-  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* SECTION */
   .section-wrap { max-width: 1100px; margin: 0 auto; padding: 80px 20px; }
   .section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--purple-light); margin-bottom: 8px; }
   .section-title { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 900; margin-bottom: 40px; letter-spacing: -0.01em; }
   .divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
-  .squad-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+
+  /* SQUAD */
+  .squad-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
   .player-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
   .player-card:hover { border-color: var(--purple); transform: translateY(-3px); }
   .player-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--purple-dim), var(--purple-light)); border-radius: 12px 12px 0 0; }
@@ -71,15 +79,8 @@
   .badge.captain { border-color: var(--purple-light); color: var(--purple-light); }
   .badge.injured { border-color: #ef4444; color: #ef4444; }
   .badge.loan { border-color: #f59e0b; color: #f59e0b; }
-  .timeline { position: relative; padding-left: 32px; }
-  .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--purple), var(--border)); }
-  .tl-year { margin-bottom: 32px; }
-  .tl-year-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--purple-light); margin-bottom: 12px; position: relative; }
-  .tl-year-label::before { content: ''; position: absolute; left: -38px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; border-radius: 50%; background: var(--purple); border: 2px solid var(--purple-light); box-shadow: 0 0 12px var(--purple); }
-  .tl-events { display: flex; flex-direction: column; gap: 10px; }
-  .tl-event { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; font-size: 0.88rem; display: flex; align-items: center; gap: 10px; transition: border-color 0.2s; }
-  .tl-event:hover { border-color: var(--purple-dim); }
-  .tl-event .ev-icon { font-size: 1rem; flex-shrink: 0; width: 28px; text-align: center; }
+
+  /* MATCHES */
   .matches-list { display: flex; flex-direction: column; gap: 10px; }
   .match-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; transition: border-color 0.2s; }
   .match-card:hover { border-color: var(--purple-dim); }
@@ -94,6 +95,19 @@
   .match-detail { font-size: 0.75rem; color: var(--text-muted); }
   .match-score { font-size: 1.4rem; font-weight: 900; text-align: right; letter-spacing: -0.02em; }
   .match-score.upcoming { font-size: 0.78rem; font-weight: 600; color: var(--purple-light); letter-spacing: 0.05em; text-transform: uppercase; }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--purple), var(--border)); }
+  .tl-year { margin-bottom: 32px; }
+  .tl-year-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--purple-light); margin-bottom: 12px; position: relative; }
+  .tl-year-label::before { content: ''; position: absolute; left: -38px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; border-radius: 50%; background: var(--purple); border: 2px solid var(--purple-light); box-shadow: 0 0 12px var(--purple); }
+  .tl-events { display: flex; flex-direction: column; gap: 10px; }
+  .tl-event { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; font-size: 0.88rem; display: flex; align-items: center; gap: 10px; transition: border-color 0.2s; }
+  .tl-event:hover { border-color: var(--purple-dim); }
+  .tl-event .ev-icon { font-size: 1rem; flex-shrink: 0; width: 28px; text-align: center; }
+
+  /* STATS */
   .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 40px; }
   .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-align: center; }
   .stat-card .big { font-size: 2.8rem; font-weight: 900; line-height: 1; color: var(--purple-light); margin-bottom: 6px; }
@@ -107,8 +121,282 @@
   .bar-fill.win { background: linear-gradient(90deg, #16a34a, #22c55e); }
   .bar-fill.loss { background: linear-gradient(90deg, #b91c1c, #ef4444); }
   .bar-fill.draw { background: linear-gradient(90deg, #d97706, #f59e0b); }
+
+  /* ══════════════════════════════════════
+     ESCALAÇÃO TÁTICA
+  ══════════════════════════════════════ */
+  .tactics-layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 24px;
+    align-items: start;
+  }
+
+  /* Campo */
+  .field-wrap {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    position: relative;
+  }
+
+  .field-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .formation-select {
+    background: var(--black);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .formation-select:hover, .formation-select:focus { border-color: var(--purple); }
+
+  .btn-clear {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .btn-clear:hover { border-color: #ef4444; color: #ef4444; }
+
+  .field-svg-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 0.65;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  #field-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* Fichas dos jogadores no campo */
+  .field-player {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: grab;
+    user-select: none;
+    z-index: 10;
+    transition: filter 0.15s;
+  }
+
+  .field-player:active { cursor: grabbing; filter: brightness(1.3); z-index: 50; }
+
+  .field-player.drag-over-target { filter: brightness(1.5); }
+
+  .fp-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid var(--purple-light);
+    background: #1a0a2e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.1;
+    color: #fff;
+    box-shadow: 0 0 12px #7c3aed60;
+    transition: background 0.2s, border-color 0.2s;
+    position: relative;
+  }
+
+  .fp-circle.gk { border-color: #fde68a; background: #1f1100; box-shadow: 0 0 12px #fde68a40; }
+  .fp-circle.def { border-color: #93c5fd; background: #0a1a3a; box-shadow: 0 0 12px #93c5fd40; }
+  .fp-circle.mid { border-color: #86efac; background: #0a1f12; box-shadow: 0 0 12px #86efac40; }
+  .fp-circle.att { border-color: #fca5a5; background: #1f0a0a; box-shadow: 0 0 12px #fca5a540; }
+  .fp-circle.empty { border-color: var(--border); background: var(--card); border-style: dashed; box-shadow: none; cursor: default; }
+
+  .fp-num {
+    position: absolute;
+    top: -6px; right: -6px;
+    background: var(--purple);
+    color: #fff;
+    font-size: 0.55rem;
+    font-weight: 900;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    border: 1.5px solid var(--black);
+  }
+
+  .fp-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 1px 4px #000a;
+    white-space: nowrap;
+    max-width: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    background: #0008;
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  /* Slot de posição vazio */
+  .fp-slot-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* Painel lateral */
+  .tactics-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .panel-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .panel-title {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--purple-light);
+    margin-bottom: 12px;
+  }
+
+  .bench-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  .bench-player {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--black);
+    cursor: grab;
+    transition: border-color 0.2s, background 0.2s;
+    font-size: 0.82rem;
+  }
+
+  .bench-player:active { cursor: grabbing; }
+  .bench-player:hover { border-color: var(--purple-dim); background: #1a0a2e; }
+  .bench-player.on-field { opacity: 0.35; pointer-events: none; }
+
+  .bp-dot {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.6rem; font-weight: 900;
+    flex-shrink: 0;
+  }
+  .bp-dot.gk { background: #1f110040; border: 1px solid #92400e; color: #fde68a; }
+  .bp-dot.def { background: #1e3a8a40; border: 1px solid #1d4ed8; color: #93c5fd; }
+  .bp-dot.mid { background: #14532d40; border: 1px solid #16a34a; color: #86efac; }
+  .bp-dot.att { background: #7f1d1d40; border: 1px solid #dc2626; color: #fca5a5; }
+
+  .bp-info { flex: 1; min-width: 0; }
+  .bp-name { font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bp-pos { font-size: 0.65rem; color: var(--text-muted); }
+  .bp-num { font-size: 0.65rem; color: var(--text-muted); margin-left: auto; flex-shrink: 0; }
+
+  /* Drop highlight no campo */
+  .field-drop-active { outline: 2px dashed var(--purple-light); outline-offset: 4px; border-radius: 10px; }
+
+  /* Instrução */
+  .tactics-tip {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding: 10px 12px;
+    background: var(--black);
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+  }
+
+  /* Slots escalados */
+  .lineup-slots {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 360px;
+    overflow-y: auto;
+  }
+
+  .lineup-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    padding: 6px 8px;
+    border-radius: 6px;
+    background: var(--black);
+    border: 1px solid var(--border);
+  }
+
+  .lineup-pos-tag {
+    font-size: 0.6rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    width: 30px;
+    flex-shrink: 0;
+  }
+
+  .lineup-name { flex: 1; font-weight: 600; }
+  .lineup-remove {
+    background: none; border: none; color: var(--text-muted); cursor: pointer;
+    font-size: 0.8rem; padding: 2px 4px; border-radius: 3px; transition: color 0.2s;
+  }
+  .lineup-remove:hover { color: #ef4444; }
+
   footer { border-top: 1px solid var(--border); text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.78rem; letter-spacing: 0.05em; }
-  @media (max-width: 640px) { nav { padding: 0 16px; } .nav-links { gap: 16px; } .nav-links a { font-size: 0.75rem; } }
+
+  @media (max-width: 900px) {
+    .tactics-layout { grid-template-columns: 1fr; }
+    nav { padding: 0 16px; }
+    .nav-links { gap: 14px; }
+    .nav-links a { font-size: 0.72rem; }
+  }
 </style>
 </head>
 <body>
@@ -124,6 +412,7 @@
   </a>
   <ul class="nav-links">
     <li><a href="#elenco">Elenco</a></li>
+    <li><a href="#escalacao">Escalação</a></li>
     <li><a href="#jogos">Jogos</a></li>
     <li><a href="#historico">Histórico</a></li>
     <li><a href="#stats">Stats</a></li>
@@ -151,6 +440,7 @@
 
 <div class="divider"></div>
 
+<!-- ELENCO -->
 <div class="section-wrap" id="elenco">
   <div class="section-label">Temporada 2026</div>
   <div class="section-title">Elenco</div>
@@ -159,6 +449,104 @@
 
 <div class="divider"></div>
 
+<!-- ESCALAÇÃO TÁTICA -->
+<div class="section-wrap" id="escalacao">
+  <div class="section-label">Montagem Tática</div>
+  <div class="section-title">Escalação</div>
+  <div class="tactics-layout">
+
+    <!-- CAMPO -->
+    <div class="field-wrap">
+      <div class="field-header">
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <span style="font-size:0.78rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;">Formação</span>
+          <select class="formation-select" id="formation-select" onchange="applyFormation(this.value)">
+            <option value="free">Livre</option>
+            <option value="4-3-3">4-3-3</option>
+            <option value="4-4-2">4-4-2</option>
+            <option value="3-5-2">3-5-2</option>
+            <option value="4-2-3-1">4-2-3-1</option>
+            <option value="3-4-3">3-4-3</option>
+            <option value="5-3-2">5-3-2</option>
+          </select>
+        </div>
+        <button class="btn-clear" onclick="clearField()">Limpar campo</button>
+      </div>
+      <div class="field-svg-wrap" id="field-drop-zone">
+        <!-- Campo SVG -->
+        <svg id="field-svg" viewBox="0 0 340 520" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="grassGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0d2018"/>
+              <stop offset="50%" stop-color="#0f2a1c"/>
+              <stop offset="100%" stop-color="#0d2018"/>
+            </linearGradient>
+          </defs>
+          <!-- Fundo -->
+          <rect width="340" height="520" fill="url(#grassGrad)" rx="6"/>
+          <!-- Faixas de gramado -->
+          <rect x="0" y="0" width="340" height="52" fill="#0f2a1c" opacity="0.5"/>
+          <rect x="0" y="104" width="340" height="52" fill="#0f2a1c" opacity="0.5"/>
+          <rect x="0" y="208" width="340" height="52" fill="#0f2a1c" opacity="0.5"/>
+          <rect x="0" y="312" width="340" height="52" fill="#0f2a1c" opacity="0.5"/>
+          <rect x="0" y="416" width="340" height="52" fill="#0f2a1c" opacity="0.5"/>
+          <!-- Borda do campo -->
+          <rect x="12" y="12" width="316" height="496" fill="none" stroke="#ffffff18" stroke-width="2" rx="2"/>
+          <!-- Linha do meio -->
+          <line x1="12" y1="260" x2="328" y2="260" stroke="#ffffff18" stroke-width="1.5"/>
+          <!-- Círculo central -->
+          <circle cx="170" cy="260" r="46" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <circle cx="170" cy="260" r="3" fill="#ffffff20"/>
+          <!-- Área grande superior -->
+          <rect x="72" y="12" width="196" height="72" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <!-- Área pequena superior -->
+          <rect x="118" y="12" width="104" height="34" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <!-- Gol superior -->
+          <rect x="140" y="8" width="60" height="12" fill="none" stroke="#ffffff30" stroke-width="1.5"/>
+          <!-- Área grande inferior -->
+          <rect x="72" y="436" width="196" height="72" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <!-- Área pequena inferior -->
+          <rect x="118" y="474" width="104" height="34" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <!-- Gol inferior -->
+          <rect x="140" y="500" width="60" height="12" fill="none" stroke="#ffffff30" stroke-width="1.5"/>
+          <!-- Pênalti sup -->
+          <circle cx="170" cy="66" r="3" fill="#ffffff20"/>
+          <path d="M 124 84 A 46 46 0 0 1 216 84" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <!-- Pênalti inf -->
+          <circle cx="170" cy="454" r="3" fill="#ffffff20"/>
+          <path d="M 124 436 A 46 46 0 0 0 216 436" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <!-- Cantos -->
+          <path d="M 12 12 A 10 10 0 0 1 22 22" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <path d="M 328 12 A 10 10 0 0 0 318 22" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <path d="M 12 508 A 10 10 0 0 0 22 498" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <path d="M 328 508 A 10 10 0 0 1 318 498" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+        </svg>
+        <!-- Fichas dos jogadores (posicionadas em % via JS) -->
+        <div id="field-players"></div>
+      </div>
+    </div>
+
+    <!-- PAINEL LATERAL -->
+    <div class="tactics-panel">
+      <div class="panel-box">
+        <div class="panel-title">🟣 Jogadores</div>
+        <div class="tactics-tip">Arraste um jogador para o campo, ou clique no campo para posicionar livremente.</div>
+        <br>
+        <div class="bench-list" id="bench-list"></div>
+      </div>
+      <div class="panel-box">
+        <div class="panel-title">📋 Titulares no Campo</div>
+        <div class="lineup-slots" id="lineup-slots">
+          <div style="font-size:0.78rem;color:var(--text-muted);text-align:center;padding:16px 0;">Nenhum jogador no campo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- JOGOS -->
 <div class="section-wrap" id="jogos">
   <div class="section-label">Partidas</div>
   <div class="section-title">Jogos</div>
@@ -167,6 +555,7 @@
 
 <div class="divider"></div>
 
+<!-- HISTÓRICO -->
 <div class="section-wrap" id="historico">
   <div class="section-label">Desde 2022</div>
   <div class="section-title">Histórico do Clube</div>
@@ -175,6 +564,7 @@
 
 <div class="divider"></div>
 
+<!-- STATS -->
 <div class="section-wrap" id="stats">
   <div class="section-label">Números</div>
   <div class="section-title">Aproveitamento</div>
@@ -187,9 +577,9 @@
 </footer>
 
 <script>
-/* ═══════════════════════════════════
-   ✏️  EDITE AQUI — DADOS DO TIME
-   ═══════════════════════════════════ */
+/* ════════════════════════════════════════
+   ✏️  DADOS DO TIME — EDITE AQUI
+   ════════════════════════════════════════ */
 
 const NEWS_ITEMS = [
   "Aliginianos se preparam para o próximo clássico contra o Pandora",
@@ -219,8 +609,6 @@ const PLAYERS = [
   { number: 8,  name: "João",       pos: "ATT", note: "Desde 2022",     badges: [] },
 ];
 
-/* result: 'W' | 'L' | 'D' | 'WO' | null (próximo jogo)
-   score: 'NossosxDeles' ou null */
 const MATCHES = [
   { opponent: "Caze",    date: "2022",       result: "L",  score: "1x12",  home: false, note: "Amistoso de estreia" },
   { opponent: "Caze",    date: "2023",       result: "L",  score: "3x13",  home: true,  note: "2º jogo em casa" },
@@ -263,18 +651,125 @@ const HISTORY = [
   ]},
 ];
 
-/* ═══════════════════════════════════
-   RENDER — não precisa editar abaixo
-   ═══════════════════════════════════ */
+/* ════════════════════════════════════════
+   FORMAÇÕES PRÉ-DEFINIDAS
+   Posições em % (left, top) — 0% = canto sup esq, 100% = canto inf dir
+   O goleiro fica sempre próximo da base inferior (time ataca pra cima)
+════════════════════════════════════════ */
+const FORMATIONS = {
+  "4-3-3": {
+    slots: [
+      { pos:"GK",  x:50, y:90, label:"GK" },
+      { pos:"DEF", x:18, y:74, label:"LD" },
+      { pos:"DEF", x:38, y:74, label:"ZE" },
+      { pos:"DEF", x:62, y:74, label:"ZD" },
+      { pos:"DEF", x:82, y:74, label:"LE" },
+      { pos:"MID", x:25, y:56, label:"MC" },
+      { pos:"MID", x:50, y:52, label:"MC" },
+      { pos:"MID", x:75, y:56, label:"MC" },
+      { pos:"ATT", x:18, y:34, label:"AE" },
+      { pos:"ATT", x:50, y:28, label:"CA" },
+      { pos:"ATT", x:82, y:34, label:"AD" },
+    ]
+  },
+  "4-4-2": {
+    slots: [
+      { pos:"GK",  x:50, y:90, label:"GK" },
+      { pos:"DEF", x:18, y:74, label:"LD" },
+      { pos:"DEF", x:38, y:74, label:"ZE" },
+      { pos:"DEF", x:62, y:74, label:"ZD" },
+      { pos:"DEF", x:82, y:74, label:"LE" },
+      { pos:"MID", x:18, y:54, label:"ME" },
+      { pos:"MID", x:38, y:54, label:"MC" },
+      { pos:"MID", x:62, y:54, label:"MC" },
+      { pos:"MID", x:82, y:54, label:"MD" },
+      { pos:"ATT", x:36, y:30, label:"SA" },
+      { pos:"ATT", x:64, y:30, label:"SA" },
+    ]
+  },
+  "3-5-2": {
+    slots: [
+      { pos:"GK",  x:50, y:90, label:"GK" },
+      { pos:"DEF", x:25, y:74, label:"ZE" },
+      { pos:"DEF", x:50, y:74, label:"ZC" },
+      { pos:"DEF", x:75, y:74, label:"ZD" },
+      { pos:"MID", x:12, y:54, label:"AE" },
+      { pos:"MID", x:32, y:54, label:"MC" },
+      { pos:"MID", x:50, y:50, label:"MC" },
+      { pos:"MID", x:68, y:54, label:"MC" },
+      { pos:"MID", x:88, y:54, label:"AD" },
+      { pos:"ATT", x:36, y:30, label:"SA" },
+      { pos:"ATT", x:64, y:30, label:"SA" },
+    ]
+  },
+  "4-2-3-1": {
+    slots: [
+      { pos:"GK",  x:50, y:90, label:"GK" },
+      { pos:"DEF", x:18, y:74, label:"LD" },
+      { pos:"DEF", x:38, y:74, label:"ZE" },
+      { pos:"DEF", x:62, y:74, label:"ZD" },
+      { pos:"DEF", x:82, y:74, label:"LE" },
+      { pos:"MID", x:36, y:58, label:"VOL" },
+      { pos:"MID", x:64, y:58, label:"VOL" },
+      { pos:"MID", x:18, y:40, label:"AE" },
+      { pos:"MID", x:50, y:38, label:"MEA" },
+      { pos:"MID", x:82, y:40, label:"AD" },
+      { pos:"ATT", x:50, y:22, label:"CA" },
+    ]
+  },
+  "3-4-3": {
+    slots: [
+      { pos:"GK",  x:50, y:90, label:"GK" },
+      { pos:"DEF", x:25, y:74, label:"ZE" },
+      { pos:"DEF", x:50, y:74, label:"ZC" },
+      { pos:"DEF", x:75, y:74, label:"ZD" },
+      { pos:"MID", x:18, y:54, label:"AE" },
+      { pos:"MID", x:38, y:54, label:"MC" },
+      { pos:"MID", x:62, y:54, label:"MC" },
+      { pos:"MID", x:82, y:54, label:"AD" },
+      { pos:"ATT", x:20, y:30, label:"AE" },
+      { pos:"ATT", x:50, y:24, label:"CA" },
+      { pos:"ATT", x:80, y:30, label:"AD" },
+    ]
+  },
+  "5-3-2": {
+    slots: [
+      { pos:"GK",  x:50, y:90, label:"GK" },
+      { pos:"DEF", x:10, y:74, label:"AE" },
+      { pos:"DEF", x:28, y:74, label:"ZE" },
+      { pos:"DEF", x:50, y:74, label:"ZC" },
+      { pos:"DEF", x:72, y:74, label:"ZD" },
+      { pos:"DEF", x:90, y:74, label:"AD" },
+      { pos:"MID", x:25, y:52, label:"MC" },
+      { pos:"MID", x:50, y:48, label:"MC" },
+      { pos:"MID", x:75, y:52, label:"MC" },
+      { pos:"ATT", x:36, y:28, label:"SA" },
+      { pos:"ATT", x:64, y:28, label:"SA" },
+    ]
+  },
+};
+
+/* ════════════════════════════════════════
+   ESTADO DA ESCALAÇÃO
+════════════════════════════════════════ */
+// fieldSlots: array de { slotId, x, y, label, pos, playerId|null }
+let fieldSlots = [];
+let dragPlayer = null; // { id, name, pos, number } sendo arrastado
+let dragSlot = null;   // slotId sendo arrastado de posição existente
+
+/* ════════════════════════════════════════
+   RENDER GERAL
+════════════════════════════════════════ */
+const posClass = { GK:'pos-gk', DEF:'pos-def', MID:'pos-mid', ATT:'pos-att' };
+const posClassDot = { GK:'gk', DEF:'def', MID:'mid', ATT:'att' };
 
 // TICKER
 const ticker = document.getElementById('ticker');
 const allNews = [...NEWS_ITEMS, ...NEWS_ITEMS];
-ticker.innerHTML = allNews.map(n => `<span class="ticker-item">${n}</span>`).join('');
+ticker.innerHTML = allNews.map(n=>`<span class="ticker-item">${n}</span>`).join('');
 
 // SQUAD
-const posClass = { GK:'pos-gk', DEF:'pos-def', MID:'pos-mid', ATT:'pos-att' };
-document.getElementById('squad-grid').innerHTML = PLAYERS.map(p => `
+document.getElementById('squad-grid').innerHTML = PLAYERS.map(p=>`
   <div class="player-card">
     <div class="player-number">${p.number}</div>
     <span class="player-pos ${posClass[p.pos]||''}">${p.pos}</span>
@@ -284,9 +779,9 @@ document.getElementById('squad-grid').innerHTML = PLAYERS.map(p => `
   </div>`).join('');
 
 // MATCHES
-const rlabel = { W:'V', L:'D', D:'E', WO:'WO' };
-const rclass  = { W:'result-w', L:'result-l', D:'result-d', WO:'result-wo' };
-document.getElementById('matches-list').innerHTML = MATCHES.map(m => `
+const rlabel={W:'V',L:'D',D:'E',WO:'WO'};
+const rclass={W:'result-w',L:'result-l',D:'result-d',WO:'result-wo'};
+document.getElementById('matches-list').innerHTML = MATCHES.map(m=>`
   <div class="match-card">
     <div class="match-result ${m.result?rclass[m.result]:'result-upcoming'}">${m.result?rlabel[m.result]:'⏳'}</div>
     <div class="match-info">
@@ -304,15 +799,13 @@ document.getElementById('timeline').innerHTML = HISTORY.map(y=>`
   </div>`).join('');
 
 // STATS
-const played = MATCHES.filter(m=>m.result!==null).length;
-const wins   = MATCHES.filter(m=>m.result==='W'||m.result==='WO').length;
-const losses = MATCHES.filter(m=>m.result==='L').length;
-const draws  = MATCHES.filter(m=>m.result==='D').length;
+const played=MATCHES.filter(m=>m.result!==null).length;
+const wins=MATCHES.filter(m=>m.result==='W'||m.result==='WO').length;
+const losses=MATCHES.filter(m=>m.result==='L').length;
+const draws=MATCHES.filter(m=>m.result==='D').length;
 let gf=0,ga=0;
-MATCHES.forEach(m=>{
-  if(m.score&&m.result!=='WO'){const[a,b]=m.score.split('x').map(Number);gf+=a;ga+=b;}
-});
-const aprov = played?Math.round((wins/played)*100):0;
+MATCHES.forEach(m=>{if(m.score&&m.result!=='WO'){const[a,b]=m.score.split('x').map(Number);gf+=a;ga+=b;}});
+const aprov=played?Math.round((wins/played)*100):0;
 
 document.getElementById('hero-stats').innerHTML=`
   <div class="hero-stat"><div class="val">${played}</div><div class="lbl">Jogos</div></div>
@@ -332,6 +825,273 @@ const draP=played?Math.round((draws/played)*100):0;
 document.getElementById('bars').innerHTML=[
   {label:'Vitórias',pct:winP,cls:'win'},{label:'Derrotas',pct:losP,cls:'loss'},{label:'Empates',pct:draP,cls:'draw'}
 ].map(b=>`<div class="aproveitamento-bar"><div class="bar-header"><span class="bar-label">${b.label}</span><span class="bar-pct">${b.pct}%</span></div><div class="bar-track"><div class="bar-fill ${b.cls}" style="width:${b.pct}%"></div></div></div>`).join('');
+
+/* ════════════════════════════════════════
+   SISTEMA DE ESCALAÇÃO
+════════════════════════════════════════ */
+
+function getPlayerById(id) { return PLAYERS.find(p=>p.number===id); }
+
+function getOnFieldIds() {
+  return fieldSlots.filter(s=>s.playerId!==null).map(s=>s.playerId);
+}
+
+function renderBench() {
+  const onField = getOnFieldIds();
+  document.getElementById('bench-list').innerHTML = PLAYERS.map(p=>`
+    <div class="bench-player ${onField.includes(p.number)?'on-field':''}"
+         draggable="${!onField.includes(p.number)}"
+         data-pid="${p.number}"
+         ondragstart="onBenchDragStart(event,${p.number})"
+         ondragend="onDragEnd(event)">
+      <div class="bp-dot ${posClassDot[p.pos]||'gk'}">${p.pos}</div>
+      <div class="bp-info">
+        <div class="bp-name">${p.name}</div>
+        <div class="bp-pos">${p.pos} · #${p.number}</div>
+      </div>
+    </div>`).join('');
+}
+
+function renderLineupSlots() {
+  const onField = fieldSlots.filter(s=>s.playerId!==null);
+  if (!onField.length) {
+    document.getElementById('lineup-slots').innerHTML='<div style="font-size:0.78rem;color:var(--text-muted);text-align:center;padding:16px 0;">Nenhum jogador no campo</div>';
+    return;
+  }
+  document.getElementById('lineup-slots').innerHTML = onField.map(s=>{
+    const p=getPlayerById(s.playerId);
+    return `<div class="lineup-row">
+      <span class="lineup-pos-tag">${s.label||s.pos}</span>
+      <span class="lineup-name">${p?p.name:'?'}</span>
+      <button class="lineup-remove" title="Remover" onclick="removeFromSlot('${s.slotId}')">✕</button>
+    </div>`;
+  }).join('');
+}
+
+function removeFromSlot(slotId) {
+  const s=fieldSlots.find(s=>s.slotId===slotId);
+  if(s) s.playerId=null;
+  renderField();
+  renderBench();
+  renderLineupSlots();
+}
+
+function renderField() {
+  const fp = document.getElementById('field-players');
+  fp.innerHTML = '';
+  fieldSlots.forEach(slot=>{
+    const el = document.createElement('div');
+    el.className='field-player';
+    el.style.left=slot.x+'%';
+    el.style.top=slot.y+'%';
+    el.dataset.slotId=slot.slotId;
+
+    if(slot.playerId!==null){
+      const p=getPlayerById(slot.playerId);
+      const pc=posClassDot[p?p.pos:'GK']||'gk';
+      el.draggable=true;
+      el.innerHTML=`
+        <div class="fp-circle ${pc}">
+          <span class="fp-num">${p?p.number:'?'}</span>
+          ${p?p.name.split(' ')[0].substring(0,7):'?'}
+        </div>
+        <div class="fp-label">${p?p.name:'?'}</div>`;
+      el.addEventListener('dragstart',e=>onSlotDragStart(e,slot.slotId));
+      el.addEventListener('dragend',onDragEnd);
+      el.addEventListener('dblclick',()=>{ removeFromSlot(slot.slotId); });
+    } else {
+      el.innerHTML=`
+        <div class="fp-circle empty">
+          <span style="color:var(--text-muted);font-size:0.55rem;font-weight:700;">${slot.label||slot.pos}</span>
+        </div>`;
+      el.style.opacity='0.5';
+    }
+
+    // permite drop em slot existente
+    el.addEventListener('dragover',e=>{e.preventDefault();el.classList.add('drag-over-target');});
+    el.addEventListener('dragleave',e=>{el.classList.remove('drag-over-target');});
+    el.addEventListener('drop',e=>{
+      e.preventDefault();e.stopPropagation();
+      el.classList.remove('drag-over-target');
+      handleDropOnSlot(slot.slotId,e);
+    });
+
+    // drag livre: arrastar posição no campo
+    el.addEventListener('mousedown',e=>{
+      if(e.button!==0) return;
+      // apenas se não há jogador (não usa drag API)
+    });
+
+    fp.appendChild(el);
+  });
+}
+
+function handleDropOnSlot(targetSlotId, e) {
+  const targetSlot = fieldSlots.find(s=>s.slotId===targetSlotId);
+  if(!targetSlot) return;
+
+  if(dragPlayer!==null) {
+    // vindo do bench
+    const existing = fieldSlots.find(s=>s.playerId===dragPlayer);
+    if(existing) existing.playerId=null;
+    // swap se o slot alvo já tem alguém
+    if(targetSlot.playerId!==null && existing) {
+      existing.playerId=targetSlot.playerId;
+    }
+    targetSlot.playerId=dragPlayer;
+    dragPlayer=null;
+  } else if(dragSlot!==null && dragSlot!==targetSlotId) {
+    // mover entre slots
+    const srcSlot=fieldSlots.find(s=>s.slotId===dragSlot);
+    if(srcSlot){
+      const tmp=targetSlot.playerId;
+      targetSlot.playerId=srcSlot.playerId;
+      srcSlot.playerId=tmp;
+    }
+    dragSlot=null;
+  }
+  renderField();
+  renderBench();
+  renderLineupSlots();
+}
+
+function onBenchDragStart(e,playerId){
+  dragPlayer=playerId;
+  dragSlot=null;
+  e.dataTransfer.effectAllowed='move';
+}
+
+function onSlotDragStart(e,slotId){
+  dragSlot=slotId;
+  dragPlayer=null;
+  e.dataTransfer.effectAllowed='move';
+  e.stopPropagation();
+}
+
+function onDragEnd(e){
+  dragPlayer=null;
+  dragSlot=null;
+  document.getElementById('field-drop-zone').classList.remove('field-drop-active');
+}
+
+// Drop diretamente no campo (cria slot livre)
+const fieldZone=document.getElementById('field-drop-zone');
+fieldZone.addEventListener('dragover',e=>{
+  e.preventDefault();
+  fieldZone.classList.add('field-drop-active');
+});
+fieldZone.addEventListener('dragleave',e=>{
+  fieldZone.classList.remove('field-drop-active');
+});
+fieldZone.addEventListener('drop',e=>{
+  e.preventDefault();
+  fieldZone.classList.remove('field-drop-active');
+
+  // check se caiu em cima de um slot filho (já tratado)
+  if(e.target.closest('.field-player')) return;
+
+  const rect=fieldZone.getBoundingClientRect();
+  const xPct=((e.clientX-rect.left)/rect.width)*100;
+  const yPct=((e.clientY-rect.top)/rect.height)*100;
+
+  if(dragPlayer!==null){
+    // remove de slot anterior se existia
+    const existing=fieldSlots.find(s=>s.playerId===dragPlayer);
+    if(existing) existing.playerId=null;
+    // cria novo slot livre
+    const newSlot={
+      slotId:'free_'+Date.now(),
+      x:Math.min(Math.max(xPct,5),95),
+      y:Math.min(Math.max(yPct,5),95),
+      label:'',
+      pos:'',
+      playerId:dragPlayer,
+      free:true
+    };
+    fieldSlots.push(newSlot);
+    dragPlayer=null;
+  } else if(dragSlot!==null){
+    // mover slot existente para nova posição
+    const s=fieldSlots.find(sl=>sl.slotId===dragSlot);
+    if(s){
+      s.x=Math.min(Math.max(xPct,5),95);
+      s.y=Math.min(Math.max(yPct,5),95);
+    }
+    dragSlot=null;
+  }
+  renderField();
+  renderBench();
+  renderLineupSlots();
+});
+
+// CLICK no campo vazio = modo livre, seleciona jogador
+let pendingFreePlace=null;
+fieldZone.addEventListener('click',e=>{
+  if(e.target.closest('.field-player')) return;
+  if(pendingFreePlace!==null){
+    const rect=fieldZone.getBoundingClientRect();
+    const xPct=((e.clientX-rect.left)/rect.width)*100;
+    const yPct=((e.clientY-rect.top)/rect.height)*100;
+    const existing=fieldSlots.find(s=>s.playerId===pendingFreePlace);
+    if(existing) existing.playerId=null;
+    fieldSlots.push({
+      slotId:'free_'+Date.now(),
+      x:Math.min(Math.max(xPct,5),95),
+      y:Math.min(Math.max(yPct,5),95),
+      label:'',pos:'',
+      playerId:pendingFreePlace,free:true
+    });
+    pendingFreePlace=null;
+    document.querySelectorAll('.bench-player').forEach(el=>el.style.outline='');
+    renderField();renderBench();renderLineupSlots();
+  }
+});
+
+// Click no jogador do banco = prepara para posicionar no campo
+document.getElementById('bench-list').addEventListener('click',e=>{
+  const bp=e.target.closest('.bench-player');
+  if(!bp||bp.classList.contains('on-field')) return;
+  const pid=parseInt(bp.dataset.pid);
+  if(pendingFreePlace===pid){
+    pendingFreePlace=null;
+    document.querySelectorAll('.bench-player').forEach(el=>el.style.outline='');
+  } else {
+    pendingFreePlace=pid;
+    document.querySelectorAll('.bench-player').forEach(el=>el.style.outline='');
+    bp.style.outline='2px solid var(--purple-light)';
+    // show tip
+    fieldZone.style.cursor='crosshair';
+    setTimeout(()=>{fieldZone.style.cursor='';},5000);
+  }
+});
+
+function clearField(){
+  fieldSlots=[];
+  renderField();renderBench();renderLineupSlots();
+  document.getElementById('formation-select').value='free';
+  pendingFreePlace=null;
+}
+
+function applyFormation(key){
+  if(key==='free'){ clearField(); return; }
+  const f=FORMATIONS[key];
+  if(!f) return;
+  // preserva jogadores já escalados onde possível
+  const prevAssignments={};
+  fieldSlots.forEach(s=>{ if(s.playerId) prevAssignments[s.label||s.pos+'_'+s.slotId]=s.playerId; });
+
+  fieldSlots=f.slots.map((sl,i)=>({
+    slotId:'slot_'+key+'_'+i,
+    x:sl.x,y:sl.y,
+    label:sl.label,pos:sl.pos,
+    playerId:null
+  }));
+  renderField();renderBench();renderLineupSlots();
+}
+
+// Init
+applyFormation('4-3-3');
+document.getElementById('formation-select').value='4-3-3';
 </script>
 </body>
 </html>
