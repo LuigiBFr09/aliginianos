@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -29,6 +28,42 @@
 
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: #0a0a0fcc; backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; }
   .nav-logo { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.1rem; letter-spacing: 0.05em; color: var(--text); text-decoration: none; }
+
+  /* ── LOGO PNG ── */
+  /* Substitua o caminho abaixo pelo nome do seu arquivo PNG
+     Ex: se o arquivo se chama "escudo.png", deixe src="escudo.png"
+     Coloque o arquivo PNG na mesma pasta que este HTML            */
+  .nav-crest {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 6px #7c3aed80);
+  }
+  /* Fallback SVG caso a imagem não carregue */
+  .nav-crest-fallback {
+    display: none;
+    width: 36px;
+    height: 36px;
+  }
+  .nav-crest.broken { display: none; }
+  .nav-crest.broken + .nav-crest-fallback { display: block; }
+
+  .hero-crest-img {
+    width: 330px;
+    height: 330px;
+    object-fit: contain;
+    margin-bottom: 28px;
+    filter: drop-shadow(0 0 32px #7c3aed80);
+    animation: float 4s ease-in-out infinite;
+  }
+  .hero-crest-svg {
+    width: 130px;
+    height: 130px;
+    margin-bottom: 28px;
+    filter: drop-shadow(0 0 32px #7c3aed80);
+    animation: float 4s ease-in-out infinite;
+  }
+
   .nav-links { display: flex; gap: 28px; list-style: none; }
   .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
   .nav-links a:hover { color: var(--purple-light); }
@@ -44,9 +79,8 @@
   .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 20px 40px; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 40%, #4c1d9540 0%, transparent 70%); pointer-events: none; }
   .hero-year { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--purple-light); margin-bottom: 16px; opacity: 0.8; }
-  .hero-crest { width: 120px; height: 120px; margin-bottom: 28px; filter: drop-shadow(0 0 32px #7c3aed80); animation: float 4s ease-in-out infinite; }
   @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-  .hero h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; letter-spacing: -0.02em; line-height: 1; background: linear-gradient(135deg, #fff 30%, var(--purple-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; }
+  .hero h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; letter-spacing: -0.02em; line-height: 1; background: white; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; }
   .hero-sub { font-size: 0.95rem; color: var(--text-muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 48px; }
   .hero-stats { display: flex; gap: 48px; justify-content: center; flex-wrap: wrap; }
   .hero-stat { text-align: center; }
@@ -80,9 +114,9 @@
   .match-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; transition: border-color 0.2s; }
   .match-card:hover { border-color: var(--purple-dim); }
   .match-result { width: 42px; height: 42px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.72rem; letter-spacing: 0.05em; flex-shrink: 0; }
-  .result-w { background: #14532d40; border: 1px solid #16a34a; color: var(--win); }
-  .result-l { background: #7f1d1d40; border: 1px solid #dc2626; color: var(--loss); }
-  .result-d { background: #78350f40; border: 1px solid #d97706; color: var(--draw); }
+  .result-w  { background: #14532d40; border: 1px solid #16a34a; color: var(--win); }
+  .result-l  { background: #7f1d1d40; border: 1px solid #dc2626; color: var(--loss); }
+  .result-d  { background: #78350f40; border: 1px solid #d97706; color: var(--draw); }
   .result-wo { background: #4c1d9540; border: 1px solid var(--purple); color: var(--wo); }
   .result-upcoming { background: #1a0a2e; border: 1px solid var(--border); color: var(--text-muted); }
   .match-info { flex: 1; }
@@ -111,146 +145,47 @@
   .bar-pct { font-size: 0.85rem; font-weight: 700; color: var(--purple-light); }
   .bar-track { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
   .bar-fill { height: 100%; border-radius: 4px; }
-  .bar-fill.win { background: linear-gradient(90deg, #16a34a, #22c55e); }
+  .bar-fill.win  { background: linear-gradient(90deg, #16a34a, #22c55e); }
   .bar-fill.loss { background: linear-gradient(90deg, #b91c1c, #ef4444); }
   .bar-fill.draw { background: linear-gradient(90deg, #d97706, #f59e0b); }
 
   /* ══════════════ TÁTICAS ══════════════ */
   .tactics-layout { display: grid; grid-template-columns: 1fr 300px; gap: 20px; align-items: start; }
-
   .field-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; }
-
   .field-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
-
-  /* ── TOOLBAR DE DESENHO ── */
-  .draw-toolbar {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-wrap: wrap;
-    background: var(--black);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 8px 10px;
-    margin-bottom: 10px;
-  }
-
+  .draw-toolbar { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; background: var(--black); border: 1px solid var(--border); border-radius: 10px; padding: 8px 10px; margin-bottom: 10px; }
   .tool-sep { width: 1px; height: 22px; background: var(--border); margin: 0 2px; flex-shrink: 0; }
-
-  .tool-btn {
-    background: transparent;
-    border: 1px solid transparent;
-    color: var(--text-muted);
-    border-radius: 6px;
-    padding: 5px 9px;
-    font-size: 0.72rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.15s;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    letter-spacing: 0.04em;
-    white-space: nowrap;
-  }
+  .tool-btn { background: transparent; border: 1px solid transparent; color: var(--text-muted); border-radius: 6px; padding: 5px 9px; font-size: 0.72rem; font-weight: 700; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; gap: 5px; letter-spacing: 0.04em; white-space: nowrap; }
   .tool-btn:hover { border-color: var(--border); color: var(--text); background: #1a0a2e; }
   .tool-btn.active { border-color: var(--purple); color: var(--purple-light); background: #1a0a2e; box-shadow: 0 0 8px #7c3aed40; }
-  .tool-btn.danger:hover { border-color: #ef4444; color: #ef4444; }
-
-  .color-btn {
-    width: 22px; height: 22px;
-    border-radius: 50%;
-    border: 2px solid transparent;
-    cursor: pointer;
-    transition: transform 0.15s, border-color 0.15s;
-    flex-shrink: 0;
-  }
+  .color-btn { width: 22px; height: 22px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; transition: transform 0.15s, border-color 0.15s; flex-shrink: 0; }
   .color-btn:hover { transform: scale(1.15); }
   .color-btn.active { border-color: #fff; transform: scale(1.15); }
-
-  .size-btn {
-    background: transparent;
-    border: 1px solid transparent;
-    color: var(--text-muted);
-    border-radius: 5px;
-    padding: 4px 7px;
-    font-size: 0.68rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.15s;
-  }
+  .size-btn { background: transparent; border: 1px solid transparent; color: var(--text-muted); border-radius: 5px; padding: 4px 7px; font-size: 0.68rem; font-weight: 700; cursor: pointer; transition: all 0.15s; }
   .size-btn:hover, .size-btn.active { border-color: var(--purple); color: var(--purple-light); background: #1a0a2e; }
-
   .formation-select { background: var(--black); border: 1px solid var(--border); color: var(--text); padding: 7px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; cursor: pointer; outline: none; transition: border-color 0.2s; }
   .formation-select:hover, .formation-select:focus { border-color: var(--purple); }
-
-  .btn-action {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text-muted);
-    padding: 7px 12px;
-    border-radius: 8px;
-    font-size: 0.74rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
+  .btn-action { background: transparent; border: 1px solid var(--border); color: var(--text-muted); padding: 7px 12px; border-radius: 8px; font-size: 0.74rem; font-weight: 600; cursor: pointer; transition: all 0.2s; letter-spacing: 0.04em; text-transform: uppercase; }
   .btn-action:hover { border-color: #ef4444; color: #ef4444; }
   .btn-action.undo:hover { border-color: var(--purple-dim); color: var(--purple-light); }
-
-  /* Campo */
-  .field-svg-wrap {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 0.65;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-
+  .field-svg-wrap { position: relative; width: 100%; aspect-ratio: 0.65; border-radius: 10px; overflow: hidden; }
   #field-svg { width: 100%; height: 100%; display: block; }
-
-  /* Canvas de desenho */
-  #draw-canvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 20;
-    pointer-events: none;
-    border-radius: 10px;
-  }
+  #draw-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 20; pointer-events: none; border-radius: 10px; }
   #draw-canvas.draw-mode { pointer-events: all; cursor: crosshair; }
-  #draw-canvas.erase-mode { pointer-events: all; cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Crect x='1' y='1' width='18' height='18' rx='3' fill='%23ef4444' fill-opacity='0.5' stroke='%23ef4444' stroke-width='1.5'/%3E%3C/svg%3E") 10 10, crosshair; }
-
-  /* Fichas jogadores */
-  .field-player {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    z-index: 10;
-    user-select: none;
-  }
+  #draw-canvas.erase-mode { pointer-events: all; cursor: crosshair; }
+  .field-player { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 4px; z-index: 10; user-select: none; }
   .field-player.interactive { cursor: grab; }
   .field-player.interactive:active { cursor: grabbing; filter: brightness(1.3); z-index: 50; }
   .field-player.drag-over-target { filter: brightness(1.5); }
-
   #field-players { position: absolute; inset: 0; z-index: 10; }
-
   .fp-circle { width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--purple-light); background: #1a0a2e; display: flex; align-items: center; justify-content: center; font-size: 0.62rem; font-weight: 800; text-align: center; line-height: 1.1; color: #fff; box-shadow: 0 0 10px #7c3aed60; position: relative; transition: background 0.2s; }
-  .fp-circle.gk { border-color: #fde68a; background: #1f1100; box-shadow: 0 0 10px #fde68a40; }
+  .fp-circle.gk  { border-color: #fde68a; background: #1f1100; box-shadow: 0 0 10px #fde68a40; }
   .fp-circle.def { border-color: #93c5fd; background: #0a1a3a; box-shadow: 0 0 10px #93c5fd40; }
   .fp-circle.mid { border-color: #86efac; background: #0a1f12; box-shadow: 0 0 10px #86efac40; }
   .fp-circle.att { border-color: #fca5a5; background: #1f0a0a; box-shadow: 0 0 10px #fca5a540; }
   .fp-circle.empty { border-color: var(--border); background: var(--card); border-style: dashed; box-shadow: none; }
   .fp-num { position: absolute; top: -6px; right: -6px; background: var(--purple); color: #fff; font-size: 0.52rem; font-weight: 900; width: 15px; height: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1.5px solid var(--black); }
   .fp-label { font-size: 0.65rem; font-weight: 700; color: #fff; text-shadow: 0 1px 4px #000c; white-space: nowrap; max-width: 68px; overflow: hidden; text-overflow: ellipsis; text-align: center; background: #000a; padding: 1px 5px; border-radius: 3px; }
-
-  /* Painel lateral */
   .tactics-panel { display: flex; flex-direction: column; gap: 14px; }
   .panel-box { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
   .panel-title { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: var(--purple-light); margin-bottom: 10px; }
@@ -260,40 +195,48 @@
   .bench-player:hover { border-color: var(--purple-dim); background: #1a0a2e; }
   .bench-player.on-field { opacity: 0.35; pointer-events: none; }
   .bp-dot { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.55rem; font-weight: 900; flex-shrink: 0; }
-  .bp-dot.gk { background: #1f110040; border: 1px solid #92400e; color: #fde68a; }
+  .bp-dot.gk  { background: #1f110040; border: 1px solid #92400e; color: #fde68a; }
   .bp-dot.def { background: #1e3a8a40; border: 1px solid #1d4ed8; color: #93c5fd; }
   .bp-dot.mid { background: #14532d40; border: 1px solid #16a34a; color: #86efac; }
   .bp-dot.att { background: #7f1d1d40; border: 1px solid #dc2626; color: #fca5a5; }
   .bp-info { flex: 1; min-width: 0; }
   .bp-name { font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .bp-pos { font-size: 0.62rem; color: var(--text-muted); }
-
   .tactics-tip { font-size: 0.72rem; color: var(--text-muted); line-height: 1.5; padding: 8px 10px; background: var(--black); border: 1px dashed var(--border); border-radius: 7px; margin-bottom: 8px; }
-
   .lineup-slots { display: flex; flex-direction: column; gap: 5px; max-height: 300px; overflow-y: auto; }
   .lineup-row { display: flex; align-items: center; gap: 7px; font-size: 0.76rem; padding: 5px 7px; border-radius: 6px; background: var(--black); border: 1px solid var(--border); }
   .lineup-pos-tag { font-size: 0.58rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); width: 28px; flex-shrink: 0; }
   .lineup-name { flex: 1; font-weight: 600; }
   .lineup-remove { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.78rem; padding: 2px 4px; border-radius: 3px; transition: color 0.2s; }
   .lineup-remove:hover { color: #ef4444; }
-
   .field-drop-active { outline: 2px dashed var(--purple-light); outline-offset: 3px; border-radius: 10px; }
 
   footer { border-top: 1px solid var(--border); text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.78rem; letter-spacing: 0.05em; }
-
-  @media (max-width: 900px) {
-    .tactics-layout { grid-template-columns: 1fr; }
-    nav { padding: 0 16px; }
-    .nav-links { gap: 12px; }
-    .nav-links a { font-size: 0.7rem; }
-  }
+  @media (max-width: 900px) { .tactics-layout { grid-template-columns: 1fr; } nav { padding: 0 16px; } .nav-links { gap: 12px; } .nav-links a { font-size: 0.7rem; } }
 </style>
 </head>
 <body>
 
 <nav>
   <a href="#" class="nav-logo">
-    <svg width="38" height="38" viewBox="0 0 60 60" fill="none">
+    <!--
+      ════════════════════════════════════════════════
+      LOGO DO TIME — COMO USAR:
+      1. Coloque seu arquivo PNG na mesma pasta deste HTML
+      2. Mude "logo.png" abaixo pelo nome exato do seu arquivo
+         Ex: src="escudo_aliginianos.png"
+      3. O SVG aparece automaticamente caso a imagem falhe
+      ════════════════════════════════════════════════
+    -->
+    <img
+      class="nav-crest"
+      id="nav-logo-img"
+      src="logo2.png"
+      alt="Aliginianos FC"
+      onerror="this.classList.add('broken')"
+    />
+    <!-- Fallback SVG caso o PNG não seja encontrado -->
+    <svg class="nav-crest-fallback" viewBox="0 0 60 60" fill="none">
       <path d="M30 4L54 16V38C54 48 42 56 30 58C18 56 6 48 6 38V16L30 4Z" fill="#1a0a2e" stroke="#7c3aed" stroke-width="2"/>
       <path d="M30 10L48 20V37C48 44.5 39 51 30 53C21 51 12 44.5 12 37V20L30 10Z" fill="#0f0720" stroke="#6d28d9" stroke-width="1"/>
       <text x="30" y="38" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="18" fill="#a855f7">A</text>
@@ -317,13 +260,26 @@
 </div>
 
 <div class="hero">
-  <div class="hero-year">Fundado em 2022</div>
-  <svg class="hero-crest" viewBox="0 0 80 80" fill="none">
+
+  <!--
+    LOGO HERO — mesmo arquivo PNG, tamanho maior.
+    Mude "logo.png" pelo nome do seu arquivo.
+    O SVG animado aparece automaticamente caso falhe.
+  -->
+  <img
+    class="hero-crest-img"
+    id="hero-logo-img"
+    src="logo.png"
+    alt="Aliginianos FC"
+    onerror="this.style.display='none'; document.getElementById('hero-logo-svg').style.display='block';"
+  />
+  <svg id="hero-logo-svg" class="hero-crest-svg" viewBox="0 0 80 80" fill="none" style="display:none;">
     <path d="M40 5L70 20V46C70 58 55 68 40 71C25 68 10 58 10 46V20L40 5Z" fill="#1a0a2e" stroke="#7c3aed" stroke-width="2.5"/>
     <path d="M40 13L62 26V45C62 54 50 62 40 64C30 62 18 54 18 45V26L40 13Z" fill="#0f0720" stroke="#6d28d9" stroke-width="1.5"/>
     <text x="40" y="50" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="28" fill="#a855f7">A</text>
   </svg>
-  <h1>ALIGINIANOS</h1>
+
+  <h1>ALIGINIANOS FC</h1>
   <p class="hero-sub">Futebol de Várzea · Desde 2022</p>
   <div class="hero-stats" id="hero-stats"></div>
 </div>
@@ -338,14 +294,11 @@
 
 <div class="divider"></div>
 
-<!-- ESCALAÇÃO -->
 <div class="section-wrap" id="escalacao">
   <div class="section-label">Montagem Tática</div>
   <div class="section-title">Escalação</div>
   <div class="tactics-layout">
-
     <div class="field-wrap">
-      <!-- Linha de formação + ações -->
       <div class="field-header">
         <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
           <span style="font-size:0.75rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;">Formação</span>
@@ -360,54 +313,31 @@
           </select>
         </div>
         <div style="display:flex;gap:6px;">
-          <button class="btn-action undo" onclick="undoDraw()" title="Desfazer último traço">↩ Desfazer</button>
+          <button class="btn-action undo" onclick="undoDraw()">↩ Desfazer</button>
           <button class="btn-action" onclick="clearField()">🗑 Limpar</button>
         </div>
       </div>
-
-      <!-- TOOLBAR DE DESENHO -->
       <div class="draw-toolbar">
-        <!-- Modo -->
-        <button class="tool-btn" id="btn-move" onclick="setMode('move')" title="Mover jogadores">
-          <span>✋</span> Mover
-        </button>
-        <button class="tool-btn" id="btn-pen" onclick="setMode('pen')" title="Desenhar livremente">
-          <span>✏️</span> Caneta
-        </button>
-        <button class="tool-btn" id="btn-arrow" onclick="setMode('arrow')" title="Seta de movimento">
-          <span>➡️</span> Seta
-        </button>
-        <button class="tool-btn" id="btn-line" onclick="setMode('line')" title="Linha reta">
-          <span>╱</span> Linha
-        </button>
-        <button class="tool-btn" id="btn-circle" onclick="setMode('circle')" title="Círculo / zona">
-          <span>⭕</span> Zona
-        </button>
-        <button class="tool-btn" id="btn-erase" onclick="setMode('erase')" title="Borracha">
-          <span>🧹</span> Borrar
-        </button>
-
+        <button class="tool-btn" id="btn-move"   onclick="setMode('move')"  >✋ Mover</button>
+        <button class="tool-btn" id="btn-pen"    onclick="setMode('pen')"   >✏️ Caneta</button>
+        <button class="tool-btn" id="btn-arrow"  onclick="setMode('arrow')" >➡️ Seta</button>
+        <button class="tool-btn" id="btn-line"   onclick="setMode('line')"  >╱ Linha</button>
+        <button class="tool-btn" id="btn-circle" onclick="setMode('circle')">⭕ Zona</button>
+        <button class="tool-btn" id="btn-erase"  onclick="setMode('erase')" >🧹 Borrar</button>
         <div class="tool-sep"></div>
-
-        <!-- Cores -->
         <div style="display:flex;gap:5px;align-items:center;">
-          <div class="color-btn active" id="col-white"  style="background:#ffffff" onclick="setColor('#ffffff')" title="Branco"></div>
-          <div class="color-btn" id="col-purple" style="background:#a855f7" onclick="setColor('#a855f7')" title="Roxo"></div>
-          <div class="color-btn" id="col-yellow" style="background:#fde047" onclick="setColor('#fde047')" title="Amarelo"></div>
-          <div class="color-btn" id="col-red"    style="background:#ef4444" onclick="setColor('#ef4444')" title="Vermelho"></div>
-          <div class="color-btn" id="col-green"  style="background:#22c55e" onclick="setColor('#22c55e')" title="Verde"></div>
-          <div class="color-btn" id="col-cyan"   style="background:#22d3ee" onclick="setColor('#22d3ee')" title="Ciano"></div>
+          <div class="color-btn active" id="col-white"  style="background:#ffffff" onclick="setColor('#ffffff')"></div>
+          <div class="color-btn"        id="col-purple" style="background:#a855f7" onclick="setColor('#a855f7')"></div>
+          <div class="color-btn"        id="col-yellow" style="background:#fde047" onclick="setColor('#fde047')"></div>
+          <div class="color-btn"        id="col-red"    style="background:#ef4444" onclick="setColor('#ef4444')"></div>
+          <div class="color-btn"        id="col-green"  style="background:#22c55e" onclick="setColor('#22c55e')"></div>
+          <div class="color-btn"        id="col-cyan"   style="background:#22d3ee" onclick="setColor('#22d3ee')"></div>
         </div>
-
         <div class="tool-sep"></div>
-
-        <!-- Espessura -->
-        <button class="size-btn active" id="sz-thin"   onclick="setSize(2)"  title="Fino">—</button>
-        <button class="size-btn"        id="sz-mid"    onclick="setSize(4)"  title="Médio">━</button>
-        <button class="size-btn"        id="sz-thick"  onclick="setSize(7)"  title="Grosso">█</button>
+        <button class="size-btn active" id="sz-thin"  onclick="setSize(2)">—</button>
+        <button class="size-btn"        id="sz-mid"   onclick="setSize(4)">━</button>
+        <button class="size-btn"        id="sz-thick" onclick="setSize(7)">█</button>
       </div>
-
-      <!-- Campo -->
       <div class="field-svg-wrap" id="field-drop-zone">
         <svg id="field-svg" viewBox="0 0 340 520" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -418,7 +348,7 @@
             </linearGradient>
           </defs>
           <rect width="340" height="520" fill="url(#grassGrad)" rx="6"/>
-          <rect x="0" y="0" width="340" height="52" fill="#0f2a1c" opacity="0.5"/>
+          <rect x="0" y="0"   width="340" height="52" fill="#0f2a1c" opacity="0.5"/>
           <rect x="0" y="104" width="340" height="52" fill="#0f2a1c" opacity="0.5"/>
           <rect x="0" y="208" width="340" height="52" fill="#0f2a1c" opacity="0.5"/>
           <rect x="0" y="312" width="340" height="52" fill="#0f2a1c" opacity="0.5"/>
@@ -427,19 +357,19 @@
           <line x1="12" y1="260" x2="328" y2="260" stroke="#ffffff18" stroke-width="1.5"/>
           <circle cx="170" cy="260" r="46" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
           <circle cx="170" cy="260" r="3" fill="#ffffff20"/>
-          <rect x="72" y="12" width="196" height="72" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
-          <rect x="118" y="12" width="104" height="34" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
-          <rect x="140" y="8" width="60" height="12" fill="none" stroke="#ffffff30" stroke-width="1.5"/>
-          <rect x="72" y="436" width="196" height="72" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <rect x="72"  y="12"  width="196" height="72" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <rect x="118" y="12"  width="104" height="34" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <rect x="140" y="8"   width="60"  height="12" fill="none" stroke="#ffffff30" stroke-width="1.5"/>
+          <rect x="72"  y="436" width="196" height="72" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
           <rect x="118" y="474" width="104" height="34" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
-          <rect x="140" y="500" width="60" height="12" fill="none" stroke="#ffffff30" stroke-width="1.5"/>
-          <circle cx="170" cy="66" r="3" fill="#ffffff20"/>
-          <path d="M 124 84 A 46 46 0 0 1 216 84" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <rect x="140" y="500" width="60"  height="12" fill="none" stroke="#ffffff30" stroke-width="1.5"/>
+          <circle cx="170" cy="66"  r="3" fill="#ffffff20"/>
+          <path d="M 124 84  A 46 46 0 0 1 216 84"  fill="none" stroke="#ffffff18" stroke-width="1.5"/>
           <circle cx="170" cy="454" r="3" fill="#ffffff20"/>
           <path d="M 124 436 A 46 46 0 0 0 216 436" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
-          <path d="M 12 12 A 10 10 0 0 1 22 22" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
-          <path d="M 328 12 A 10 10 0 0 0 318 22" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
-          <path d="M 12 508 A 10 10 0 0 0 22 498" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <path d="M 12  12  A 10 10 0 0 1 22  22"  fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <path d="M 328 12  A 10 10 0 0 0 318 22"  fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <path d="M 12  508 A 10 10 0 0 0 22  498" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
           <path d="M 328 508 A 10 10 0 0 1 318 498" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
         </svg>
         <div id="field-players"></div>
@@ -447,11 +377,10 @@
       </div>
     </div>
 
-    <!-- PAINEL -->
     <div class="tactics-panel">
       <div class="panel-box">
         <div class="panel-title">🟣 Jogadores</div>
-        <div class="tactics-tip" id="mode-tip">Modo: Mover jogadores. Arraste ou clique no jogador e depois no campo.</div>
+        <div class="tactics-tip" id="mode-tip">Modo: Mover jogadores.</div>
         <div class="bench-list" id="bench-list"></div>
       </div>
       <div class="panel-box">
@@ -496,13 +425,14 @@
    DADOS DO TIME — EDITE AQUI
 ════════════════════════════════════════ */
 const NEWS_ITEMS = [
-  "Aliginianos se preparam para o próximo clássico contra o Pandora",
+  "Durante jogo contra Pandora, o jogador Isaac lesionou o pé e ficará de fora dos próximos jogos",
+  "Fizeram a diferença? Thigas e Nogueira impressionam com suas atuações no jogo de estreia",
+  "Mesmo lesionado, o CEO Isaac e seus companheiros discutem a data do próximo jogo",
   "Novos reforços: Thigas, Gabeg e Yuri chegam para fortalecer o elenco em 2026",
   "Saída dos goleiros Gabriel e Raphael marca renovação no time",
   "Lucas Almeida, contratado direto do Botafogo, segue em recuperação",
   "Raul emprestado ao Pandora — retorno previsto para a próxima temporada",
   "Time completa 4 anos de história com identidade cada vez mais forte",
-  "Próximo jogo: Aliginianos x Pandora — aguardem!",
 ];
 
 const PLAYERS = [
@@ -521,6 +451,10 @@ const PLAYERS = [
   { number: 8,  name: "João",          pos: "ATT", note: "Desde 2022",         badges: [] },
 ];
 
+/*
+  result: 'W' = Vitória | 'L' = Derrota | 'D' = Empate | 'WO' = W.O. | null = Próximo jogo
+  score:  'NossosxDeles' — ex: '3x1'. Para WO ou próximo jogo use null.
+*/
 const MATCHES = [
   { opponent:"Caze",    date:"2022",       result:"L",  score:"1x12",  home:false, note:"Amistoso de estreia" },
   { opponent:"Caze",    date:"2023",       result:"L",  score:"3x13",  home:true,  note:"2º jogo em casa" },
@@ -529,7 +463,7 @@ const MATCHES = [
   { opponent:"Caze",    date:"Abril 2024", result:"WO", score:null,    home:true,  note:"Vitória por WO" },
   { opponent:"Caze",    date:"2024",       result:"W",  score:"12x1",  home:true,  note:"Grande vitória" },
   { opponent:"Pandora", date:"Mid-2025",   result:"L",  score:"2x8",   home:false, note:"" },
-  { opponent:"Pandora", date:"Maio 2026",   result:"T", score:"11x11",    home:true,  note:"Jogo lendário" },
+  { opponent:"Pandora", date:"Maio 2026",  result:"D",  score:"11x11", home:true,  note:"Jogo lendário" },
 ];
 
 const HISTORY = [
@@ -537,53 +471,27 @@ const HISTORY = [
   { year:"2023", events:[{icon:"✍️",text:"Contratação do William"},{icon:"✍️",text:"Contratação do Filipe (meio do ano)"},{icon:"⚽",text:"Segundo jogo em casa contra o Caze — derrota por 13x3"},{icon:"⚽",text:"Primeira vitória contra o Caze — vitória por 6x2"}]},
   { year:"2024", events:[{icon:"🏆",text:"Consolidação do time oficial"},{icon:"⚽",text:"Derrota contra os adultos (6x3)"},{icon:"💪",text:"Reforço moral (abril)"},{icon:"🏳️",text:"Vitória contra Caze por WO"},{icon:"🔥",text:"Vitória histórica contra Caze (12x1)"}]},
   { year:"2025", events:[{icon:"🔄",text:"Empréstimo do Raul para o Pandora"},{icon:"🩺",text:"Contratação do Lucas Almeida (machucado) — direto do Botafogo"},{icon:"⚽",text:"Derrota contra Pandora (8x2)"}]},
-  { year:"2026", events:[{icon:"✍️",text:"Contratação de Thigas (ex-Cotil)"},{icon:"✍️",text:"Contratação de Gabeg e Yuri (ex-Mirassol)"},{icon:"🚪",text:"Saída dos goleiros Gabriel e Raphael"},{icon:"⏳",text:"Jogo vs Pandora — em breve (sexta-feira)"}]},
+  { year:"2026", events:[{icon:"✍️",text:"Contratação de Thigas (ex-Cotil)"},{icon:"✍️",text:"Contratação de Gabeg e Yuri (ex-Mirassol)"},{icon:"🚪",text:"Saída dos goleiros Gabriel e Raphael"},{icon:"🤝",text:"Empate lendário contra Pandora (11x11)"}]},
 ];
 
-/* ════════════════════════════════════════
-   FORMAÇÕES
-════════════════════════════════════════ */
+/* ════ FORMAÇÕES ════ */
 const FORMATIONS = {
-  "4-3-3":{ slots:[
-    {pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:18,y:74,label:"LD"},{pos:"DEF",x:38,y:74,label:"ZE"},
-    {pos:"DEF",x:62,y:74,label:"ZD"},{pos:"DEF",x:82,y:74,label:"LE"},{pos:"MID",x:25,y:56,label:"MC"},
-    {pos:"MID",x:50,y:52,label:"MC"},{pos:"MID",x:75,y:56,label:"MC"},{pos:"ATT",x:18,y:34,label:"AE"},
-    {pos:"ATT",x:50,y:28,label:"CA"},{pos:"ATT",x:82,y:34,label:"AD"}]},
-  "4-4-2":{ slots:[
-    {pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:18,y:74,label:"LD"},{pos:"DEF",x:38,y:74,label:"ZE"},
-    {pos:"DEF",x:62,y:74,label:"ZD"},{pos:"DEF",x:82,y:74,label:"LE"},{pos:"MID",x:18,y:54,label:"ME"},
-    {pos:"MID",x:38,y:54,label:"MC"},{pos:"MID",x:62,y:54,label:"MC"},{pos:"MID",x:82,y:54,label:"MD"},
-    {pos:"ATT",x:36,y:30,label:"SA"},{pos:"ATT",x:64,y:30,label:"SA"}]},
-  "3-5-2":{ slots:[
-    {pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:25,y:74,label:"ZE"},{pos:"DEF",x:50,y:74,label:"ZC"},
-    {pos:"DEF",x:75,y:74,label:"ZD"},{pos:"MID",x:12,y:54,label:"AE"},{pos:"MID",x:32,y:54,label:"MC"},
-    {pos:"MID",x:50,y:50,label:"MC"},{pos:"MID",x:68,y:54,label:"MC"},{pos:"MID",x:88,y:54,label:"AD"},
-    {pos:"ATT",x:36,y:30,label:"SA"},{pos:"ATT",x:64,y:30,label:"SA"}]},
-  "4-2-3-1":{ slots:[
-    {pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:18,y:74,label:"LD"},{pos:"DEF",x:38,y:74,label:"ZE"},
-    {pos:"DEF",x:62,y:74,label:"ZD"},{pos:"DEF",x:82,y:74,label:"LE"},{pos:"MID",x:36,y:58,label:"VOL"},
-    {pos:"MID",x:64,y:58,label:"VOL"},{pos:"MID",x:18,y:40,label:"AE"},{pos:"MID",x:50,y:38,label:"MEA"},
-    {pos:"MID",x:82,y:40,label:"AD"},{pos:"ATT",x:50,y:22,label:"CA"}]},
-  "3-4-3":{ slots:[
-    {pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:25,y:74,label:"ZE"},{pos:"DEF",x:50,y:74,label:"ZC"},
-    {pos:"DEF",x:75,y:74,label:"ZD"},{pos:"MID",x:18,y:54,label:"AE"},{pos:"MID",x:38,y:54,label:"MC"},
-    {pos:"MID",x:62,y:54,label:"MC"},{pos:"MID",x:82,y:54,label:"AD"},{pos:"ATT",x:20,y:30,label:"AE"},
-    {pos:"ATT",x:50,y:24,label:"CA"},{pos:"ATT",x:80,y:30,label:"AD"}]},
-  "5-3-2":{ slots:[
-    {pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:10,y:74,label:"AE"},{pos:"DEF",x:28,y:74,label:"ZE"},
-    {pos:"DEF",x:50,y:74,label:"ZC"},{pos:"DEF",x:72,y:74,label:"ZD"},{pos:"DEF",x:90,y:74,label:"AD"},
-    {pos:"MID",x:25,y:52,label:"MC"},{pos:"MID",x:50,y:48,label:"MC"},{pos:"MID",x:75,y:52,label:"MC"},
-    {pos:"ATT",x:36,y:28,label:"SA"},{pos:"ATT",x:64,y:28,label:"SA"}]},
+  "4-3-3":{ slots:[{pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:18,y:74,label:"LD"},{pos:"DEF",x:38,y:74,label:"ZE"},{pos:"DEF",x:62,y:74,label:"ZD"},{pos:"DEF",x:82,y:74,label:"LE"},{pos:"MID",x:25,y:56,label:"MC"},{pos:"MID",x:50,y:52,label:"MC"},{pos:"MID",x:75,y:56,label:"MC"},{pos:"ATT",x:18,y:34,label:"AE"},{pos:"ATT",x:50,y:28,label:"CA"},{pos:"ATT",x:82,y:34,label:"AD"}]},
+  "4-4-2":{ slots:[{pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:18,y:74,label:"LD"},{pos:"DEF",x:38,y:74,label:"ZE"},{pos:"DEF",x:62,y:74,label:"ZD"},{pos:"DEF",x:82,y:74,label:"LE"},{pos:"MID",x:18,y:54,label:"ME"},{pos:"MID",x:38,y:54,label:"MC"},{pos:"MID",x:62,y:54,label:"MC"},{pos:"MID",x:82,y:54,label:"MD"},{pos:"ATT",x:36,y:30,label:"SA"},{pos:"ATT",x:64,y:30,label:"SA"}]},
+  "3-5-2":{ slots:[{pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:25,y:74,label:"ZE"},{pos:"DEF",x:50,y:74,label:"ZC"},{pos:"DEF",x:75,y:74,label:"ZD"},{pos:"MID",x:12,y:54,label:"AE"},{pos:"MID",x:32,y:54,label:"MC"},{pos:"MID",x:50,y:50,label:"MC"},{pos:"MID",x:68,y:54,label:"MC"},{pos:"MID",x:88,y:54,label:"AD"},{pos:"ATT",x:36,y:30,label:"SA"},{pos:"ATT",x:64,y:30,label:"SA"}]},
+  "4-2-3-1":{ slots:[{pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:18,y:74,label:"LD"},{pos:"DEF",x:38,y:74,label:"ZE"},{pos:"DEF",x:62,y:74,label:"ZD"},{pos:"DEF",x:82,y:74,label:"LE"},{pos:"MID",x:36,y:58,label:"VOL"},{pos:"MID",x:64,y:58,label:"VOL"},{pos:"MID",x:18,y:40,label:"AE"},{pos:"MID",x:50,y:38,label:"MEA"},{pos:"MID",x:82,y:40,label:"AD"},{pos:"ATT",x:50,y:22,label:"CA"}]},
+  "3-4-3":{ slots:[{pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:25,y:74,label:"ZE"},{pos:"DEF",x:50,y:74,label:"ZC"},{pos:"DEF",x:75,y:74,label:"ZD"},{pos:"MID",x:18,y:54,label:"AE"},{pos:"MID",x:38,y:54,label:"MC"},{pos:"MID",x:62,y:54,label:"MC"},{pos:"MID",x:82,y:54,label:"AD"},{pos:"ATT",x:20,y:30,label:"AE"},{pos:"ATT",x:50,y:24,label:"CA"},{pos:"ATT",x:80,y:30,label:"AD"}]},
+  "5-3-2":{ slots:[{pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:10,y:74,label:"AE"},{pos:"DEF",x:28,y:74,label:"ZE"},{pos:"DEF",x:50,y:74,label:"ZC"},{pos:"DEF",x:72,y:74,label:"ZD"},{pos:"DEF",x:90,y:74,label:"AD"},{pos:"MID",x:25,y:52,label:"MC"},{pos:"MID",x:50,y:48,label:"MC"},{pos:"MID",x:75,y:52,label:"MC"},{pos:"ATT",x:36,y:28,label:"SA"},{pos:"ATT",x:64,y:28,label:"SA"}]},
 };
 
-/* ════════════════════════════════════════
-   RENDER GERAL
-════════════════════════════════════════ */
-const posClass = { GK:'pos-gk', DEF:'pos-def', MID:'pos-mid', ATT:'pos-att' };
+/* ════ RENDER GERAL ════ */
+const posClass    = { GK:'pos-gk', DEF:'pos-def', MID:'pos-mid', ATT:'pos-att' };
 const posClassDot = { GK:'gk', DEF:'def', MID:'mid', ATT:'att' };
 
-document.getElementById('ticker').innerHTML=[...NEWS_ITEMS,...NEWS_ITEMS].map(n=>`<span class="ticker-item">${n}</span>`).join('');
-document.getElementById('squad-grid').innerHTML=PLAYERS.map(p=>`
+document.getElementById('ticker').innerHTML =
+  [...NEWS_ITEMS,...NEWS_ITEMS].map(n=>`<span class="ticker-item">${n}</span>`).join('');
+
+document.getElementById('squad-grid').innerHTML = PLAYERS.map(p=>`
   <div class="player-card">
     <div class="player-number">${p.number}</div>
     <span class="player-pos ${posClass[p.pos]||''}">${p.pos}</span>
@@ -592,11 +500,16 @@ document.getElementById('squad-grid').innerHTML=PLAYERS.map(p=>`
     ${p.badges.length?`<div class="player-badge">${p.badges.map(b=>`<span class="badge ${b}">${b==='captain'?'© Capitão':b==='injured'?'🩹 Lesionado':'🔄 Emprestado'}</span>`).join('')}</div>`:''}
   </div>`).join('');
 
-const rlabel={W:'V',L:'D',D:'E',WO:'WO'};
-const rclass={W:'result-w',L:'result-l',D:'result-d',WO:'result-wo'};
-document.getElementById('matches-list').innerHTML=MATCHES.map(m=>`
+/* ── Resultado: label e classe CSS ── */
+/* W=Vitória D=Empate L=Derrota WO=W.O. null=próximo */
+const RESULT_LABEL = { W:'V', D:'E', L:'D', WO:'WO' };
+const RESULT_CLASS = { W:'result-w', D:'result-d', L:'result-l', WO:'result-wo' };
+
+document.getElementById('matches-list').innerHTML = MATCHES.map(m=>`
   <div class="match-card">
-    <div class="match-result ${m.result?rclass[m.result]:'result-upcoming'}">${m.result?rlabel[m.result]:'⏳'}</div>
+    <div class="match-result ${m.result ? RESULT_CLASS[m.result] : 'result-upcoming'}">
+      ${m.result ? (RESULT_LABEL[m.result]||m.result) : '⏳'}
+    </div>
     <div class="match-info">
       <div class="match-opponent">Aliginianos vs ${m.opponent}</div>
       <div class="match-detail">${m.date}${m.home?' · Casa':' · Fora'}${m.note?' · '+m.note:''}</div>
@@ -604,241 +517,186 @@ document.getElementById('matches-list').innerHTML=MATCHES.map(m=>`
     <div class="match-score${!m.score?' upcoming':''}">${m.score||(m.result==='WO'?'WO':'Em breve')}</div>
   </div>`).join('');
 
-document.getElementById('timeline').innerHTML=HISTORY.map(y=>`
+document.getElementById('timeline').innerHTML = HISTORY.map(y=>`
   <div class="tl-year">
     <div class="tl-year-label">${y.year}</div>
     <div class="tl-events">${y.events.map(e=>`<div class="tl-event"><span class="ev-icon">${e.icon}</span>${e.text}</div>`).join('')}</div>
   </div>`).join('');
 
-const played=MATCHES.filter(m=>m.result!==null).length;
-const wins=MATCHES.filter(m=>m.result==='W'||m.result==='WO').length;
-const losses=MATCHES.filter(m=>m.result==='L').length;
-const draws=MATCHES.filter(m=>m.result==='D').length;
-let gf=0,ga=0;
-MATCHES.forEach(m=>{if(m.score&&m.result!=='WO'){const[a,b]=m.score.split('x').map(Number);gf+=a;ga+=b;}});
-const aprov=played?Math.round((wins/played)*100):0;
-document.getElementById('hero-stats').innerHTML=`
-  <div class="hero-stat"><div class="val">${played}</div><div class="lbl">Jogos</div></div>
-  <div class="hero-stat"><div class="val">${wins}</div><div class="lbl">Vitórias</div></div>
-  <div class="hero-stat"><div class="val">${losses}</div><div class="lbl">Derrotas</div></div>
-  <div class="hero-stat"><div class="val">${aprov}%</div><div class="lbl">Aproveitamento</div></div>`;
-document.getElementById('stats-grid').innerHTML=[
-  {big:played,name:'Jogos'},{big:wins,name:'Vitórias'},{big:losses,name:'Derrotas'},
-  {big:draws,name:'Empates'},{big:gf,name:'Gols Marcados'},{big:ga,name:'Gols Sofridos'},
-  {big:`${aprov}%`,name:'Aproveitamento'},{big:PLAYERS.length,name:'Jogadores'},
-].map(s=>`<div class="stat-card"><div class="big">${s.big}</div><div class="name">${s.name}</div></div>`).join('');
-const winP=played?Math.round((wins/played)*100):0,losP=played?Math.round((losses/played)*100):0,draP=played?Math.round((draws/played)*100):0;
-document.getElementById('bars').innerHTML=[{label:'Vitórias',pct:winP,cls:'win'},{label:'Derrotas',pct:losP,cls:'loss'},{label:'Empates',pct:draP,cls:'draw'}]
-.map(b=>`<div class="aproveitamento-bar"><div class="bar-header"><span class="bar-label">${b.label}</span><span class="bar-pct">${b.pct}%</span></div><div class="bar-track"><div class="bar-fill ${b.cls}" style="width:${b.pct}%"></div></div></div>`).join('');
+/* ── Stats — aproveitamento: V=3pts, E=1pt, D=0pts ── */
+const played = MATCHES.filter(m=>m.result!==null).length;
+const wins   = MATCHES.filter(m=>m.result==='W'||m.result==='WO').length;
+const losses = MATCHES.filter(m=>m.result==='L').length;
+const draws  = MATCHES.filter(m=>m.result==='D').length;
+const pts    = wins*3 + draws;
+const maxPts = played*3;
+const aprov  = maxPts>0 ? Math.round((pts/maxPts)*100) : 0;
 
-/* ════════════════════════════════════════
-   CANVAS DE DESENHO
-════════════════════════════════════════ */
-const canvas = document.getElementById('draw-canvas');
-const ctx = canvas.getContext('2d');
-
-let drawMode = 'move'; // move | pen | arrow | line | circle | erase
-let drawColor = '#ffffff';
-let drawSize = 2;
-let isDrawing = false;
-let drawStart = { x:0, y:0 };
-let drawHistory = []; // snapshots para undo
-let currentPath = [];
-let eraserRadius = 20;
-
-const TIPS = {
-  move:   'Modo: Mover jogadores. Arraste ou clique no jogador.',
-  pen:    'Modo: Caneta livre. Clique e arraste para desenhar no campo.',
-  arrow:  'Modo: Seta. Clique e arraste para traçar uma seta de movimento.',
-  line:   'Modo: Linha reta. Clique e arraste para criar uma linha.',
-  circle: 'Modo: Zona. Clique e arraste para marcar uma área no campo.',
-  erase:  'Modo: Borracha. Clique e arraste para apagar traços.',
-};
-
-function resizeCanvas() {
-  const wrap = document.getElementById('field-drop-zone');
-  const r = wrap.getBoundingClientRect();
-  // só redimensiona se mudou
-  if(canvas.width===Math.round(r.width) && canvas.height===Math.round(r.height)) return;
-  const snapshot = canvas.width>0 ? ctx.getImageData(0,0,canvas.width,canvas.height) : null;
-  canvas.width  = Math.round(r.width);
-  canvas.height = Math.round(r.height);
-  if(snapshot) ctx.putImageData(snapshot,0,0);
-}
-
-function setMode(mode) {
-  drawMode = mode;
-  document.querySelectorAll('.tool-btn').forEach(b=>b.classList.remove('active'));
-  const btn = document.getElementById('btn-'+mode);
-  if(btn) btn.classList.add('active');
-
-  const dc = canvas;
-  dc.className='';
-  if(mode==='move') {
-    dc.classList.add(''); // no pointer events
-    document.getElementById('field-players').style.pointerEvents='all';
-  } else if(mode==='erase') {
-    dc.classList.add('erase-mode');
-    document.getElementById('field-players').style.pointerEvents='none';
-  } else {
-    dc.classList.add('draw-mode');
-    document.getElementById('field-players').style.pointerEvents='none';
-  }
-  document.getElementById('mode-tip').textContent = TIPS[mode]||'';
-}
-
-function setColor(c) {
-  drawColor = c;
-  document.querySelectorAll('.color-btn').forEach(b=>b.classList.remove('active'));
-  const map={'#ffffff':'col-white','#a855f7':'col-purple','#fde047':'col-yellow','#ef4444':'col-red','#22c55e':'col-green','#22d3ee':'col-cyan'};
-  const id=map[c];
-  if(id) document.getElementById(id).classList.add('active');
-}
-
-function setSize(s) {
-  drawSize = s;
-  document.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));
-  const map={2:'sz-thin',4:'sz-mid',7:'sz-thick'};
-  if(map[s]) document.getElementById(map[s]).classList.add('active');
-}
-
-function saveSnapshot() {
-  if(canvas.width===0||canvas.height===0) return;
-  drawHistory.push(ctx.getImageData(0,0,canvas.width,canvas.height));
-  if(drawHistory.length>40) drawHistory.shift();
-}
-
-function undoDraw() {
-  if(!drawHistory.length) return;
-  const snap=drawHistory.pop();
-  ctx.putImageData(snap,0,0);
-}
-
-function getCanvasPos(e) {
-  const r=canvas.getBoundingClientRect();
-  const touch=e.touches?e.touches[0]:e;
-  return { x:touch.clientX-r.left, y:touch.clientY-r.top };
-}
-
-function drawArrowhead(x1,y1,x2,y2) {
-  const angle=Math.atan2(y2-y1,x2-x1);
-  const len=Math.max(12, drawSize*3);
-  const spread=0.42;
-  ctx.beginPath();
-  ctx.moveTo(x2,y2);
-  ctx.lineTo(x2-len*Math.cos(angle-spread), y2-len*Math.sin(angle-spread));
-  ctx.moveTo(x2,y2);
-  ctx.lineTo(x2-len*Math.cos(angle+spread), y2-len*Math.sin(angle+spread));
-  ctx.stroke();
-}
-
-// ── Canvas events ──
-canvas.addEventListener('mousedown', e=>{
-  if(drawMode==='move') return;
-  resizeCanvas();
-  const pos=getCanvasPos(e);
-  isDrawing=true;
-  drawStart={...pos};
-  currentPath=[pos];
-  if(drawMode!=='erase') saveSnapshot();
-
-  if(drawMode==='pen'){
-    ctx.beginPath();
-    ctx.moveTo(pos.x,pos.y);
+let gf=0, ga=0;
+MATCHES.forEach(m=>{
+  if(m.score && m.result!=='WO'){
+    const [a,b]=m.score.split('x').map(Number);
+    gf+=a; ga+=b;
   }
 });
 
-canvas.addEventListener('mousemove', e=>{
-  if(!isDrawing) return;
+document.getElementById('hero-stats').innerHTML=`
+  <div class="hero-stat"><div class="val">${played}</div><div class="lbl">Jogos</div></div>
+  <div class="hero-stat"><div class="val">${wins}</div><div class="lbl">Vitórias</div></div>
+  <div class="hero-stat"><div class="val">${draws}</div><div class="lbl">Empates</div></div>
+  <div class="hero-stat"><div class="val">${losses}</div><div class="lbl">Derrotas</div></div>
+  <div class="hero-stat"><div class="val">${aprov}%</div><div class="lbl">Aproveitamento</div></div>`;
+
+document.getElementById('stats-grid').innerHTML=[
+  {big:played,name:'Jogos'},{big:wins,name:'Vitórias'},{big:draws,name:'Empates'},
+  {big:losses,name:'Derrotas'},{big:gf,name:'Gols Marcados'},{big:ga,name:'Gols Sofridos'},
+  {big:pts,name:'Pontos'},{big:`${aprov}%`,name:'Aproveitamento'},
+].map(s=>`<div class="stat-card"><div class="big">${s.big}</div><div class="name">${s.name}</div></div>`).join('');
+
+const winP  = played?Math.round((wins/played)*100):0;
+const drawP = played?Math.round((draws/played)*100):0;
+const losP  = played?Math.round((losses/played)*100):0;
+document.getElementById('bars').innerHTML=[
+  {label:'Vitórias',pct:winP, cls:'win' },
+  {label:'Empates', pct:drawP,cls:'draw'},
+  {label:'Derrotas',pct:losP, cls:'loss'},
+].map(b=>`
+  <div class="aproveitamento-bar">
+    <div class="bar-header"><span class="bar-label">${b.label}</span><span class="bar-pct">${b.pct}%</span></div>
+    <div class="bar-track"><div class="bar-fill ${b.cls}" style="width:${b.pct}%"></div></div>
+  </div>`).join('');
+
+/* ════ CANVAS DE DESENHO ════ */
+const canvas = document.getElementById('draw-canvas');
+const ctx    = canvas.getContext('2d');
+let drawMode='move', drawColor='#ffffff', drawSize=2;
+let isDrawing=false, drawStart={x:0,y:0};
+let drawHistory=[];
+const eraserRadius=20;
+
+const TIPS={
+  move:  'Modo: Mover jogadores. Arraste ou clique no jogador.',
+  pen:   'Modo: Caneta livre. Clique e arraste para desenhar.',
+  arrow: 'Modo: Seta. Clique e arraste para traçar um movimento.',
+  line:  'Modo: Linha reta. Clique e arraste.',
+  circle:'Modo: Zona. Clique e arraste para marcar uma área.',
+  erase: 'Modo: Borracha. Clique e arraste para apagar traços.',
+};
+
+function resizeCanvas(){
+  const r=document.getElementById('field-drop-zone').getBoundingClientRect();
+  if(canvas.width===Math.round(r.width)&&canvas.height===Math.round(r.height))return;
+  const snap=canvas.width>0?ctx.getImageData(0,0,canvas.width,canvas.height):null;
+  canvas.width=Math.round(r.width); canvas.height=Math.round(r.height);
+  if(snap)ctx.putImageData(snap,0,0);
+}
+
+function setMode(mode){
+  drawMode=mode;
+  document.querySelectorAll('.tool-btn').forEach(b=>b.classList.remove('active'));
+  const btn=document.getElementById('btn-'+mode);
+  if(btn)btn.classList.add('active');
+  canvas.className='';
+  if(mode==='move'){ document.getElementById('field-players').style.pointerEvents='all'; }
+  else if(mode==='erase'){ canvas.classList.add('erase-mode'); document.getElementById('field-players').style.pointerEvents='none'; }
+  else { canvas.classList.add('draw-mode'); document.getElementById('field-players').style.pointerEvents='none'; }
+  document.getElementById('mode-tip').textContent=TIPS[mode]||'';
+  renderField();
+}
+
+function setColor(c){
+  drawColor=c;
+  document.querySelectorAll('.color-btn').forEach(b=>b.classList.remove('active'));
+  const map={'#ffffff':'col-white','#a855f7':'col-purple','#fde047':'col-yellow','#ef4444':'col-red','#22c55e':'col-green','#22d3ee':'col-cyan'};
+  if(map[c])document.getElementById(map[c]).classList.add('active');
+}
+
+function setSize(s){
+  drawSize=s;
+  document.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));
+  const map={2:'sz-thin',4:'sz-mid',7:'sz-thick'};
+  if(map[s])document.getElementById(map[s]).classList.add('active');
+}
+
+function saveSnapshot(){ if(canvas.width===0||canvas.height===0)return; drawHistory.push(ctx.getImageData(0,0,canvas.width,canvas.height)); if(drawHistory.length>40)drawHistory.shift(); }
+function undoDraw(){ if(!drawHistory.length)return; ctx.putImageData(drawHistory.pop(),0,0); }
+
+function getCanvasPos(e){
+  const r=canvas.getBoundingClientRect();
+  const t=e.touches?e.touches[0]:e;
+  return {x:t.clientX-r.left,y:t.clientY-r.top};
+}
+
+function drawArrowhead(x1,y1,x2,y2){
+  const angle=Math.atan2(y2-y1,x2-x1);
+  const len=Math.max(12,drawSize*3);
+  ctx.beginPath();
+  ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-len*Math.cos(angle-0.42),y2-len*Math.sin(angle-0.42));
+  ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-len*Math.cos(angle+0.42),y2-len*Math.sin(angle+0.42));
+  ctx.stroke();
+}
+
+canvas.addEventListener('mousedown',e=>{
+  if(drawMode==='move')return;
+  resizeCanvas();
   const pos=getCanvasPos(e);
+  isDrawing=true; drawStart={...pos};
+  if(drawMode!=='erase')saveSnapshot();
+  if(drawMode==='pen'){ctx.beginPath();ctx.moveTo(pos.x,pos.y);}
+});
 
-  ctx.strokeStyle=drawColor;
-  ctx.lineWidth=drawSize;
-  ctx.lineCap='round';
-  ctx.lineJoin='round';
-
-  if(drawMode==='pen'){
-    ctx.lineTo(pos.x,pos.y);
-    ctx.stroke();
-    currentPath.push(pos);
-  } else if(drawMode==='erase'){
-    ctx.save();
-    ctx.globalCompositeOperation='destination-out';
-    ctx.beginPath();
-    ctx.arc(pos.x,pos.y,eraserRadius+drawSize*2,0,Math.PI*2);
-    ctx.fill();
-    ctx.restore();
+canvas.addEventListener('mousemove',e=>{
+  if(!isDrawing)return;
+  const pos=getCanvasPos(e);
+  ctx.strokeStyle=drawColor; ctx.lineWidth=drawSize; ctx.lineCap='round'; ctx.lineJoin='round';
+  if(drawMode==='pen'){ ctx.lineTo(pos.x,pos.y); ctx.stroke(); }
+  else if(drawMode==='erase'){
+    ctx.save(); ctx.globalCompositeOperation='destination-out';
+    ctx.beginPath(); ctx.arc(pos.x,pos.y,eraserRadius+drawSize*2,0,Math.PI*2); ctx.fill(); ctx.restore();
   } else {
-    // preview: redraw from last snapshot
-    if(drawHistory.length) ctx.putImageData(drawHistory[drawHistory.length-1],0,0);
+    if(drawHistory.length)ctx.putImageData(drawHistory[drawHistory.length-1],0,0);
     else ctx.clearRect(0,0,canvas.width,canvas.height);
-
     if(drawMode==='line'||drawMode==='arrow'){
-      ctx.beginPath();
-      ctx.moveTo(drawStart.x,drawStart.y);
-      ctx.lineTo(pos.x,pos.y);
-      ctx.stroke();
-      if(drawMode==='arrow') drawArrowhead(drawStart.x,drawStart.y,pos.x,pos.y);
+      ctx.beginPath(); ctx.moveTo(drawStart.x,drawStart.y); ctx.lineTo(pos.x,pos.y); ctx.stroke();
+      if(drawMode==='arrow')drawArrowhead(drawStart.x,drawStart.y,pos.x,pos.y);
     } else if(drawMode==='circle'){
-      const rx=Math.abs(pos.x-drawStart.x)/2;
-      const ry=Math.abs(pos.y-drawStart.y)/2;
-      const cx=drawStart.x+(pos.x-drawStart.x)/2;
-      const cy=drawStart.y+(pos.y-drawStart.y)/2;
-      ctx.beginPath();
-      ctx.ellipse(cx,cy,rx||1,ry||1,0,0,Math.PI*2);
-      ctx.strokeStyle=drawColor+'cc';
-      ctx.stroke();
-      ctx.fillStyle=drawColor+'18';
-      ctx.fill();
+      const rx=Math.abs(pos.x-drawStart.x)/2, ry=Math.abs(pos.y-drawStart.y)/2;
+      const cx=drawStart.x+(pos.x-drawStart.x)/2, cy=drawStart.y+(pos.y-drawStart.y)/2;
+      ctx.beginPath(); ctx.ellipse(cx,cy,rx||1,ry||1,0,0,Math.PI*2);
+      ctx.strokeStyle=drawColor+'cc'; ctx.stroke(); ctx.fillStyle=drawColor+'18'; ctx.fill();
     }
   }
 });
 
-canvas.addEventListener('mouseup', e=>{
-  if(!isDrawing) return;
-  isDrawing=false;
+canvas.addEventListener('mouseup',e=>{
+  if(!isDrawing)return; isDrawing=false;
   const pos=getCanvasPos(e);
-  ctx.strokeStyle=drawColor;
-  ctx.lineWidth=drawSize;
-  ctx.lineCap='round';
-  ctx.lineJoin='round';
-
-  if(drawMode==='line'){
-    ctx.beginPath();ctx.moveTo(drawStart.x,drawStart.y);ctx.lineTo(pos.x,pos.y);ctx.stroke();
-  } else if(drawMode==='arrow'){
-    ctx.beginPath();ctx.moveTo(drawStart.x,drawStart.y);ctx.lineTo(pos.x,pos.y);ctx.stroke();
-    drawArrowhead(drawStart.x,drawStart.y,pos.x,pos.y);
-  } else if(drawMode==='circle'){
-    if(drawHistory.length) ctx.putImageData(drawHistory[drawHistory.length-1],0,0);
-    const rx=Math.abs(pos.x-drawStart.x)/2;
-    const ry=Math.abs(pos.y-drawStart.y)/2;
-    const cx=drawStart.x+(pos.x-drawStart.x)/2;
-    const cy=drawStart.y+(pos.y-drawStart.y)/2;
+  ctx.strokeStyle=drawColor; ctx.lineWidth=drawSize; ctx.lineCap='round'; ctx.lineJoin='round';
+  if(drawMode==='line'){ ctx.beginPath();ctx.moveTo(drawStart.x,drawStart.y);ctx.lineTo(pos.x,pos.y);ctx.stroke(); }
+  else if(drawMode==='arrow'){ ctx.beginPath();ctx.moveTo(drawStart.x,drawStart.y);ctx.lineTo(pos.x,pos.y);ctx.stroke();drawArrowhead(drawStart.x,drawStart.y,pos.x,pos.y); }
+  else if(drawMode==='circle'){
+    if(drawHistory.length)ctx.putImageData(drawHistory[drawHistory.length-1],0,0);
+    const rx=Math.abs(pos.x-drawStart.x)/2,ry=Math.abs(pos.y-drawStart.y)/2;
+    const cx=drawStart.x+(pos.x-drawStart.x)/2,cy=drawStart.y+(pos.y-drawStart.y)/2;
     ctx.beginPath();ctx.ellipse(cx,cy,rx||1,ry||1,0,0,Math.PI*2);
-    ctx.strokeStyle=drawColor+'cc';ctx.stroke();
-    ctx.fillStyle=drawColor+'18';ctx.fill();
+    ctx.strokeStyle=drawColor+'cc';ctx.stroke();ctx.fillStyle=drawColor+'18';ctx.fill();
   }
-  if(drawMode!=='erase') saveSnapshot();
+  if(drawMode!=='erase')saveSnapshot();
 });
 
-canvas.addEventListener('mouseleave', ()=>{ isDrawing=false; });
+canvas.addEventListener('mouseleave',()=>{isDrawing=false;});
+canvas.addEventListener('touchstart',e=>{e.preventDefault();canvas.dispatchEvent(new MouseEvent('mousedown',{clientX:e.touches[0].clientX,clientY:e.touches[0].clientY}));},{passive:false});
+canvas.addEventListener('touchmove', e=>{e.preventDefault();canvas.dispatchEvent(new MouseEvent('mousemove',{clientX:e.touches[0].clientX,clientY:e.touches[0].clientY}));},{passive:false});
+canvas.addEventListener('touchend',  e=>{e.preventDefault();canvas.dispatchEvent(new MouseEvent('mouseup',{}));},{passive:false});
 
-// Touch support
-canvas.addEventListener('touchstart', e=>{e.preventDefault();canvas.dispatchEvent(new MouseEvent('mousedown',{clientX:e.touches[0].clientX,clientY:e.touches[0].clientY}));},{passive:false});
-canvas.addEventListener('touchmove',  e=>{e.preventDefault();canvas.dispatchEvent(new MouseEvent('mousemove',{clientX:e.touches[0].clientX,clientY:e.touches[0].clientY}));},{passive:false});
-canvas.addEventListener('touchend',   e=>{e.preventDefault();canvas.dispatchEvent(new MouseEvent('mouseup',{}));},{passive:false});
-
-/* ════════════════════════════════════════
-   ESCALAÇÃO
-════════════════════════════════════════ */
-let fieldSlots=[];
-let dragPlayer=null;
-let dragSlot=null;
-
+/* ════ ESCALAÇÃO ════ */
+let fieldSlots=[], dragPlayer=null, dragSlot=null;
 function getPlayerById(id){ return PLAYERS.find(p=>p.number===id); }
 function getOnFieldIds(){ return fieldSlots.filter(s=>s.playerId!==null).map(s=>s.playerId); }
 
-function renderBench() {
+function renderBench(){
   const onField=getOnFieldIds();
   document.getElementById('bench-list').innerHTML=PLAYERS.map(p=>`
     <div class="bench-player ${onField.includes(p.number)?'on-field':''}"
@@ -847,49 +705,39 @@ function renderBench() {
          ondragstart="onBenchDragStart(event,${p.number})"
          ondragend="onDragEnd(event)">
       <div class="bp-dot ${posClassDot[p.pos]||'gk'}">${p.pos}</div>
-      <div class="bp-info">
-        <div class="bp-name">${p.name}</div>
-        <div class="bp-pos">${p.pos} · #${p.number}</div>
-      </div>
+      <div class="bp-info"><div class="bp-name">${p.name}</div><div class="bp-pos">${p.pos} · #${p.number}</div></div>
     </div>`).join('');
 }
 
-function renderLineupSlots() {
+function renderLineupSlots(){
   const onField=fieldSlots.filter(s=>s.playerId!==null);
-  if(!onField.length){ document.getElementById('lineup-slots').innerHTML='<div style="font-size:0.76rem;color:var(--text-muted);text-align:center;padding:14px 0;">Nenhum jogador no campo</div>';return; }
+  if(!onField.length){document.getElementById('lineup-slots').innerHTML='<div style="font-size:0.76rem;color:var(--text-muted);text-align:center;padding:14px 0;">Nenhum jogador no campo</div>';return;}
   document.getElementById('lineup-slots').innerHTML=onField.map(s=>{
     const p=getPlayerById(s.playerId);
-    return `<div class="lineup-row">
-      <span class="lineup-pos-tag">${s.label||s.pos}</span>
-      <span class="lineup-name">${p?p.name:'?'}</span>
-      <button class="lineup-remove" onclick="removeFromSlot('${s.slotId}')">✕</button>
-    </div>`;
+    return `<div class="lineup-row"><span class="lineup-pos-tag">${s.label||s.pos}</span><span class="lineup-name">${p?p.name:'?'}</span><button class="lineup-remove" onclick="removeFromSlot('${s.slotId}')">✕</button></div>`;
   }).join('');
 }
 
-function removeFromSlot(slotId){ const s=fieldSlots.find(s=>s.slotId===slotId);if(s)s.playerId=null;renderField();renderBench();renderLineupSlots(); }
+function removeFromSlot(id){ const s=fieldSlots.find(s=>s.slotId===id);if(s)s.playerId=null;renderField();renderBench();renderLineupSlots(); }
 
-function renderField() {
+function renderField(){
   const fp=document.getElementById('field-players');
   fp.innerHTML='';
   const interactive=(drawMode==='move');
   fieldSlots.forEach(slot=>{
     const el=document.createElement('div');
     el.className='field-player'+(interactive?' interactive':'');
-    el.style.left=slot.x+'%';
-    el.style.top=slot.y+'%';
+    el.style.left=slot.x+'%'; el.style.top=slot.y+'%';
     el.dataset.slotId=slot.slotId;
-
     if(slot.playerId!==null){
       const p=getPlayerById(slot.playerId);
       const pc=posClassDot[p?p.pos:'GK']||'gk';
-      if(interactive){ el.draggable=true; el.addEventListener('dragstart',e=>onSlotDragStart(e,slot.slotId)); el.addEventListener('dragend',onDragEnd); el.addEventListener('dblclick',()=>removeFromSlot(slot.slotId)); }
+      if(interactive){el.draggable=true;el.addEventListener('dragstart',e=>onSlotDragStart(e,slot.slotId));el.addEventListener('dragend',onDragEnd);el.addEventListener('dblclick',()=>removeFromSlot(slot.slotId));}
       el.innerHTML=`<div class="fp-circle ${pc}"><span class="fp-num">${p?p.number:'?'}</span>${p?p.name.split(' ')[0].substring(0,7):'?'}</div><div class="fp-label">${p?p.name:'?'}</div>`;
     } else {
       el.innerHTML=`<div class="fp-circle empty"><span style="color:var(--text-muted);font-size:0.52rem;font-weight:700;">${slot.label||slot.pos}</span></div>`;
       el.style.opacity='0.5';
     }
-
     if(interactive){
       el.addEventListener('dragover',e=>{e.preventDefault();el.classList.add('drag-over-target');});
       el.addEventListener('dragleave',e=>el.classList.remove('drag-over-target'));
@@ -899,49 +747,41 @@ function renderField() {
   });
 }
 
-function handleDropOnSlot(targetSlotId,e){
-  const targetSlot=fieldSlots.find(s=>s.slotId===targetSlotId);
-  if(!targetSlot)return;
+function handleDropOnSlot(targetId,e){
+  const ts=fieldSlots.find(s=>s.slotId===targetId); if(!ts)return;
   if(dragPlayer!==null){
-    const existing=fieldSlots.find(s=>s.playerId===dragPlayer);
-    if(existing)existing.playerId=null;
-    if(targetSlot.playerId!==null&&existing)existing.playerId=targetSlot.playerId;
-    targetSlot.playerId=dragPlayer;dragPlayer=null;
-  } else if(dragSlot!==null&&dragSlot!==targetSlotId){
-    const srcSlot=fieldSlots.find(s=>s.slotId===dragSlot);
-    if(srcSlot){const tmp=targetSlot.playerId;targetSlot.playerId=srcSlot.playerId;srcSlot.playerId=tmp;}
+    const ex=fieldSlots.find(s=>s.playerId===dragPlayer);
+    if(ex)ex.playerId=null;
+    if(ts.playerId!==null&&ex)ex.playerId=ts.playerId;
+    ts.playerId=dragPlayer; dragPlayer=null;
+  } else if(dragSlot!==null&&dragSlot!==targetId){
+    const src=fieldSlots.find(s=>s.slotId===dragSlot);
+    if(src){const tmp=ts.playerId;ts.playerId=src.playerId;src.playerId=tmp;}
     dragSlot=null;
   }
   renderField();renderBench();renderLineupSlots();
 }
 
-function onBenchDragStart(e,playerId){ dragPlayer=playerId;dragSlot=null;e.dataTransfer.effectAllowed='move'; }
-function onSlotDragStart(e,slotId){ dragSlot=slotId;dragPlayer=null;e.dataTransfer.effectAllowed='move';e.stopPropagation(); }
-function onDragEnd(){ dragPlayer=null;dragSlot=null;document.getElementById('field-drop-zone').classList.remove('field-drop-active'); }
+function onBenchDragStart(e,pid){dragPlayer=pid;dragSlot=null;e.dataTransfer.effectAllowed='move';}
+function onSlotDragStart(e,sid){dragSlot=sid;dragPlayer=null;e.dataTransfer.effectAllowed='move';e.stopPropagation();}
+function onDragEnd(){dragPlayer=null;dragSlot=null;document.getElementById('field-drop-zone').classList.remove('field-drop-active');}
 
 const fieldZone=document.getElementById('field-drop-zone');
-
-fieldZone.addEventListener('dragover',e=>{
-  if(drawMode!=='move')return;
-  e.preventDefault();fieldZone.classList.add('field-drop-active');
-});
+fieldZone.addEventListener('dragover',e=>{if(drawMode!=='move')return;e.preventDefault();fieldZone.classList.add('field-drop-active');});
 fieldZone.addEventListener('dragleave',()=>fieldZone.classList.remove('field-drop-active'));
 fieldZone.addEventListener('drop',e=>{
   if(drawMode!=='move')return;
   e.preventDefault();fieldZone.classList.remove('field-drop-active');
   if(e.target.closest('.field-player'))return;
   const rect=fieldZone.getBoundingClientRect();
-  const xPct=((e.clientX-rect.left)/rect.width)*100;
-  const yPct=((e.clientY-rect.top)/rect.height)*100;
+  const xP=Math.min(Math.max(((e.clientX-rect.left)/rect.width)*100,5),95);
+  const yP=Math.min(Math.max(((e.clientY-rect.top)/rect.height)*100,5),95);
   if(dragPlayer!==null){
-    const existing=fieldSlots.find(s=>s.playerId===dragPlayer);
-    if(existing)existing.playerId=null;
-    fieldSlots.push({slotId:'free_'+Date.now(),x:Math.min(Math.max(xPct,5),95),y:Math.min(Math.max(yPct,5),95),label:'',pos:'',playerId:dragPlayer,free:true});
+    const ex=fieldSlots.find(s=>s.playerId===dragPlayer);if(ex)ex.playerId=null;
+    fieldSlots.push({slotId:'free_'+Date.now(),x:xP,y:yP,label:'',pos:'',playerId:dragPlayer,free:true});
     dragPlayer=null;
   } else if(dragSlot!==null){
-    const s=fieldSlots.find(sl=>sl.slotId===dragSlot);
-    if(s){s.x=Math.min(Math.max(xPct,5),95);s.y=Math.min(Math.max(yPct,5),95);}
-    dragSlot=null;
+    const s=fieldSlots.find(sl=>sl.slotId===dragSlot);if(s){s.x=xP;s.y=yP;}dragSlot=null;
   }
   renderField();renderBench();renderLineupSlots();
 });
@@ -952,11 +792,10 @@ fieldZone.addEventListener('click',e=>{
   if(e.target.closest('.field-player'))return;
   if(pendingFreePlace!==null){
     const rect=fieldZone.getBoundingClientRect();
-    const xPct=((e.clientX-rect.left)/rect.width)*100;
-    const yPct=((e.clientY-rect.top)/rect.height)*100;
-    const existing=fieldSlots.find(s=>s.playerId===pendingFreePlace);
-    if(existing)existing.playerId=null;
-    fieldSlots.push({slotId:'free_'+Date.now(),x:Math.min(Math.max(xPct,5),95),y:Math.min(Math.max(yPct,5),95),label:'',pos:'',playerId:pendingFreePlace,free:true});
+    const xP=Math.min(Math.max(((e.clientX-rect.left)/rect.width)*100,5),95);
+    const yP=Math.min(Math.max(((e.clientY-rect.top)/rect.height)*100,5),95);
+    const ex=fieldSlots.find(s=>s.playerId===pendingFreePlace);if(ex)ex.playerId=null;
+    fieldSlots.push({slotId:'free_'+Date.now(),x:xP,y:yP,label:'',pos:'',playerId:pendingFreePlace,free:true});
     pendingFreePlace=null;
     document.querySelectorAll('.bench-player').forEach(el=>el.style.outline='');
     renderField();renderBench();renderLineupSlots();
@@ -964,24 +803,16 @@ fieldZone.addEventListener('click',e=>{
 });
 
 document.getElementById('bench-list').addEventListener('click',e=>{
-  const bp=e.target.closest('.bench-player');
-  if(!bp||bp.classList.contains('on-field'))return;
+  const bp=e.target.closest('.bench-player');if(!bp||bp.classList.contains('on-field'))return;
   const pid=parseInt(bp.dataset.pid);
   if(pendingFreePlace===pid){pendingFreePlace=null;document.querySelectorAll('.bench-player').forEach(el=>el.style.outline='');}
-  else{
-    pendingFreePlace=pid;
-    document.querySelectorAll('.bench-player').forEach(el=>el.style.outline='');
-    bp.style.outline='2px solid var(--purple-light)';
-  }
+  else{pendingFreePlace=pid;document.querySelectorAll('.bench-player').forEach(el=>el.style.outline='');bp.style.outline='2px solid var(--purple-light)';}
 });
 
 function clearField(){
-  fieldSlots=[];
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  drawHistory=[];
+  fieldSlots=[];ctx.clearRect(0,0,canvas.width,canvas.height);drawHistory=[];
   renderField();renderBench();renderLineupSlots();
-  document.getElementById('formation-select').value='free';
-  pendingFreePlace=null;
+  document.getElementById('formation-select').value='free';pendingFreePlace=null;
 }
 
 function applyFormation(key){
@@ -991,8 +822,7 @@ function applyFormation(key){
   renderField();renderBench();renderLineupSlots();
 }
 
-// Init
-window.addEventListener('resize',()=>{resizeCanvas();});
+window.addEventListener('resize',resizeCanvas);
 setTimeout(()=>{
   resizeCanvas();
   applyFormation('4-3-3');
@@ -1002,4 +832,3 @@ setTimeout(()=>{
 </script>
 </body>
 </html>
-
