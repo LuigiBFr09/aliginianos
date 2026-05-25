@@ -4,550 +4,457 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aliginianos FC</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════
-   PALETA — baseada no escudo
-   Roxo escuro: #2a1a6e  Roxo médio: #5535c8
-   Roxo claro:  #7b5ef8  Dourado:    #c9941a
-   Prata:       #d4d4e8  Preto:      #06060e
-═══════════════════════════════════════════ */
-:root {
-  --ink:        #06060e;
-  --ink2:       #0d0b1a;
-  --ink3:       #14112a;
-  --purple-deep:#2a1a6e;
-  --purple:     #5535c8;
-  --purple-mid: #6b46e0;
-  --purple-lite:#9b7cf8;
-  --gold:       #c9941a;
-  --gold-lite:  #f0b830;
-  --silver:     #d4d4e8;
-  --text:       #e8e6f5;
-  --text-muted: #7a7598;
-  --border:     #2e2060;
-  --card:       #100e22;
-  --win:        #22c55e;
-  --loss:       #ef4444;
-  --draw:       #f59e0b;
-  --wo:         #9b7cf8;
-}
+  :root {
+    --black: #0a0a0f;
+    --purple: #7c3aed;
+    --purple-light: #a855f7;
+    --purple-dim: #4c1d95;
+    --text: #e2d9f3;
+    --text-muted: #8b7ca8;
+    --border: #2d1b4e;
+    --card: #13101e;
+    --win: #22c55e;
+    --loss: #ef4444;
+    --draw: #f59e0b;
+    --wo: #a855f7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--black); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--purple-dim); border-radius: 3px; }
 
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{
-  font-family:'Inter',system-ui,sans-serif;
-  background:var(--ink);
-  color:var(--text);
-  min-height:100vh;
-  overflow-x:hidden;
-}
-::-webkit-scrollbar{width:5px;}
-::-webkit-scrollbar-track{background:var(--ink);}
-::-webkit-scrollbar-thumb{background:var(--purple);border-radius:3px;}
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: #0a0a0fcc; backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; }
+  .nav-logo { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.1rem; letter-spacing: 0.05em; color: var(--text); text-decoration: none; }
 
-/* ── FUNDO ANIMADO ── */
-#bg-canvas{
-  position:fixed;inset:0;z-index:0;
-  pointer-events:none;
-  opacity:0.55;
-}
+  /* ── LOGO PNG ── */
+  /* Substitua o caminho abaixo pelo nome do seu arquivo PNG
+     Ex: se o arquivo se chama "escudo.png", deixe src="escudo.png"
+     Coloque o arquivo PNG na mesma pasta que este HTML            */
+  .nav-crest {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 6px #7c3aed80);
+  }
+  /* Fallback SVG caso a imagem não carregue */
+  .nav-crest-fallback {
+    display: none;
+    width: 36px;
+    height: 36px;
+  }
+  .nav-crest.broken { display: none; }
+  .nav-crest.broken + .nav-crest-fallback { display: block; }
 
-/* ── NAV ── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  height:68px;
-  background:rgba(6,6,14,0.72);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(85,53,200,0.25);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 48px;
-  transition:background 0.3s;
-}
-.nav-logo{
-  display:flex;align-items:center;gap:14px;
-  text-decoration:none;color:var(--text);
-  font-weight:800;font-size:1.05rem;letter-spacing:0.08em;
-}
-.nav-logo img{
-  width:40px;height:40px;object-fit:contain;
-  filter:drop-shadow(0 0 10px rgba(155,124,248,0.6));
-  transition:filter 0.3s;
-}
-.nav-logo:hover img{filter:drop-shadow(0 0 18px rgba(201,148,26,0.7));}
-.nav-links{display:flex;gap:36px;list-style:none;}
-.nav-links a{
-  color:var(--text-muted);text-decoration:none;
-  font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;
-  transition:color 0.2s;position:relative;padding-bottom:4px;
-}
-.nav-links a::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
-  background:var(--gold);transform:scaleX(0);transition:transform 0.25s;
-}
-.nav-links a:hover{color:var(--text);}
-.nav-links a:hover::after{transform:scaleX(1);}
+  .hero-crest-img {
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+    margin-bottom: 28px;
+    filter: drop-shadow(0 0 32px #7c3aed80);
+    animation: float 4s ease-in-out infinite;
+  }
+  .hero-crest-svg {
+    width: 130px;
+    height: 130px;
+    margin-bottom: 28px;
+    filter: drop-shadow(0 0 32px #7c3aed80);
+    animation: float 4s ease-in-out infinite;
+  }
 
-/* ── NEWS BAR ── */
-.news-bar{
-  position:relative;z-index:10;
-  margin-top:68px;
-  height:34px;
-  background:linear-gradient(90deg,var(--purple-deep),#1e1545);
-  border-bottom:1px solid rgba(155,124,248,0.2);
-  display:flex;align-items:center;overflow:hidden;
-}
-.news-tag{
-  background:var(--gold);color:#000;
-  font-size:0.65rem;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;
-  padding:0 18px;height:100%;display:flex;align-items:center;
-  white-space:nowrap;flex-shrink:0;
-}
-.ticker-wrap{overflow:hidden;flex:1;mask-image:linear-gradient(90deg,transparent 0%,black 4%,black 96%,transparent 100%);}
-.ticker-inner{display:flex;animation:ticker 50s linear infinite;white-space:nowrap;}
-.ticker-item{font-size:0.74rem;color:rgba(232,230,245,0.85);padding:0 48px;letter-spacing:0.04em;}
-.ticker-item::before{content:'◆';color:var(--gold);margin-right:14px;font-size:0.45rem;vertical-align:middle;}
-@keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--purple-light); }
 
-/* ── HERO ── */
-.hero{
-  position:relative;z-index:1;
-  min-height:100vh;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:100px 20px 60px;
-  overflow:hidden;
-}
-.hero::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 80% 70% at 50% 45%,rgba(42,26,110,0.45) 0%,transparent 70%);
-  pointer-events:none;
-}
-.hero-eyebrow{
-  font-size:0.72rem;font-weight:700;letter-spacing:0.35em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:20px;opacity:0;
-  animation:fadeUp 0.7s 0.2s forwards;
-}
-.hero-crest{
-  width:200px;height:200px;object-fit:contain;
-  filter:drop-shadow(0 0 40px rgba(85,53,200,0.7)) drop-shadow(0 0 80px rgba(201,148,26,0.3));
-  animation:floatCrest 5s ease-in-out infinite, fadeUp 0.9s 0.1s both;
-  margin-bottom:32px;
-}
-@keyframes floatCrest{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
-.hero h1{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(4rem,10vw,8rem);
-  letter-spacing:0.06em;line-height:0.9;
-  background:linear-gradient(160deg,#fff 30%,var(--purple-lite) 60%,var(--gold) 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  margin-bottom:10px;
-  opacity:0;animation:fadeUp 0.8s 0.35s forwards;
-}
-.hero-sub{
-  font-size:0.82rem;color:var(--text-muted);letter-spacing:0.25em;text-transform:uppercase;
-  margin-bottom:56px;opacity:0;animation:fadeUp 0.8s 0.5s forwards;
-}
-.hero-divider{
-  width:80px;height:2px;margin:0 auto 56px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
-  opacity:0;animation:fadeUp 0.8s 0.6s forwards;
-}
-.hero-stats{
-  display:flex;gap:64px;justify-content:center;flex-wrap:wrap;
-  opacity:0;animation:fadeUp 0.8s 0.7s forwards;
-}
-.hero-stat .val{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;color:var(--purple-lite);line-height:1;}
-.hero-stat .lbl{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--text-muted);margin-top:4px;}
-.hero-stat-sep{width:1px;background:var(--border);align-self:stretch;}
+  .news-bar { background: var(--purple-dim); border-bottom: 1px solid var(--border); height: 36px; display: flex; align-items: center; overflow: hidden; margin-top: 64px; }
+  .news-tag { background: var(--purple); color: #fff; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 0 16px; height: 100%; display: flex; align-items: center; white-space: nowrap; flex-shrink: 0; }
+  .ticker-wrap { overflow: hidden; flex: 1; mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%); }
+  .ticker-inner { display: flex; animation: ticker 40s linear infinite; white-space: nowrap; }
+  .ticker-item { font-size: 0.78rem; color: #d8c8f0; padding: 0 40px; letter-spacing: 0.03em; }
+  .ticker-item::before { content: '●'; color: var(--purple-light); margin-right: 12px; font-size: 0.5rem; vertical-align: middle; }
+  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+  .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 20px 40px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 40%, #4c1d9540 0%, transparent 70%); pointer-events: none; }
+  .hero-year { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--purple-light); margin-bottom: 16px; opacity: 0.8; }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .hero h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; letter-spacing: -0.02em; line-height: 1; background: linear-gradient(135deg, #fff 30%, var(--purple-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; }
+  .hero-sub { font-size: 0.95rem; color: var(--text-muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 48px; }
+  .hero-stats { display: flex; gap: 48px; justify-content: center; flex-wrap: wrap; }
+  .hero-stat { text-align: center; }
+  .hero-stat .val { font-size: 2.2rem; font-weight: 900; color: var(--purple-light); line-height: 1; }
+  .hero-stat .lbl { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); margin-top: 4px; }
 
-/* ── SCROLL REVEAL ── */
-.reveal{opacity:0;transform:translateY(36px);transition:opacity 0.7s ease,transform 0.7s ease;}
-.reveal.visible{opacity:1;transform:none;}
-.reveal-left{opacity:0;transform:translateX(-36px);transition:opacity 0.7s ease,transform 0.7s ease;}
-.reveal-left.visible{opacity:1;transform:none;}
-.reveal-right{opacity:0;transform:translateX(36px);transition:opacity 0.7s ease,transform 0.7s ease;}
-.reveal-right.visible{opacity:1;transform:none;}
+  .section-wrap { max-width: 1100px; margin: 0 auto; padding: 80px 20px; }
+  .section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--purple-light); margin-bottom: 8px; }
+  .section-title { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 900; margin-bottom: 40px; letter-spacing: -0.01em; }
+  .divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
 
-/* ── SECTION ── */
-.section{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:100px 24px;}
-.section-label{
-  font-size:0.68rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:6px;display:flex;align-items:center;gap:10px;
-}
-.section-label::before{content:'';width:24px;height:1px;background:var(--gold);}
-.section-title{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(2.2rem,5vw,3.5rem);letter-spacing:0.04em;
-  margin-bottom:48px;
-}
-.divider{
-  position:relative;z-index:1;
-  width:100%;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(85,53,200,0.4),transparent);
-}
+  .squad-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .player-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+  .player-card:hover { border-color: var(--purple); transform: translateY(-3px); }
+  .player-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--purple-dim), var(--purple-light)); border-radius: 12px 12px 0 0; }
+  .player-number { font-size: 2.5rem; font-weight: 900; color: var(--border); position: absolute; top: 10px; right: 14px; line-height: 1; user-select: none; }
+  .player-pos { display: inline-block; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 3px 8px; border-radius: 4px; margin-bottom: 10px; }
+  .pos-gk { background: #854d0e40; color: #fde68a; border: 1px solid #92400e; }
+  .pos-def { background: #1e3a8a40; color: #93c5fd; border: 1px solid #1d4ed8; }
+  .pos-mid { background: #14532d40; color: #86efac; border: 1px solid #16a34a; }
+  .pos-att { background: #7f1d1d40; color: #fca5a5; border: 1px solid #dc2626; }
+  .player-name { font-size: 1.05rem; font-weight: 800; line-height: 1.2; margin-bottom: 4px; }
+  .player-meta { font-size: 0.75rem; color: var(--text-muted); }
+  .player-badge { margin-top: 10px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .badge { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; border: 1px solid var(--border); color: var(--text-muted); }
+  .badge.captain { border-color: var(--purple-light); color: var(--purple-light); }
+  .badge.injured { border-color: #ef4444; color: #ef4444; }
+  .badge.loan { border-color: #f59e0b; color: #f59e0b; }
 
-/* ── SQUAD ── */
-.squad-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;}
-.player-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:14px;padding:22px 18px;
-  position:relative;overflow:hidden;
-  transition:border-color 0.25s,transform 0.25s,box-shadow 0.25s;
-  cursor:default;
-}
-.player-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--purple-deep),var(--purple-lite),var(--gold));
-}
-.player-card::after{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 60% 50% at 50% -10%,rgba(107,70,224,0.12),transparent);
-  opacity:0;transition:opacity 0.3s;pointer-events:none;
-}
-.player-card:hover{border-color:rgba(155,124,248,0.5);transform:translateY(-5px);box-shadow:0 16px 40px rgba(42,26,110,0.4);}
-.player-card:hover::after{opacity:1;}
-.player-num-bg{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:4rem;color:rgba(85,53,200,0.1);
-  position:absolute;top:6px;right:10px;line-height:1;user-select:none;
-  letter-spacing:0;
-}
-.player-pos{
-  display:inline-block;font-size:0.58rem;font-weight:700;
-  text-transform:uppercase;letter-spacing:0.12em;padding:3px 9px;border-radius:4px;
-  margin-bottom:12px;
-}
-.pos-gk {background:#2a1a0040;color:#fde68a;border:1px solid #856a00;}
-.pos-def{background:#0a1530;color:#93c5fd;border:1px solid #1d4ed8;}
-.pos-mid{background:#0a200f;color:#86efac;border:1px solid #16a34a;}
-.pos-att{background:#200a0a;color:#fca5a5;border:1px solid #dc2626;}
-.player-name{font-size:1rem;font-weight:800;line-height:1.2;margin-bottom:5px;}
-.player-meta{font-size:0.72rem;color:var(--text-muted);}
-.player-badge{margin-top:12px;display:flex;gap:6px;flex-wrap:wrap;}
-.badge{
-  font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
-  padding:2px 8px;border-radius:4px;border:1px solid var(--border);color:var(--text-muted);
-}
-.badge.captain{border-color:var(--gold);color:var(--gold);}
-.badge.injured{border-color:#ef4444;color:#ef4444;}
-.badge.loan{border-color:#f59e0b;color:#f59e0b;}
+  .matches-list { display: flex; flex-direction: column; gap: 10px; }
+  .match-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; transition: border-color 0.2s; }
+  .match-card:hover { border-color: var(--purple-dim); }
+  .match-result { width: 42px; height: 42px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.72rem; letter-spacing: 0.05em; flex-shrink: 0; }
+  .result-w  { background: #14532d40; border: 1px solid #16a34a; color: var(--win); }
+  .result-l  { background: #7f1d1d40; border: 1px solid #dc2626; color: var(--loss); }
+  .result-d  { background: #78350f40; border: 1px solid #d97706; color: var(--draw); }
+  .result-wo { background: #4c1d9540; border: 1px solid var(--purple); color: var(--wo); }
+  .result-upcoming { background: #1a0a2e; border: 1px solid var(--border); color: var(--text-muted); }
+  .match-info { flex: 1; }
+  .match-opponent { font-weight: 700; font-size: 0.95rem; margin-bottom: 3px; }
+  .match-detail { font-size: 0.75rem; color: var(--text-muted); }
+  .match-score { font-size: 1.4rem; font-weight: 900; text-align: right; letter-spacing: -0.02em; }
+  .match-score.upcoming { font-size: 0.78rem; font-weight: 600; color: var(--purple-light); letter-spacing: 0.05em; text-transform: uppercase; }
 
-/* ── MATCHES ── */
-.matches-list{display:flex;flex-direction:column;gap:10px;}
-.match-card{
-  background:var(--card);border:1px solid var(--border);border-radius:12px;
-  padding:16px 22px;display:grid;grid-template-columns:50px 1fr auto;
-  gap:18px;align-items:center;
-  transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;
-}
-.match-card:hover{border-color:rgba(107,70,224,0.4);transform:translateX(4px);box-shadow:-4px 0 20px rgba(42,26,110,0.3);}
-.match-result{
-  width:42px;height:42px;border-radius:8px;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.05em;flex-shrink:0;
-}
-.result-w  {background:#0f2d1840;border:1px solid #16a34a;color:var(--win);}
-.result-l  {background:#2d0f0f40;border:1px solid #dc2626;color:var(--loss);}
-.result-d  {background:#2d200040;border:1px solid #d97706;color:var(--draw);}
-.result-wo {background:#1e0a5040;border:1px solid var(--purple);color:var(--wo);}
-.result-upcoming{background:#0d0b1a;border:1px solid var(--border);color:var(--text-muted);}
-.match-info{flex:1;}
-.match-opponent{font-weight:700;font-size:0.95rem;margin-bottom:3px;}
-.match-detail{font-size:0.72rem;color:var(--text-muted);}
-.match-score{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.04em;text-align:right;}
-.match-score.upcoming{font-family:'Inter',sans-serif;font-size:0.75rem;font-weight:600;color:var(--purple-lite);letter-spacing:0.08em;text-transform:uppercase;}
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--purple), var(--border)); }
+  .tl-year { margin-bottom: 32px; }
+  .tl-year-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--purple-light); margin-bottom: 12px; position: relative; }
+  .tl-year-label::before { content: ''; position: absolute; left: -38px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; border-radius: 50%; background: var(--purple); border: 2px solid var(--purple-light); box-shadow: 0 0 12px var(--purple); }
+  .tl-events { display: flex; flex-direction: column; gap: 10px; }
+  .tl-event { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; font-size: 0.88rem; display: flex; align-items: center; gap: 10px; transition: border-color 0.2s; }
+  .tl-event:hover { border-color: var(--purple-dim); }
+  .tl-event .ev-icon { font-size: 1rem; flex-shrink: 0; width: 28px; text-align: center; }
 
-/* ── TIMELINE ── */
-.timeline{position:relative;padding-left:36px;}
-.timeline::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
-  background:linear-gradient(to bottom,var(--gold),var(--purple),rgba(85,53,200,0.1));
-}
-.tl-year{margin-bottom:36px;}
-.tl-year-label{
-  font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.1em;
-  color:var(--gold);margin-bottom:14px;position:relative;
-}
-.tl-year-label::before{
-  content:'';position:absolute;left:-44px;top:50%;transform:translateY(-50%);
-  width:16px;height:16px;border-radius:50%;
-  background:var(--gold);border:2px solid var(--ink);
-  box-shadow:0 0 16px rgba(201,148,26,0.5);
-}
-.tl-events{display:flex;flex-direction:column;gap:10px;}
-.tl-event{
-  background:var(--card);border:1px solid var(--border);border-radius:8px;
-  padding:12px 16px;font-size:0.86rem;display:flex;align-items:center;gap:12px;
-  transition:border-color 0.2s,transform 0.2s;
-}
-.tl-event:hover{border-color:rgba(155,124,248,0.4);transform:translateX(4px);}
-.ev-icon{font-size:1rem;flex-shrink:0;width:26px;text-align:center;}
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 40px; }
+  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-align: center; }
+  .stat-card .big { font-size: 2.8rem; font-weight: 900; line-height: 1; color: var(--purple-light); margin-bottom: 6px; }
+  .stat-card .name { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); }
+  .aproveitamento-bar { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 16px; }
+  .bar-header { display: flex; justify-content: space-between; margin-bottom: 12px; }
+  .bar-label { font-size: 0.85rem; font-weight: 600; }
+  .bar-pct { font-size: 0.85rem; font-weight: 700; color: var(--purple-light); }
+  .bar-track { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; }
+  .bar-fill.win  { background: linear-gradient(90deg, #16a34a, #22c55e); }
+  .bar-fill.loss { background: linear-gradient(90deg, #b91c1c, #ef4444); }
+  .bar-fill.draw { background: linear-gradient(90deg, #d97706, #f59e0b); }
 
-/* ── STATS ── */
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:36px;}
-.stat-card{
-  background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px 16px;
-  text-align:center;position:relative;overflow:hidden;
-  transition:border-color 0.2s,transform 0.2s;
-}
-.stat-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--purple-deep),var(--purple-lite));}
-.stat-card:hover{border-color:rgba(155,124,248,0.4);transform:translateY(-3px);}
-.stat-card .big{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--purple-lite);line-height:1;margin-bottom:6px;}
-.stat-card .name{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--text-muted);}
-.aprov-bar{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:12px;}
-.bar-header{display:flex;justify-content:space-between;margin-bottom:10px;}
-.bar-label{font-size:0.82rem;font-weight:600;}
-.bar-pct{font-size:0.82rem;font-weight:700;color:var(--purple-lite);}
-.bar-track{height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;}
-.bar-fill{height:100%;border-radius:3px;transition:width 1.2s cubic-bezier(0.4,0,0.2,1);}
-.bar-fill.win {background:linear-gradient(90deg,#16a34a,#22c55e);}
-.bar-fill.loss{background:linear-gradient(90deg,#b91c1c,#ef4444);}
-.bar-fill.draw{background:linear-gradient(90deg,#d97706,#f59e0b);}
+  /* ══════════════ TÁTICAS ══════════════ */
+  .tactics-layout { display: grid; grid-template-columns: 1fr 300px; gap: 20px; align-items: start; }
+  .field-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; }
+  .field-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+  .draw-toolbar { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; background: var(--black); border: 1px solid var(--border); border-radius: 10px; padding: 8px 10px; margin-bottom: 10px; }
+  .tool-sep { width: 1px; height: 22px; background: var(--border); margin: 0 2px; flex-shrink: 0; }
+  .tool-btn { background: transparent; border: 1px solid transparent; color: var(--text-muted); border-radius: 6px; padding: 5px 9px; font-size: 0.72rem; font-weight: 700; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; gap: 5px; letter-spacing: 0.04em; white-space: nowrap; }
+  .tool-btn:hover { border-color: var(--border); color: var(--text); background: #1a0a2e; }
+  .tool-btn.active { border-color: var(--purple); color: var(--purple-light); background: #1a0a2e; box-shadow: 0 0 8px #7c3aed40; }
+  .color-btn { width: 22px; height: 22px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; transition: transform 0.15s, border-color 0.15s; flex-shrink: 0; }
+  .color-btn:hover { transform: scale(1.15); }
+  .color-btn.active { border-color: #fff; transform: scale(1.15); }
+  .size-btn { background: transparent; border: 1px solid transparent; color: var(--text-muted); border-radius: 5px; padding: 4px 7px; font-size: 0.68rem; font-weight: 700; cursor: pointer; transition: all 0.15s; }
+  .size-btn:hover, .size-btn.active { border-color: var(--purple); color: var(--purple-light); background: #1a0a2e; }
+  .formation-select { background: var(--black); border: 1px solid var(--border); color: var(--text); padding: 7px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; cursor: pointer; outline: none; transition: border-color 0.2s; }
+  .formation-select:hover, .formation-select:focus { border-color: var(--purple); }
+  .btn-action { background: transparent; border: 1px solid var(--border); color: var(--text-muted); padding: 7px 12px; border-radius: 8px; font-size: 0.74rem; font-weight: 600; cursor: pointer; transition: all 0.2s; letter-spacing: 0.04em; text-transform: uppercase; }
+  .btn-action:hover { border-color: #ef4444; color: #ef4444; }
+  .btn-action.undo:hover { border-color: var(--purple-dim); color: var(--purple-light); }
+  .field-svg-wrap { position: relative; width: 100%; aspect-ratio: 0.65; border-radius: 10px; overflow: hidden; }
+  #field-svg { width: 100%; height: 100%; display: block; }
+  #draw-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 20; pointer-events: none; border-radius: 10px; }
+  #draw-canvas.draw-mode { pointer-events: all; cursor: crosshair; }
+  #draw-canvas.erase-mode { pointer-events: all; cursor: crosshair; }
+  .field-player { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 4px; z-index: 10; user-select: none; }
+  .field-player.interactive { cursor: grab; }
+  .field-player.interactive:active { cursor: grabbing; filter: brightness(1.3); z-index: 50; }
+  .field-player.drag-over-target { filter: brightness(1.5); }
+  #field-players { position: absolute; inset: 0; z-index: 10; }
+  .fp-circle { width: 42px; height: 42px; border-radius: 50%; border: 2px solid var(--purple-light); background: #1a0a2e; display: flex; align-items: center; justify-content: center; font-size: 0.62rem; font-weight: 800; text-align: center; line-height: 1.1; color: #fff; box-shadow: 0 0 10px #7c3aed60; position: relative; transition: background 0.2s; }
+  .fp-circle.gk  { border-color: #fde68a; background: #1f1100; box-shadow: 0 0 10px #fde68a40; }
+  .fp-circle.def { border-color: #93c5fd; background: #0a1a3a; box-shadow: 0 0 10px #93c5fd40; }
+  .fp-circle.mid { border-color: #86efac; background: #0a1f12; box-shadow: 0 0 10px #86efac40; }
+  .fp-circle.att { border-color: #fca5a5; background: #1f0a0a; box-shadow: 0 0 10px #fca5a540; }
+  .fp-circle.empty { border-color: var(--border); background: var(--card); border-style: dashed; box-shadow: none; }
+  .fp-num { position: absolute; top: -6px; right: -6px; background: var(--purple); color: #fff; font-size: 0.52rem; font-weight: 900; width: 15px; height: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1.5px solid var(--black); }
+  .fp-label { font-size: 0.65rem; font-weight: 700; color: #fff; text-shadow: 0 1px 4px #000c; white-space: nowrap; max-width: 68px; overflow: hidden; text-overflow: ellipsis; text-align: center; background: #000a; padding: 1px 5px; border-radius: 3px; }
+  .tactics-panel { display: flex; flex-direction: column; gap: 14px; }
+  .panel-box { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+  .panel-title { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; color: var(--purple-light); margin-bottom: 10px; }
+  .bench-list { display: flex; flex-direction: column; gap: 7px; max-height: 360px; overflow-y: auto; }
+  .bench-player { display: flex; align-items: center; gap: 9px; padding: 7px 9px; border-radius: 8px; border: 1px solid var(--border); background: var(--black); cursor: grab; transition: border-color 0.2s, background 0.2s; font-size: 0.8rem; }
+  .bench-player:active { cursor: grabbing; }
+  .bench-player:hover { border-color: var(--purple-dim); background: #1a0a2e; }
+  .bench-player.on-field { opacity: 0.35; pointer-events: none; }
+  .bp-dot { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.55rem; font-weight: 900; flex-shrink: 0; }
+  .bp-dot.gk  { background: #1f110040; border: 1px solid #92400e; color: #fde68a; }
+  .bp-dot.def { background: #1e3a8a40; border: 1px solid #1d4ed8; color: #93c5fd; }
+  .bp-dot.mid { background: #14532d40; border: 1px solid #16a34a; color: #86efac; }
+  .bp-dot.att { background: #7f1d1d40; border: 1px solid #dc2626; color: #fca5a5; }
+  .bp-info { flex: 1; min-width: 0; }
+  .bp-name { font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bp-pos { font-size: 0.62rem; color: var(--text-muted); }
+  .tactics-tip { font-size: 0.72rem; color: var(--text-muted); line-height: 1.5; padding: 8px 10px; background: var(--black); border: 1px dashed var(--border); border-radius: 7px; margin-bottom: 8px; }
+  .lineup-slots { display: flex; flex-direction: column; gap: 5px; max-height: 300px; overflow-y: auto; }
+  .lineup-row { display: flex; align-items: center; gap: 7px; font-size: 0.76rem; padding: 5px 7px; border-radius: 6px; background: var(--black); border: 1px solid var(--border); }
+  .lineup-pos-tag { font-size: 0.58rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); width: 28px; flex-shrink: 0; }
+  .lineup-name { flex: 1; font-weight: 600; }
+  .lineup-remove { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.78rem; padding: 2px 4px; border-radius: 3px; transition: color 0.2s; }
+  .lineup-remove:hover { color: #ef4444; }
+  .field-drop-active { outline: 2px dashed var(--purple-light); outline-offset: 3px; border-radius: 10px; }
 
-/* ── UNIFORMES ── */
-.kits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px;}
-.kit-card{
-  background:var(--card);border:1px solid var(--border);border-radius:20px;
-  padding:32px 24px;text-align:center;position:relative;overflow:hidden;
-  transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;
-}
-.kit-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(90deg,var(--purple-deep),var(--gold),var(--purple-lite));
-}
-.kit-card:hover{border-color:rgba(201,148,26,0.4);transform:translateY(-6px);box-shadow:0 24px 60px rgba(42,26,110,0.5);}
-.kit-badge{
-  display:inline-block;font-size:0.62rem;font-weight:700;letter-spacing:0.2em;
-  text-transform:uppercase;padding:4px 12px;border-radius:20px;
-  background:rgba(201,148,26,0.12);border:1px solid var(--gold);color:var(--gold);
-  margin-bottom:24px;
-}
-.kit-svg-wrap{margin:0 auto ;width:100%;max-width:380px;height:320px;}
-.kit-svg-wrap img{
-  width: 250px;
-}
-.kit-name{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.08em;margin-bottom:8px;}
-.kit-desc{font-size:0.8rem;color:var(--text-muted);line-height:1.6;}
-.kit-colors{display:flex;gap:8px;justify-content:center;margin-top:18px;}
-.kit-color-dot{
-  width:20px;height:20px;border-radius:50%;
-  border:2px solid rgba(255,255,255,0.15);
-}
-
-/* ── TACTICS (COMENTADO/DESATIVADO) ── */
-/* A seção de escalação está temporariamente desativada.
-   Para reativar, remova o display:none do #escalacao
-   e descomente o bloco JavaScript de escalação no final do script.
-.tactics-layout{...}
-.field-wrap{...}
-*/
-#escalacao{display:none;}
-
-/* ── DRAW TOOLBAR (mantido comentado, não renderizado) ── */
-/*
-.draw-toolbar{...}
-.tool-btn{...}
-.field-player{...}
-*/
-
-/* ── FOOTER ── */
-footer{
-  position:relative;z-index:1;
-  border-top:1px solid rgba(85,53,200,0.2);
-  padding:60px 24px;text-align:center;
-}
-.footer-crest{width:56px;height:56px;object-fit:contain;margin-bottom:18px;opacity:0.7;filter:grayscale(0.3);}
-.footer-name{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.12em;color:var(--text-muted);margin-bottom:8px;}
-.footer-sub{font-size:0.7rem;color:rgba(122,117,152,0.6);letter-spacing:0.1em;text-transform:uppercase;}
-
-@media(max-width:768px){
-  nav{padding:0 20px;}
-  .nav-links{gap:18px;}
-  .nav-links a{font-size:0.7rem;}
-  .hero-stats{gap:32px;}
-  .hero-stat-sep{display:none;}
-}
+  footer { border-top: 1px solid var(--border); text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.78rem; letter-spacing: 0.05em; }
+  @media (max-width: 900px) { .tactics-layout { grid-template-columns: 1fr; } nav { padding: 0 16px; } .nav-links { gap: 12px; } .nav-links a { font-size: 0.7rem; } }
 </style>
 </head>
 <body>
 
-<!-- FUNDO ANIMADO -->
-<canvas id="bg-canvas"></canvas>
-
-<!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    <img src="logo2.png" alt="Aliginianos FC" onerror="this.style.display='none'">
-    <span>Aliginianos FC</span>
+    <!--
+      ════════════════════════════════════════════════
+      LOGO DO TIME — COMO USAR:
+      1. Coloque seu arquivo PNG na mesma pasta deste HTML
+      2. Mude "logo.png" abaixo pelo nome exato do seu arquivo
+         Ex: src="escudo_aliginianos.png"
+      3. O SVG aparece automaticamente caso a imagem falhe
+      ════════════════════════════════════════════════
+    -->
+    <img
+      class="nav-crest"
+      id="nav-logo-img"
+      src="logo.png"
+      alt="Aliginianos FC"
+      onerror="this.classList.add('broken')"
+    />
+    <!-- Fallback SVG caso o PNG não seja encontrado -->
+    <svg class="nav-crest-fallback" viewBox="0 0 60 60" fill="none">
+      <path d="M30 4L54 16V38C54 48 42 56 30 58C18 56 6 48 6 38V16L30 4Z" fill="#1a0a2e" stroke="#7c3aed" stroke-width="2"/>
+      <path d="M30 10L48 20V37C48 44.5 39 51 30 53C21 51 12 44.5 12 37V20L30 10Z" fill="#0f0720" stroke="#6d28d9" stroke-width="1"/>
+      <text x="30" y="38" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="18" fill="#a855f7">A</text>
+    </svg>
+    Aliginianos FC
   </a>
   <ul class="nav-links">
     <li><a href="#elenco">Elenco</a></li>
-    <li><a href="#uniformes">Uniformes</a></li>
+    <li><a href="#escalacao">Escalação</a></li>
     <li><a href="#jogos">Jogos</a></li>
     <li><a href="#historico">Histórico</a></li>
     <li><a href="#stats">Stats</a></li>
   </ul>
 </nav>
 
-<!-- NEWS BAR -->
 <div class="news-bar">
-  <div class="news-tag">◆ Notícias</div>
+  <div class="news-tag">⚡ Notícias</div>
   <div class="ticker-wrap">
     <div class="ticker-inner" id="ticker"></div>
   </div>
 </div>
 
-<!-- HERO -->
 <div class="hero">
-  <p class="hero-eyebrow">Futebol de Várzea · Fundado em 2022</p>
-  <img class="hero-crest" src="logo.png" alt="Aliginianos FC" onerror="this.style.display='none'">
+  <div class="hero-year">Fundado em 2022</div>
+
+  <!--
+    LOGO HERO — mesmo arquivo PNG, tamanho maior.
+    Mude "logo.png" pelo nome do seu arquivo.
+    O SVG animado aparece automaticamente caso falhe.
+  -->
+  <img
+    class="hero-crest-img"
+    id="hero-logo-img"
+    src="logo.png"
+    alt="Aliginianos FC"
+    onerror="this.style.display='none'; document.getElementById('hero-logo-svg').style.display='block';"
+  />
+  <svg id="hero-logo-svg" class="hero-crest-svg" viewBox="0 0 80 80" fill="none" style="display:none;">
+    <path d="M40 5L70 20V46C70 58 55 68 40 71C25 68 10 58 10 46V20L40 5Z" fill="#1a0a2e" stroke="#7c3aed" stroke-width="2.5"/>
+    <path d="M40 13L62 26V45C62 54 50 62 40 64C30 62 18 54 18 45V26L40 13Z" fill="#0f0720" stroke="#6d28d9" stroke-width="1.5"/>
+    <text x="40" y="50" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="28" fill="#a855f7">A</text>
+  </svg>
+
   <h1>ALIGINIANOS</h1>
-  <p class="hero-sub">Futebol Clube · Desde 2022</p>
-  <div class="hero-divider"></div>
+  <p class="hero-sub">Futebol de Várzea · Desde 2022</p>
   <div class="hero-stats" id="hero-stats"></div>
 </div>
 
 <div class="divider"></div>
 
-<!-- ELENCO -->
-<div class="section" id="elenco">
-  <div class="reveal">
-    <div class="section-label">Temporada 2026</div>
-    <div class="section-title">Elenco</div>
-  </div>
+<div class="section-wrap" id="elenco">
+  <div class="section-label">Temporada 2026</div>
+  <div class="section-title">Elenco</div>
   <div class="squad-grid" id="squad-grid"></div>
 </div>
 
 <div class="divider"></div>
 
-<!-- UNIFORMES -->
-<div class="section" id="uniformes">
-  <div class="reveal">
-    <div class="section-label">Temporada 2026</div>
-    <div class="section-title">Uniformes</div>
-  </div>
-  <div class="kits-grid">
-
-    <!-- CAMISA I -->
-    <div class="kit-card reveal-left">
-      <div class="kit-badge">Camisa I · Principal</div>
-      <div class="kit-svg-wrap">
-        <img src="camisa1.png">
+<div class="section-wrap" id="escalacao">
+  <div class="section-label">Montagem Tática</div>
+  <div class="section-title">Escalação</div>
+  <div class="tactics-layout">
+    <div class="field-wrap">
+      <div class="field-header">
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <span style="font-size:0.75rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;">Formação</span>
+          <select class="formation-select" id="formation-select" onchange="applyFormation(this.value)">
+            <option value="free">Livre</option>
+            <option value="4-3-3">4-3-3</option>
+            <option value="4-4-2">4-4-2</option>
+            <option value="3-5-2">3-5-2</option>
+            <option value="4-2-3-1">4-2-3-1</option>
+            <option value="3-4-3">3-4-3</option>
+            <option value="5-3-2">5-3-2</option>
+          </select>
+        </div>
+        <div style="display:flex;gap:6px;">
+          <button class="btn-action undo" onclick="undoDraw()">↩ Desfazer</button>
+          <button class="btn-action" onclick="clearField()">🗑 Limpar</button>
+        </div>
       </div>
-      <div class="kit-name">Camisa I</div>
-      <div class="kit-desc">Uniforme principal 2026/27. Roxo vibrante com listras brancas nos ombros e escudo bordado no peito.</div>
-      <div class="kit-colors">
-        <div class="kit-color-dot" style="background:#7b35e8" title="Roxo Principal"></div>
-        <div class="kit-color-dot" style="background:#ffffff" title="Branco"></div>
-        <div class="kit-color-dot" style="background:#5535c8" title="Roxo Escuro"></div>
+      <div class="draw-toolbar">
+        <button class="tool-btn" id="btn-move"   onclick="setMode('move')"  >✋ Mover</button>
+        <button class="tool-btn" id="btn-pen"    onclick="setMode('pen')"   >✏️ Caneta</button>
+        <button class="tool-btn" id="btn-arrow"  onclick="setMode('arrow')" >➡️ Seta</button>
+        <button class="tool-btn" id="btn-line"   onclick="setMode('line')"  >╱ Linha</button>
+        <button class="tool-btn" id="btn-circle" onclick="setMode('circle')">⭕ Zona</button>
+        <button class="tool-btn" id="btn-erase"  onclick="setMode('erase')" >🧹 Borrar</button>
+        <div class="tool-sep"></div>
+        <div style="display:flex;gap:5px;align-items:center;">
+          <div class="color-btn active" id="col-white"  style="background:#ffffff" onclick="setColor('#ffffff')"></div>
+          <div class="color-btn"        id="col-purple" style="background:#a855f7" onclick="setColor('#a855f7')"></div>
+          <div class="color-btn"        id="col-yellow" style="background:#fde047" onclick="setColor('#fde047')"></div>
+          <div class="color-btn"        id="col-red"    style="background:#ef4444" onclick="setColor('#ef4444')"></div>
+          <div class="color-btn"        id="col-green"  style="background:#22c55e" onclick="setColor('#22c55e')"></div>
+          <div class="color-btn"        id="col-cyan"   style="background:#22d3ee" onclick="setColor('#22d3ee')"></div>
+        </div>
+        <div class="tool-sep"></div>
+        <button class="size-btn active" id="sz-thin"  onclick="setSize(2)">—</button>
+        <button class="size-btn"        id="sz-mid"   onclick="setSize(4)">━</button>
+        <button class="size-btn"        id="sz-thick" onclick="setSize(7)">█</button>
+      </div>
+      <div class="field-svg-wrap" id="field-drop-zone">
+        <svg id="field-svg" viewBox="0 0 340 520" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="grassGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0d2018"/>
+              <stop offset="50%" stop-color="#0f2a1c"/>
+              <stop offset="100%" stop-color="#0d2018"/>
+            </linearGradient>
+          </defs>
+          <rect width="340" height="520" fill="url(#grassGrad)" rx="6"/>
+          <rect x="0" y="0"   width="340" height="52" fill="#0f2a1c" opacity="0.5"/>
+          <rect x="0" y="104" width="340" height="52" fill="#0f2a1c" opacity="0.5"/>
+          <rect x="0" y="208" width="340" height="52" fill="#0f2a1c" opacity="0.5"/>
+          <rect x="0" y="312" width="340" height="52" fill="#0f2a1c" opacity="0.5"/>
+          <rect x="0" y="416" width="340" height="52" fill="#0f2a1c" opacity="0.5"/>
+          <rect x="12" y="12" width="316" height="496" fill="none" stroke="#ffffff18" stroke-width="2" rx="2"/>
+          <line x1="12" y1="260" x2="328" y2="260" stroke="#ffffff18" stroke-width="1.5"/>
+          <circle cx="170" cy="260" r="46" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <circle cx="170" cy="260" r="3" fill="#ffffff20"/>
+          <rect x="72"  y="12"  width="196" height="72" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <rect x="118" y="12"  width="104" height="34" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <rect x="140" y="8"   width="60"  height="12" fill="none" stroke="#ffffff30" stroke-width="1.5"/>
+          <rect x="72"  y="436" width="196" height="72" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <rect x="118" y="474" width="104" height="34" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <rect x="140" y="500" width="60"  height="12" fill="none" stroke="#ffffff30" stroke-width="1.5"/>
+          <circle cx="170" cy="66"  r="3" fill="#ffffff20"/>
+          <path d="M 124 84  A 46 46 0 0 1 216 84"  fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <circle cx="170" cy="454" r="3" fill="#ffffff20"/>
+          <path d="M 124 436 A 46 46 0 0 0 216 436" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <path d="M 12  12  A 10 10 0 0 1 22  22"  fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <path d="M 328 12  A 10 10 0 0 0 318 22"  fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <path d="M 12  508 A 10 10 0 0 0 22  498" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+          <path d="M 328 508 A 10 10 0 0 1 318 498" fill="none" stroke="#ffffff18" stroke-width="1.5"/>
+        </svg>
+        <div id="field-players"></div>
+        <canvas id="draw-canvas"></canvas>
       </div>
     </div>
 
-    <!-- CAMISA II -->
-    <div class="kit-card reveal-right">
-      <div class="kit-badge">Camisa II · Alternativa</div>
-      <div class="kit-svg-wrap">
-      <img src="camisa2.png">      
+    <div class="tactics-panel">
+      <div class="panel-box">
+        <div class="panel-title">🟣 Jogadores</div>
+        <div class="tactics-tip" id="mode-tip">Modo: Mover jogadores.</div>
+        <div class="bench-list" id="bench-list"></div>
       </div>
-      <div class="kit-name">Camisa II</div>
-      <div class="kit-desc">Uniforme alternativo 2026/27. Preto imponente com listras e detalhes em roxo neon, elegância noturna.</div>
-      <div class="kit-colors">
-        <div class="kit-color-dot" style="background:#0a080f" title="Preto"></div>
-        <div class="kit-color-dot" style="background:#9b35f8" title="Roxo Neon"></div>
-        <div class="kit-color-dot" style="background:#5535c8" title="Roxo Médio"></div>
+      <div class="panel-box">
+        <div class="panel-title">📋 Titulares</div>
+        <div class="lineup-slots" id="lineup-slots">
+          <div style="font-size:0.76rem;color:var(--text-muted);text-align:center;padding:14px 0;">Nenhum jogador no campo</div>
+        </div>
       </div>
     </div>
-
   </div>
 </div>
 
 <div class="divider"></div>
 
-<!-- ══════════════════════════════════════════════════════════════
-     ESCALAÇÃO TÁTICA — SEÇÃO DESATIVADA
-     Para reativar: mude #escalacao { display:none } para display:block
-     e descomente o bloco "ESCALAÇÃO JS" no final do script.
-═══════════════════════════════════════════════════════════════ -->
-<div id="escalacao">
-  <!-- conteúdo de escalação aqui quando reativado -->
-</div>
-
-<!-- JOGOS -->
-<div class="section" id="jogos">
-  <div class="reveal">
-    <div class="section-label">Partidas</div>
-    <div class="section-title">Jogos</div>
-  </div>
+<div class="section-wrap" id="jogos">
+  <div class="section-label">Partidas</div>
+  <div class="section-title">Jogos</div>
   <div class="matches-list" id="matches-list"></div>
 </div>
 
 <div class="divider"></div>
 
-<!-- HISTÓRICO -->
-<div class="section" id="historico">
-  <div class="reveal">
-    <div class="section-label">Desde 2022</div>
-    <div class="section-title">Histórico do Clube</div>
-  </div>
+<div class="section-wrap" id="historico">
+  <div class="section-label">Desde 2022</div>
+  <div class="section-title">Histórico do Clube</div>
   <div class="timeline" id="timeline"></div>
 </div>
 
 <div class="divider"></div>
 
-<!-- STATS -->
-<div class="section" id="stats">
-  <div class="reveal">
-    <div class="section-label">Números</div>
-    <div class="section-title">Aproveitamento</div>
-  </div>
+<div class="section-wrap" id="stats">
+  <div class="section-label">Números</div>
+  <div class="section-title">Aproveitamento</div>
   <div class="stats-grid" id="stats-grid"></div>
   <div id="bars"></div>
 </div>
 
-<!-- FOOTER -->
-<footer>
-  <img class="footer-crest" src="logo.png" alt="" onerror="this.style.display='none'">
-  <div class="footer-name">Aliginianos FC</div>
-  <div class="footer-sub">Fundado em 2022 · Futebol de Várzea</div>
-</footer>
+<footer><p>⚽ Aliginianos FC · Fundado em 2022 · Futebol de Várzea</p></footer>
 
 <script>
 /* ════════════════════════════════════════
    DADOS DO TIME — EDITE AQUI
 ════════════════════════════════════════ */
 const NEWS_ITEMS = [
-  "Durante jogo contra Pandora, o jogador Isaac lesionou o pé e ficará de fora dos próximos jogos",
-  "Thigas e Nogueira impressionam na estreia — dupla promete agitar a temporada 2026",
-  "Mesmo lesionado, o CEO Isaac e seus companheiros discutem a data do próximo jogo",
-  "Novos reforços Thigas, Gabeg e Yuri chegam para fortalecer o elenco em 2026",
-  "Saída dos goleiros Gabriel e Raphael marca renovação no elenco",
+  "Aliginianos se preparam para o próximo clássico contra o Pandora",
+  "Novos reforços: Thigas, Gabeg e Yuri chegam para fortalecer o elenco em 2026",
+  "Saída dos goleiros Gabriel e Raphael marca renovação no time",
   "Lucas Almeida, contratado direto do Botafogo, segue em recuperação",
   "Raul emprestado ao Pandora — retorno previsto para a próxima temporada",
   "Time completa 4 anos de história com identidade cada vez mais forte",
+  "Próximo jogo: Aliginianos x Pandora — aguardem!",
 ];
 
-/* pos: GK | DEF | MID | ATT   badges: captain | injured | loan */
 const PLAYERS = [
-  { number:1,  name:"Gabriel",       pos:"GK",  note:"Assinado para 2026", badges:[] },
-  { number:6,  name:"Raphael",       pos:"GK",  note:"Desde 2022",         badges:["injured"] },
-  { number:7,  name:"Thigas",        pos:"GK",  note:"Ex-Cotil",           badges:[] },
-  { number:4,  name:"Isaac",         pos:"DEF", note:"Desde 2022",         badges:["injured"] },
-  { number:12, name:"Luigi",         pos:"DEF", note:"Desde 2022",         badges:["captain"] },
-  { number:5,  name:"Gabeg",         pos:"DEF", note:"Ex-Mirassol",        badges:[] },
-  { number:2,  name:"Yuri",          pos:"DEF", note:"Ex-Mirassol",        badges:[] },
-  { number:3,  name:"Filipe",        pos:"MID", note:"Saiu em 2025",       badges:[] },
-  { number:10, name:"Nogueira",      pos:"MID", note:"Nova contratação",   badges:[] },
-  { number:14, name:"Raul",          pos:"MID", note:"Emprestado",         badges:["loan"] },
-  { number:9,  name:"Lucas Almeida", pos:"ATT", note:"Ex-Botafogo",        badges:["injured"] },
-  { number:11, name:"William",       pos:"ATT", note:"Desde 2023",         badges:[] },
-  { number:8,  name:"João",          pos:"ATT", note:"Desde 2022",         badges:[] },
+  { number: 1,  name: "Gabriel",       pos: "GK",  note: "Assinado para 2026", badges: [] },
+  { number: 6,  name: "Raphael",       pos: "GK",  note: "Desde 2022",         badges: ["injured"] },
+  { number: 7,  name: "Thigas",        pos: "GK",  note: "Ex-Cotil",           badges: [] },
+  { number: 4,  name: "Isaac",         pos: "DEF", note: "Desde 2022",         badges: ["injured"] },
+  { number: 12, name: "Luigi",         pos: "DEF", note: "Desde 2022",         badges: ["captain"] },
+  { number: 5,  name: "Gabeg",         pos: "DEF", note: "Ex-Mirassol",        badges: [] },
+  { number: 2,  name: "Yuri",          pos: "DEF", note: "Ex-Mirassol",        badges: [] },
+  { number: 3,  name: "Filipe",        pos: "MID", note: "Saiu em 2025",       badges: [] },
+  { number: 14, name: "Nogueira",      pos: "MID", note: "Nova contratação",   badges: [] },
+  { number: 11, name: "Raul",          pos: "MID", note: "Emprestado",         badges: ["loan"] },
+  { number: 9,  name: "Lucas Almeida", pos: "ATT", note: "Ex-Botafogo",        badges: ["injured"] },
+  { number: 10, name: "William",       pos: "ATT", note: "Desde 2023",         badges: [] },
+  { number: 8,  name: "João",          pos: "ATT", note: "Desde 2022",         badges: [] },
 ];
 
-/* result: W=Vitória D=Empate L=Derrota WO=W.O. null=Próximo */
+/*
+  result: 'W' = Vitória | 'L' = Derrota | 'D' = Empate | 'WO' = W.O. | null = Próximo jogo
+  score:  'NossosxDeles' — ex: '3x1'. Para WO ou próximo jogo use null.
+*/
 const MATCHES = [
   { opponent:"Caze",    date:"2022",       result:"L",  score:"1x12",  home:false, note:"Amistoso de estreia" },
   { opponent:"Caze",    date:"2023",       result:"L",  score:"3x13",  home:true,  note:"2º jogo em casa" },
@@ -556,264 +463,372 @@ const MATCHES = [
   { opponent:"Caze",    date:"Abril 2024", result:"WO", score:null,    home:true,  note:"Vitória por WO" },
   { opponent:"Caze",    date:"2024",       result:"W",  score:"12x1",  home:true,  note:"Grande vitória" },
   { opponent:"Pandora", date:"Mid-2025",   result:"L",  score:"2x8",   home:false, note:"" },
-  { opponent:"Pandora", date:"Maio 2026",  result:"D",  score:"11x11", home:true,  note:"Jogo lendário, derrota nos pênaltis" },
-{ opponent:"Pandora", date:"A definir",  result:null,  score:"", home:true,  note:"A revanche" },
+  { opponent:"Pandora", date:"Maio 2026",  result:"D",  score:"11x11", home:true,  note:"Jogo lendário" },
 ];
 
 const HISTORY = [
-  { year:"2022", events:[
-    {icon:"🏁",text:"Criação do Aliginianos FC"},
-    {icon:"⚽",text:"Derrota no amistoso de estreia contra o Caze (12x1)"},
-  ]},
-  { year:"2023", events:[
-    {icon:"✍️",text:"Contratação do William"},
-    {icon:"✍️",text:"Contratação do Filipe (meio do ano)"},
-    {icon:"⚽",text:"Segundo jogo em casa contra o Caze — derrota por 13x3"},
-    {icon:"⚽",text:"Primeira vitória contra o Caze — triunfo por 6x2"},
-  ]},
-  { year:"2024", events:[
-    {icon:"🏆",text:"Consolidação do time oficial"},
-    {icon:"⚽",text:"Derrota contra os adultos (6x3)"},
-    {icon:"💪",text:"Reforço moral (abril)"},
-    {icon:"⚽",text:"Vitória contra Caze por WO"},
-    {icon:"⚽",text:"Vitória histórica contra Caze (12x1)"},
-  ]},
-  { year:"2025", events:[
-    {icon:"🔄",text:"Empréstimo do Raul para o Pandora"},
-    {icon:"🩺",text:"Contratação do Lucas Almeida (machucado) — direto do Botafogo"},
-    {icon:"⚽",text:"Derrota contra Pandora (8x2)"},
-  ]},
-  { year:"2026", events:[
-    {icon:"✍️",text:"Contratação de Thigas (ex-Cotil)"},
-    {icon:"✍️",text:"Contratação de Gabeg e Yuri (ex-Mirassol)"},
-    {icon:"🚪",text:"Saída dos goleiros Gabriel e Raphael"},
-    {icon:"🤝",text:"Empate épico contra Pandora (11x11)"},
-   {icon:"⚽",text:"Revanche contra o Pandora - a definir"},
-  ]},
+  { year:"2022", events:[{icon:"🏁",text:"Criação do Aliginianos FC"},{icon:"⚽",text:"Derrota no amistoso de estreia contra o Caze (12x1)"}]},
+  { year:"2023", events:[{icon:"✍️",text:"Contratação do William"},{icon:"✍️",text:"Contratação do Filipe (meio do ano)"},{icon:"⚽",text:"Segundo jogo em casa contra o Caze — derrota por 13x3"},{icon:"⚽",text:"Primeira vitória contra o Caze — vitória por 6x2"}]},
+  { year:"2024", events:[{icon:"🏆",text:"Consolidação do time oficial"},{icon:"⚽",text:"Derrota contra os adultos (6x3)"},{icon:"💪",text:"Reforço moral (abril)"},{icon:"🏳️",text:"Vitória contra Caze por WO"},{icon:"🔥",text:"Vitória histórica contra Caze (12x1)"}]},
+  { year:"2025", events:[{icon:"🔄",text:"Empréstimo do Raul para o Pandora"},{icon:"🩺",text:"Contratação do Lucas Almeida (machucado) — direto do Botafogo"},{icon:"⚽",text:"Derrota contra Pandora (8x2)"}]},
+  { year:"2026", events:[{icon:"✍️",text:"Contratação de Thigas (ex-Cotil)"},{icon:"✍️",text:"Contratação de Gabeg e Yuri (ex-Mirassol)"},{icon:"🚪",text:"Saída dos goleiros Gabriel e Raphael"},{icon:"🤝",text:"Empate lendário contra Pandora (11x11)"}]},
 ];
 
-/* ════ FUNDO ANIMADO ════ */
-(function(){
-  const cv=document.getElementById('bg-canvas');
-  const cx=cv.getContext('2d');
-  let W,H,particles=[];
-
-  function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}
-  window.addEventListener('resize',()=>{resize();init();});
-  resize();
-
-  function init(){
-    particles=[];
-    const N=Math.floor((W*H)/18000);
-    for(let i=0;i<N;i++){
-      particles.push({
-        x:Math.random()*W, y:Math.random()*H,
-        r:Math.random()*1.8+0.4,
-        vx:(Math.random()-0.5)*0.25, vy:(Math.random()-0.5)*0.25,
-        alpha:Math.random()*0.5+0.1,
-        hue:Math.random()<0.6 ? 260+Math.random()*30 : 35+Math.random()*15,
-        pulse:Math.random()*Math.PI*2,
-      });
-    }
-    // nebulae
-  }
-  init();
-
-  // Moving nebula orbs
-  const orbs=[
-    {x:W*0.2,y:H*0.3,r:W*0.28,h:260,a:0.06,vx:0.12,vy:0.08},
-    {x:W*0.8,y:H*0.6,r:W*0.22,h:280,a:0.05,vx:-0.1,vy:0.12},
-    {x:W*0.5,y:H*0.8,r:W*0.18,h:35,a:0.04,vx:0.08,vy:-0.1},
-  ];
-
-  let t=0;
-  function draw(){
-    cx.clearRect(0,0,W,H);
-
-    // Nebulae
-    orbs.forEach(o=>{
-      o.x+=o.vx; o.y+=o.vy;
-      if(o.x<-o.r||o.x>W+o.r)o.vx*=-1;
-      if(o.y<-o.r||o.y>H+o.r)o.vy*=-1;
-      const g=cx.createRadialGradient(o.x,o.y,0,o.x,o.y,o.r);
-      g.addColorStop(0,`hsla(${o.h},70%,35%,${o.a})`);
-      g.addColorStop(1,'transparent');
-      cx.fillStyle=g;
-      cx.fillRect(0,0,W,H);
-    });
-
-    // Particles
-    particles.forEach(p=>{
-      p.x+=p.vx; p.y+=p.vy;
-      p.pulse+=0.012;
-      if(p.x<0)p.x=W; if(p.x>W)p.x=0;
-      if(p.y<0)p.y=H; if(p.y>H)p.y=0;
-      const a=p.alpha*(0.7+0.3*Math.sin(p.pulse));
-      cx.beginPath();cx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      cx.fillStyle=`hsla(${p.hue},80%,70%,${a})`;
-      cx.fill();
-    });
-
-    // Grid lines — subtle
-    cx.strokeStyle='rgba(85,53,200,0.04)';
-    cx.lineWidth=1;
-    const gs=120;
-    for(let x=0;x<W;x+=gs){cx.beginPath();cx.moveTo(x,0);cx.lineTo(x,H);cx.stroke();}
-    for(let y=0;y<H;y+=gs){cx.beginPath();cx.moveTo(0,y);cx.lineTo(W,y);cx.stroke();}
-
-    t++;
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
+/* ════ FORMAÇÕES ════ */
+const FORMATIONS = {
+  "4-3-3":{ slots:[{pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:18,y:74,label:"LD"},{pos:"DEF",x:38,y:74,label:"ZE"},{pos:"DEF",x:62,y:74,label:"ZD"},{pos:"DEF",x:82,y:74,label:"LE"},{pos:"MID",x:25,y:56,label:"MC"},{pos:"MID",x:50,y:52,label:"MC"},{pos:"MID",x:75,y:56,label:"MC"},{pos:"ATT",x:18,y:34,label:"AE"},{pos:"ATT",x:50,y:28,label:"CA"},{pos:"ATT",x:82,y:34,label:"AD"}]},
+  "4-4-2":{ slots:[{pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:18,y:74,label:"LD"},{pos:"DEF",x:38,y:74,label:"ZE"},{pos:"DEF",x:62,y:74,label:"ZD"},{pos:"DEF",x:82,y:74,label:"LE"},{pos:"MID",x:18,y:54,label:"ME"},{pos:"MID",x:38,y:54,label:"MC"},{pos:"MID",x:62,y:54,label:"MC"},{pos:"MID",x:82,y:54,label:"MD"},{pos:"ATT",x:36,y:30,label:"SA"},{pos:"ATT",x:64,y:30,label:"SA"}]},
+  "3-5-2":{ slots:[{pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:25,y:74,label:"ZE"},{pos:"DEF",x:50,y:74,label:"ZC"},{pos:"DEF",x:75,y:74,label:"ZD"},{pos:"MID",x:12,y:54,label:"AE"},{pos:"MID",x:32,y:54,label:"MC"},{pos:"MID",x:50,y:50,label:"MC"},{pos:"MID",x:68,y:54,label:"MC"},{pos:"MID",x:88,y:54,label:"AD"},{pos:"ATT",x:36,y:30,label:"SA"},{pos:"ATT",x:64,y:30,label:"SA"}]},
+  "4-2-3-1":{ slots:[{pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:18,y:74,label:"LD"},{pos:"DEF",x:38,y:74,label:"ZE"},{pos:"DEF",x:62,y:74,label:"ZD"},{pos:"DEF",x:82,y:74,label:"LE"},{pos:"MID",x:36,y:58,label:"VOL"},{pos:"MID",x:64,y:58,label:"VOL"},{pos:"MID",x:18,y:40,label:"AE"},{pos:"MID",x:50,y:38,label:"MEA"},{pos:"MID",x:82,y:40,label:"AD"},{pos:"ATT",x:50,y:22,label:"CA"}]},
+  "3-4-3":{ slots:[{pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:25,y:74,label:"ZE"},{pos:"DEF",x:50,y:74,label:"ZC"},{pos:"DEF",x:75,y:74,label:"ZD"},{pos:"MID",x:18,y:54,label:"AE"},{pos:"MID",x:38,y:54,label:"MC"},{pos:"MID",x:62,y:54,label:"MC"},{pos:"MID",x:82,y:54,label:"AD"},{pos:"ATT",x:20,y:30,label:"AE"},{pos:"ATT",x:50,y:24,label:"CA"},{pos:"ATT",x:80,y:30,label:"AD"}]},
+  "5-3-2":{ slots:[{pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:10,y:74,label:"AE"},{pos:"DEF",x:28,y:74,label:"ZE"},{pos:"DEF",x:50,y:74,label:"ZC"},{pos:"DEF",x:72,y:74,label:"ZD"},{pos:"DEF",x:90,y:74,label:"AD"},{pos:"MID",x:25,y:52,label:"MC"},{pos:"MID",x:50,y:48,label:"MC"},{pos:"MID",x:75,y:52,label:"MC"},{pos:"ATT",x:36,y:28,label:"SA"},{pos:"ATT",x:64,y:28,label:"SA"}]},
+};
 
 /* ════ RENDER GERAL ════ */
-const posClass   ={GK:'pos-gk',DEF:'pos-def',MID:'pos-mid',ATT:'pos-att'};
-const RESULT_LBL ={W:'V',D:'E',L:'D',WO:'WO'};
-const RESULT_CLS ={W:'result-w',D:'result-d',L:'result-l',WO:'result-wo'};
+const posClass    = { GK:'pos-gk', DEF:'pos-def', MID:'pos-mid', ATT:'pos-att' };
+const posClassDot = { GK:'gk', DEF:'def', MID:'mid', ATT:'att' };
 
-// Ticker
-document.getElementById('ticker').innerHTML=
+document.getElementById('ticker').innerHTML =
   [...NEWS_ITEMS,...NEWS_ITEMS].map(n=>`<span class="ticker-item">${n}</span>`).join('');
 
-// Squad
-document.getElementById('squad-grid').innerHTML=PLAYERS.map((p,i)=>`
-  <div class="player-card reveal" style="transition-delay:${i*40}ms">
-    <div class="player-num-bg">${p.number}</div>
+document.getElementById('squad-grid').innerHTML = PLAYERS.map(p=>`
+  <div class="player-card">
+    <div class="player-number">${p.number}</div>
     <span class="player-pos ${posClass[p.pos]||''}">${p.pos}</span>
     <div class="player-name">${p.name}</div>
-    <div class="player-meta">#${p.number} · ${p.note||''}</div>
+    <div class="player-meta">${p.note||''}</div>
     ${p.badges.length?`<div class="player-badge">${p.badges.map(b=>`<span class="badge ${b}">${b==='captain'?'© Capitão':b==='injured'?'🩹 Lesionado':'🔄 Emprestado'}</span>`).join('')}</div>`:''}
   </div>`).join('');
 
-// Matches
-document.getElementById('matches-list').innerHTML=MATCHES.map((m,i)=>`
-  <div class="match-card reveal" style="transition-delay:${i*50}ms">
-    <div class="match-result ${m.result?RESULT_CLS[m.result]:'result-upcoming'}">${m.result?(RESULT_LBL[m.result]||m.result):'⏳'}</div>
+/* ── Resultado: label e classe CSS ── */
+/* W=Vitória D=Empate L=Derrota WO=W.O. null=próximo */
+const RESULT_LABEL = { W:'V', D:'E', L:'D', WO:'WO' };
+const RESULT_CLASS = { W:'result-w', D:'result-d', L:'result-l', WO:'result-wo' };
+
+document.getElementById('matches-list').innerHTML = MATCHES.map(m=>`
+  <div class="match-card">
+    <div class="match-result ${m.result ? RESULT_CLASS[m.result] : 'result-upcoming'}">
+      ${m.result ? (RESULT_LABEL[m.result]||m.result) : '⏳'}
+    </div>
     <div class="match-info">
       <div class="match-opponent">Aliginianos vs ${m.opponent}</div>
       <div class="match-detail">${m.date}${m.home?' · Casa':' · Fora'}${m.note?' · '+m.note:''}</div>
     </div>
-    <div class="match-score${!m.score?' upcoming':''}">${m.score||(m.result==='WO'?'W.O.':'Em breve')}</div>
+    <div class="match-score${!m.score?' upcoming':''}">${m.score||(m.result==='WO'?'WO':'Em breve')}</div>
   </div>`).join('');
 
-// History
-document.getElementById('timeline').innerHTML=HISTORY.map((y,yi)=>`
-  <div class="tl-year reveal" style="transition-delay:${yi*80}ms">
+document.getElementById('timeline').innerHTML = HISTORY.map(y=>`
+  <div class="tl-year">
     <div class="tl-year-label">${y.year}</div>
     <div class="tl-events">${y.events.map(e=>`<div class="tl-event"><span class="ev-icon">${e.icon}</span>${e.text}</div>`).join('')}</div>
   </div>`).join('');
 
-// Stats
-const played=MATCHES.filter(m=>m.result!==null).length;
-const wins  =MATCHES.filter(m=>m.result==='W'||m.result==='WO').length;
-const losses=MATCHES.filter(m=>m.result==='L').length;
-const draws =MATCHES.filter(m=>m.result==='D').length;
-const pts   =wins*3+draws;
-const maxPts=played*3;
-const aprov =maxPts>0?Math.round((pts/maxPts)*100):0;
-let gf=0,ga=0;
-MATCHES.forEach(m=>{if(m.score&&m.result!=='WO'){const[a,b]=m.score.split('x').map(Number);gf+=a;ga+=b;}});
+/* ── Stats — aproveitamento: V=3pts, E=1pt, D=0pts ── */
+const played = MATCHES.filter(m=>m.result!==null).length;
+const wins   = MATCHES.filter(m=>m.result==='W'||m.result==='WO').length;
+const losses = MATCHES.filter(m=>m.result==='L').length;
+const draws  = MATCHES.filter(m=>m.result==='D').length;
+const pts    = wins*3 + draws;
+const maxPts = played*3;
+const aprov  = maxPts>0 ? Math.round((pts/maxPts)*100) : 0;
 
-document.getElementById('hero-stats').innerHTML=[
-  {val:played,lbl:'Jogos'},{val:wins,lbl:'Vitórias'},
-  {val:draws,lbl:'Empates'},{val:losses,lbl:'Derrotas'},
-  {val:aprov+'%',lbl:'Aproveitamento'},
-].map((s,i,a)=>`
-  <div class="hero-stat">
-    <div class="val">${s.val}</div><div class="lbl">${s.lbl}</div>
-  </div>${i<a.length-1?'<div class="hero-stat-sep"></div>':''}`).join('');
+let gf=0, ga=0;
+MATCHES.forEach(m=>{
+  if(m.score && m.result!=='WO'){
+    const [a,b]=m.score.split('x').map(Number);
+    gf+=a; ga+=b;
+  }
+});
+
+document.getElementById('hero-stats').innerHTML=`
+  <div class="hero-stat"><div class="val">${played}</div><div class="lbl">Jogos</div></div>
+  <div class="hero-stat"><div class="val">${wins}</div><div class="lbl">Vitórias</div></div>
+  <div class="hero-stat"><div class="val">${draws}</div><div class="lbl">Empates</div></div>
+  <div class="hero-stat"><div class="val">${losses}</div><div class="lbl">Derrotas</div></div>
+  <div class="hero-stat"><div class="val">${aprov}%</div><div class="lbl">Aproveitamento</div></div>`;
 
 document.getElementById('stats-grid').innerHTML=[
   {big:played,name:'Jogos'},{big:wins,name:'Vitórias'},{big:draws,name:'Empates'},
-  {big:losses,name:'Derrotas'},{big:gf,name:'Gols Pró'},{big:ga,name:'Gols Contra'},
-  {big:gf-ga,name:'Saldo'},{big:pts,name:'Pontos'},{big:aprov+'%',name:'Aproveitamento'},
-].map((s,i)=>`<div class="stat-card reveal" style="transition-delay:${i*50}ms"><div class="big">${s.big}</div><div class="name">${s.name}</div></div>`).join('');
+  {big:losses,name:'Derrotas'},{big:gf,name:'Gols Marcados'},{big:ga,name:'Gols Sofridos'},
+  {big:pts,name:'Pontos'},{big:`${aprov}%`,name:'Aproveitamento'},
+].map(s=>`<div class="stat-card"><div class="big">${s.big}</div><div class="name">${s.name}</div></div>`).join('');
 
-const winP=played?Math.round((wins/played)*100):0;
-const draP=played?Math.round((draws/played)*100):0;
-const losP=played?Math.round((losses/played)*100):0;
+const winP  = played?Math.round((wins/played)*100):0;
+const drawP = played?Math.round((draws/played)*100):0;
+const losP  = played?Math.round((losses/played)*100):0;
 document.getElementById('bars').innerHTML=[
-  {label:'Vitórias',pct:winP,cls:'win'},{label:'Empates',pct:draP,cls:'draw'},{label:'Derrotas',pct:losP,cls:'loss'},
+  {label:'Vitórias',pct:winP, cls:'win' },
+  {label:'Empates', pct:drawP,cls:'draw'},
+  {label:'Derrotas',pct:losP, cls:'loss'},
 ].map(b=>`
-  <div class="aprov-bar reveal">
+  <div class="aproveitamento-bar">
     <div class="bar-header"><span class="bar-label">${b.label}</span><span class="bar-pct">${b.pct}%</span></div>
-    <div class="bar-track"><div class="bar-fill ${b.cls}" style="width:0%" data-target="${b.pct}"></div></div>
+    <div class="bar-track"><div class="bar-fill ${b.cls}" style="width:${b.pct}%"></div></div>
   </div>`).join('');
 
-/* ════ SCROLL REVEAL ════ */
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('visible');
-      // Animar barras quando aparecem
-      e.target.querySelectorAll&&e.target.querySelectorAll('.bar-fill').forEach(b=>{
-        b.style.width=b.dataset.target+'%';
-      });
-      if(e.target.classList.contains('aprov-bar')){
-        const fill=e.target.querySelector('.bar-fill');
-        if(fill)setTimeout(()=>{fill.style.width=fill.dataset.target+'%';},100);
-      }
-    }
-  });
-},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+/* ════ CANVAS DE DESENHO ════ */
+const canvas = document.getElementById('draw-canvas');
+const ctx    = canvas.getContext('2d');
+let drawMode='move', drawColor='#ffffff', drawSize=2;
+let isDrawing=false, drawStart={x:0,y:0};
+let drawHistory=[];
+const eraserRadius=20;
 
-document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.aprov-bar').forEach(el=>observer.observe(el));
+const TIPS={
+  move:  'Modo: Mover jogadores. Arraste ou clique no jogador.',
+  pen:   'Modo: Caneta livre. Clique e arraste para desenhar.',
+  arrow: 'Modo: Seta. Clique e arraste para traçar um movimento.',
+  line:  'Modo: Linha reta. Clique e arraste.',
+  circle:'Modo: Zona. Clique e arraste para marcar uma área.',
+  erase: 'Modo: Borracha. Clique e arraste para apagar traços.',
+};
 
-/* ════ NAV SCROLL ════ */
-window.addEventListener('scroll',()=>{
-  document.querySelector('nav').style.background=
-    window.scrollY>60?'rgba(6,6,14,0.95)':'rgba(6,6,14,0.72)';
+function resizeCanvas(){
+  const r=document.getElementById('field-drop-zone').getBoundingClientRect();
+  if(canvas.width===Math.round(r.width)&&canvas.height===Math.round(r.height))return;
+  const snap=canvas.width>0?ctx.getImageData(0,0,canvas.width,canvas.height):null;
+  canvas.width=Math.round(r.width); canvas.height=Math.round(r.height);
+  if(snap)ctx.putImageData(snap,0,0);
+}
+
+function setMode(mode){
+  drawMode=mode;
+  document.querySelectorAll('.tool-btn').forEach(b=>b.classList.remove('active'));
+  const btn=document.getElementById('btn-'+mode);
+  if(btn)btn.classList.add('active');
+  canvas.className='';
+  if(mode==='move'){ document.getElementById('field-players').style.pointerEvents='all'; }
+  else if(mode==='erase'){ canvas.classList.add('erase-mode'); document.getElementById('field-players').style.pointerEvents='none'; }
+  else { canvas.classList.add('draw-mode'); document.getElementById('field-players').style.pointerEvents='none'; }
+  document.getElementById('mode-tip').textContent=TIPS[mode]||'';
+  renderField();
+}
+
+function setColor(c){
+  drawColor=c;
+  document.querySelectorAll('.color-btn').forEach(b=>b.classList.remove('active'));
+  const map={'#ffffff':'col-white','#a855f7':'col-purple','#fde047':'col-yellow','#ef4444':'col-red','#22c55e':'col-green','#22d3ee':'col-cyan'};
+  if(map[c])document.getElementById(map[c]).classList.add('active');
+}
+
+function setSize(s){
+  drawSize=s;
+  document.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));
+  const map={2:'sz-thin',4:'sz-mid',7:'sz-thick'};
+  if(map[s])document.getElementById(map[s]).classList.add('active');
+}
+
+function saveSnapshot(){ if(canvas.width===0||canvas.height===0)return; drawHistory.push(ctx.getImageData(0,0,canvas.width,canvas.height)); if(drawHistory.length>40)drawHistory.shift(); }
+function undoDraw(){ if(!drawHistory.length)return; ctx.putImageData(drawHistory.pop(),0,0); }
+
+function getCanvasPos(e){
+  const r=canvas.getBoundingClientRect();
+  const t=e.touches?e.touches[0]:e;
+  return {x:t.clientX-r.left,y:t.clientY-r.top};
+}
+
+function drawArrowhead(x1,y1,x2,y2){
+  const angle=Math.atan2(y2-y1,x2-x1);
+  const len=Math.max(12,drawSize*3);
+  ctx.beginPath();
+  ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-len*Math.cos(angle-0.42),y2-len*Math.sin(angle-0.42));
+  ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-len*Math.cos(angle+0.42),y2-len*Math.sin(angle+0.42));
+  ctx.stroke();
+}
+
+canvas.addEventListener('mousedown',e=>{
+  if(drawMode==='move')return;
+  resizeCanvas();
+  const pos=getCanvasPos(e);
+  isDrawing=true; drawStart={...pos};
+  if(drawMode!=='erase')saveSnapshot();
+  if(drawMode==='pen'){ctx.beginPath();ctx.moveTo(pos.x,pos.y);}
 });
 
-/* ════════════════════════════════════════════════════════════
-   ESCALAÇÃO TÁTICA — CÓDIGO DESATIVADO (comentado)
-   Para reativar:
-   1. Mude #escalacao { display:none } para display:block no CSS
-   2. Adicione o HTML de escalação dentro de #escalacao no HTML
-   3. Descomente este bloco inteiro
+canvas.addEventListener('mousemove',e=>{
+  if(!isDrawing)return;
+  const pos=getCanvasPos(e);
+  ctx.strokeStyle=drawColor; ctx.lineWidth=drawSize; ctx.lineCap='round'; ctx.lineJoin='round';
+  if(drawMode==='pen'){ ctx.lineTo(pos.x,pos.y); ctx.stroke(); }
+  else if(drawMode==='erase'){
+    ctx.save(); ctx.globalCompositeOperation='destination-out';
+    ctx.beginPath(); ctx.arc(pos.x,pos.y,eraserRadius+drawSize*2,0,Math.PI*2); ctx.fill(); ctx.restore();
+  } else {
+    if(drawHistory.length)ctx.putImageData(drawHistory[drawHistory.length-1],0,0);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+    if(drawMode==='line'||drawMode==='arrow'){
+      ctx.beginPath(); ctx.moveTo(drawStart.x,drawStart.y); ctx.lineTo(pos.x,pos.y); ctx.stroke();
+      if(drawMode==='arrow')drawArrowhead(drawStart.x,drawStart.y,pos.x,pos.y);
+    } else if(drawMode==='circle'){
+      const rx=Math.abs(pos.x-drawStart.x)/2, ry=Math.abs(pos.y-drawStart.y)/2;
+      const cx=drawStart.x+(pos.x-drawStart.x)/2, cy=drawStart.y+(pos.y-drawStart.y)/2;
+      ctx.beginPath(); ctx.ellipse(cx,cy,rx||1,ry||1,0,0,Math.PI*2);
+      ctx.strokeStyle=drawColor+'cc'; ctx.stroke(); ctx.fillStyle=drawColor+'18'; ctx.fill();
+    }
+  }
+});
 
-const FORMATIONS = {
-  "4-3-3":{ slots:[
-    {pos:"GK",x:50,y:90,label:"GK"},{pos:"DEF",x:18,y:74,label:"LD"},
-    {pos:"DEF",x:38,y:74,label:"ZE"},{pos:"DEF",x:62,y:74,label:"ZD"},
-    {pos:"DEF",x:82,y:74,label:"LE"},{pos:"MID",x:25,y:56,label:"MC"},
-    {pos:"MID",x:50,y:52,label:"MC"},{pos:"MID",x:75,y:56,label:"MC"},
-    {pos:"ATT",x:18,y:34,label:"AE"},{pos:"ATT",x:50,y:28,label:"CA"},
-    {pos:"ATT",x:82,y:34,label:"AD"},
-  ]},
-  // ... demais formações
-};
-const posClassDot={GK:'gk',DEF:'def',MID:'mid',ATT:'att'};
-let fieldSlots=[],dragPlayer=null,dragSlot=null;
+canvas.addEventListener('mouseup',e=>{
+  if(!isDrawing)return; isDrawing=false;
+  const pos=getCanvasPos(e);
+  ctx.strokeStyle=drawColor; ctx.lineWidth=drawSize; ctx.lineCap='round'; ctx.lineJoin='round';
+  if(drawMode==='line'){ ctx.beginPath();ctx.moveTo(drawStart.x,drawStart.y);ctx.lineTo(pos.x,pos.y);ctx.stroke(); }
+  else if(drawMode==='arrow'){ ctx.beginPath();ctx.moveTo(drawStart.x,drawStart.y);ctx.lineTo(pos.x,pos.y);ctx.stroke();drawArrowhead(drawStart.x,drawStart.y,pos.x,pos.y); }
+  else if(drawMode==='circle'){
+    if(drawHistory.length)ctx.putImageData(drawHistory[drawHistory.length-1],0,0);
+    const rx=Math.abs(pos.x-drawStart.x)/2,ry=Math.abs(pos.y-drawStart.y)/2;
+    const cx=drawStart.x+(pos.x-drawStart.x)/2,cy=drawStart.y+(pos.y-drawStart.y)/2;
+    ctx.beginPath();ctx.ellipse(cx,cy,rx||1,ry||1,0,0,Math.PI*2);
+    ctx.strokeStyle=drawColor+'cc';ctx.stroke();ctx.fillStyle=drawColor+'18';ctx.fill();
+  }
+  if(drawMode!=='erase')saveSnapshot();
+});
 
-function getPlayerById(id){return PLAYERS.find(p=>p.number===id);}
-function getOnFieldIds(){return fieldSlots.filter(s=>s.playerId!==null).map(s=>s.playerId);}
-function renderBench(){...}
-function renderLineupSlots(){...}
-function removeFromSlot(id){...}
-function renderField(){...}
-function handleDropOnSlot(targetId,e){...}
-function onBenchDragStart(e,pid){...}
-function onSlotDragStart(e,sid){...}
-function onDragEnd(){...}
-function clearField(){...}
-function applyFormation(key){...}
-// Init: applyFormation('4-3-3'); setMode('move');
-════════════════════════════════════════════════════════════ */
+canvas.addEventListener('mouseleave',()=>{isDrawing=false;});
+canvas.addEventListener('touchstart',e=>{e.preventDefault();canvas.dispatchEvent(new MouseEvent('mousedown',{clientX:e.touches[0].clientX,clientY:e.touches[0].clientY}));},{passive:false});
+canvas.addEventListener('touchmove', e=>{e.preventDefault();canvas.dispatchEvent(new MouseEvent('mousemove',{clientX:e.touches[0].clientX,clientY:e.touches[0].clientY}));},{passive:false});
+canvas.addEventListener('touchend',  e=>{e.preventDefault();canvas.dispatchEvent(new MouseEvent('mouseup',{}));},{passive:false});
 
-/* ════ CANVAS DE DESENHO — DESATIVADO (comentado) ════
-const canvas=document.getElementById('draw-canvas');
-const ctx=canvas.getContext('2d');
-let drawMode='move',drawColor='#ffffff',drawSize=2;
-let isDrawing=false,drawStart={x:0,y:0},drawHistory=[];
-function setMode(mode){...}
-function setColor(c){...}
-function setSize(s){...}
-function saveSnapshot(){...}
-function undoDraw(){...}
-// Canvas events: mousedown, mousemove, mouseup, mouseleave, touch
-════════════════════════════════════════════════════════════ */
+/* ════ ESCALAÇÃO ════ */
+let fieldSlots=[], dragPlayer=null, dragSlot=null;
+function getPlayerById(id){ return PLAYERS.find(p=>p.number===id); }
+function getOnFieldIds(){ return fieldSlots.filter(s=>s.playerId!==null).map(s=>s.playerId); }
+
+function renderBench(){
+  const onField=getOnFieldIds();
+  document.getElementById('bench-list').innerHTML=PLAYERS.map(p=>`
+    <div class="bench-player ${onField.includes(p.number)?'on-field':''}"
+         draggable="${!onField.includes(p.number)}"
+         data-pid="${p.number}"
+         ondragstart="onBenchDragStart(event,${p.number})"
+         ondragend="onDragEnd(event)">
+      <div class="bp-dot ${posClassDot[p.pos]||'gk'}">${p.pos}</div>
+      <div class="bp-info"><div class="bp-name">${p.name}</div><div class="bp-pos">${p.pos} · #${p.number}</div></div>
+    </div>`).join('');
+}
+
+function renderLineupSlots(){
+  const onField=fieldSlots.filter(s=>s.playerId!==null);
+  if(!onField.length){document.getElementById('lineup-slots').innerHTML='<div style="font-size:0.76rem;color:var(--text-muted);text-align:center;padding:14px 0;">Nenhum jogador no campo</div>';return;}
+  document.getElementById('lineup-slots').innerHTML=onField.map(s=>{
+    const p=getPlayerById(s.playerId);
+    return `<div class="lineup-row"><span class="lineup-pos-tag">${s.label||s.pos}</span><span class="lineup-name">${p?p.name:'?'}</span><button class="lineup-remove" onclick="removeFromSlot('${s.slotId}')">✕</button></div>`;
+  }).join('');
+}
+
+function removeFromSlot(id){ const s=fieldSlots.find(s=>s.slotId===id);if(s)s.playerId=null;renderField();renderBench();renderLineupSlots(); }
+
+function renderField(){
+  const fp=document.getElementById('field-players');
+  fp.innerHTML='';
+  const interactive=(drawMode==='move');
+  fieldSlots.forEach(slot=>{
+    const el=document.createElement('div');
+    el.className='field-player'+(interactive?' interactive':'');
+    el.style.left=slot.x+'%'; el.style.top=slot.y+'%';
+    el.dataset.slotId=slot.slotId;
+    if(slot.playerId!==null){
+      const p=getPlayerById(slot.playerId);
+      const pc=posClassDot[p?p.pos:'GK']||'gk';
+      if(interactive){el.draggable=true;el.addEventListener('dragstart',e=>onSlotDragStart(e,slot.slotId));el.addEventListener('dragend',onDragEnd);el.addEventListener('dblclick',()=>removeFromSlot(slot.slotId));}
+      el.innerHTML=`<div class="fp-circle ${pc}"><span class="fp-num">${p?p.number:'?'}</span>${p?p.name.split(' ')[0].substring(0,7):'?'}</div><div class="fp-label">${p?p.name:'?'}</div>`;
+    } else {
+      el.innerHTML=`<div class="fp-circle empty"><span style="color:var(--text-muted);font-size:0.52rem;font-weight:700;">${slot.label||slot.pos}</span></div>`;
+      el.style.opacity='0.5';
+    }
+    if(interactive){
+      el.addEventListener('dragover',e=>{e.preventDefault();el.classList.add('drag-over-target');});
+      el.addEventListener('dragleave',e=>el.classList.remove('drag-over-target'));
+      el.addEventListener('drop',e=>{e.preventDefault();e.stopPropagation();el.classList.remove('drag-over-target');handleDropOnSlot(slot.slotId,e);});
+    }
+    fp.appendChild(el);
+  });
+}
+
+function handleDropOnSlot(targetId,e){
+  const ts=fieldSlots.find(s=>s.slotId===targetId); if(!ts)return;
+  if(dragPlayer!==null){
+    const ex=fieldSlots.find(s=>s.playerId===dragPlayer);
+    if(ex)ex.playerId=null;
+    if(ts.playerId!==null&&ex)ex.playerId=ts.playerId;
+    ts.playerId=dragPlayer; dragPlayer=null;
+  } else if(dragSlot!==null&&dragSlot!==targetId){
+    const src=fieldSlots.find(s=>s.slotId===dragSlot);
+    if(src){const tmp=ts.playerId;ts.playerId=src.playerId;src.playerId=tmp;}
+    dragSlot=null;
+  }
+  renderField();renderBench();renderLineupSlots();
+}
+
+function onBenchDragStart(e,pid){dragPlayer=pid;dragSlot=null;e.dataTransfer.effectAllowed='move';}
+function onSlotDragStart(e,sid){dragSlot=sid;dragPlayer=null;e.dataTransfer.effectAllowed='move';e.stopPropagation();}
+function onDragEnd(){dragPlayer=null;dragSlot=null;document.getElementById('field-drop-zone').classList.remove('field-drop-active');}
+
+const fieldZone=document.getElementById('field-drop-zone');
+fieldZone.addEventListener('dragover',e=>{if(drawMode!=='move')return;e.preventDefault();fieldZone.classList.add('field-drop-active');});
+fieldZone.addEventListener('dragleave',()=>fieldZone.classList.remove('field-drop-active'));
+fieldZone.addEventListener('drop',e=>{
+  if(drawMode!=='move')return;
+  e.preventDefault();fieldZone.classList.remove('field-drop-active');
+  if(e.target.closest('.field-player'))return;
+  const rect=fieldZone.getBoundingClientRect();
+  const xP=Math.min(Math.max(((e.clientX-rect.left)/rect.width)*100,5),95);
+  const yP=Math.min(Math.max(((e.clientY-rect.top)/rect.height)*100,5),95);
+  if(dragPlayer!==null){
+    const ex=fieldSlots.find(s=>s.playerId===dragPlayer);if(ex)ex.playerId=null;
+    fieldSlots.push({slotId:'free_'+Date.now(),x:xP,y:yP,label:'',pos:'',playerId:dragPlayer,free:true});
+    dragPlayer=null;
+  } else if(dragSlot!==null){
+    const s=fieldSlots.find(sl=>sl.slotId===dragSlot);if(s){s.x=xP;s.y=yP;}dragSlot=null;
+  }
+  renderField();renderBench();renderLineupSlots();
+});
+
+let pendingFreePlace=null;
+fieldZone.addEventListener('click',e=>{
+  if(drawMode!=='move')return;
+  if(e.target.closest('.field-player'))return;
+  if(pendingFreePlace!==null){
+    const rect=fieldZone.getBoundingClientRect();
+    const xP=Math.min(Math.max(((e.clientX-rect.left)/rect.width)*100,5),95);
+    const yP=Math.min(Math.max(((e.clientY-rect.top)/rect.height)*100,5),95);
+    const ex=fieldSlots.find(s=>s.playerId===pendingFreePlace);if(ex)ex.playerId=null;
+    fieldSlots.push({slotId:'free_'+Date.now(),x:xP,y:yP,label:'',pos:'',playerId:pendingFreePlace,free:true});
+    pendingFreePlace=null;
+    document.querySelectorAll('.bench-player').forEach(el=>el.style.outline='');
+    renderField();renderBench();renderLineupSlots();
+  }
+});
+
+document.getElementById('bench-list').addEventListener('click',e=>{
+  const bp=e.target.closest('.bench-player');if(!bp||bp.classList.contains('on-field'))return;
+  const pid=parseInt(bp.dataset.pid);
+  if(pendingFreePlace===pid){pendingFreePlace=null;document.querySelectorAll('.bench-player').forEach(el=>el.style.outline='');}
+  else{pendingFreePlace=pid;document.querySelectorAll('.bench-player').forEach(el=>el.style.outline='');bp.style.outline='2px solid var(--purple-light)';}
+});
+
+function clearField(){
+  fieldSlots=[];ctx.clearRect(0,0,canvas.width,canvas.height);drawHistory=[];
+  renderField();renderBench();renderLineupSlots();
+  document.getElementById('formation-select').value='free';pendingFreePlace=null;
+}
+
+function applyFormation(key){
+  if(key==='free'){clearField();return;}
+  const f=FORMATIONS[key];if(!f)return;
+  fieldSlots=f.slots.map((sl,i)=>({slotId:'slot_'+key+'_'+i,x:sl.x,y:sl.y,label:sl.label,pos:sl.pos,playerId:null}));
+  renderField();renderBench();renderLineupSlots();
+}
+
+window.addEventListener('resize',resizeCanvas);
+setTimeout(()=>{
+  resizeCanvas();
+  applyFormation('4-3-3');
+  document.getElementById('formation-select').value='4-3-3';
+  setMode('move');
+},100);
 </script>
 </body>
 </html>
